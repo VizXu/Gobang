@@ -18,5 +18,6 @@ public：
    {
       return this->gold;
    }
+   void setPosition(int _x,int _y);
 };
 #endif//player.h
