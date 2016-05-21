@@ -10,11 +10,11 @@ private:
 private:
    
 public：
-   string getName()
+   string getName() const
    {
       return this->name;
    }
-   int getGold()
+   int getGold() const
    {
       return this->gold;
    }
