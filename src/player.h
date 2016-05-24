@@ -1,5 +1,6 @@
 #ifndef _PLAYER_
 #define _PLAYER_
+#include"chessboard.h""
 #include<stirng>
 using std::string;
 class Player
@@ -26,6 +27,6 @@ public：
    {
       return this->gold;
    }
-   void setPosition(int _x,int _y);
+   void setPosition(int _x,int _y,ChessBoard& chessboard);
 };
 #endif//player.h
