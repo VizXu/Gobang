@@ -27,6 +27,6 @@ public：
    {
       return this->gold;
    }
-   void setPosition(int _x,int _y,ChessBoard& chessboard);
+   void setPosition(int _x,int _y,char ch,ChessBoard& chessboard);
 };
 #endif//player.h
