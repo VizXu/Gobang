@@ -7,7 +7,7 @@ class ChessBoard
 private:
   char chessboard[BAORDSIZE][BAORDSIZE];
 private:
-  friend void Player::setPosition(int _x,int _y);//this is the issue!!!
+  friend void Player::setPosition(int _x,int _y,ChessBoard& chessboard);//this is the issue!!!
 private:
   void init();//initial the chess baord
 public:
