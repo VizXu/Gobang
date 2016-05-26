@@ -1,7 +1,7 @@
 #ifndef _PLAYER_
 #define _PLAYER_
-#include"chessboard.h""
 #include<stirng>
+class ChessBoard;
 using std::string;
 class Player
 {
