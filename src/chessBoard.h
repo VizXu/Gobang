@@ -11,6 +11,13 @@ private:
 private:
   void init();//initial the chess baord
 public:
+  ChessBoard(){
+    init();
+  }
+  ~ChessBoard(){}
+  ChessBoard(const ChessBoard&)=delete;
+  ChessBoard& operator=(const ChessBoard&)=delete;
+public:
   void displayChessBoard();//show the chess baord
 };
 #endif//chessBoard.h
