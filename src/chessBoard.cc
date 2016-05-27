@@ -1,6 +1,6 @@
 #include"chessBaord.h"
 #include<cstdio>
-void ChessBaord::init()
+void ChessBoard::init()
 {
   for(int i=0;i<BOARDSIZE;i++)
   {
@@ -17,4 +17,12 @@ void ChessBoard::displayChessBoard()
     }
       puts("");
   }
+}
+
+bool ChessBoard::isLegal(int _x,int _y)
+{
+  if(chessBoard[_x][_y]=='#'||chessBoard[_x][_y]=='*')
+    return false;
+  else
+    return true;
 }
