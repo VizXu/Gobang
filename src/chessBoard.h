@@ -6,9 +6,11 @@ class ChessBoard
 {
 private:
   char chessboard[BAORDSIZE][BAORDSIZE];
+  int  xPosition,yPosition;
 private:
-  friend void Player::setPosition(int _x,int _y,ChessBoard& chessboard);//this is the issue!!!
+  friend void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard);//this is the issue!!!
 private:
+  bool isLegal(int _x,int _y);
   void init();//initial the chess baord
 public:
   ChessBoard(){
