@@ -1,4 +1,4 @@
-#include"chessBaord.h"
+#include"chessBoard.h"
 #include<cstdio>
 void ChessBoard::init()
 {
