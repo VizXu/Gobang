@@ -5,7 +5,7 @@ void ChessBoard::init()
   for(int i=0;i<BOARDSIZE;i++)
   {
     for(int j=0;j<BOARDSIZE;j++)
-    chessBaord[i][j]='+';
+    chessBoard[i][j]='+';
   }
 }
 
@@ -25,4 +25,9 @@ bool ChessBoard::isLegal(int _x,int _y)
     return false;
   else
     return true;
+}
+
+void ChessBoard::setPos(int _x,int _y,char ch)
+{
+  chessBoard[_x][_y]=ch;
 }
