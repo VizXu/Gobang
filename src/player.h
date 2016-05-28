@@ -1,6 +1,6 @@
 #ifndef _PLAYER_
 #define _PLAYER_
-#include<stirng>
+#include<string>
 class ChessBoard;
 using std::string;
 class Player
@@ -18,7 +18,7 @@ private:
    int getY(){
       return posY;
    }
-public：
+public:
    string getName() const
    {
       return this->name;
