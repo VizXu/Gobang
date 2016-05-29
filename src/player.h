@@ -19,6 +19,7 @@ private:
    int getY(){
       return posY;
    }
+   void recordChessmanInfo();
 public:
    Player():gold(0),name("ZhangSan"),posX(0),posY(0),chessmanNumber(0){}
    Player(string str):gold(0),name(str),posX(0),posY(0),chessmanNumber(0){}
