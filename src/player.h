@@ -9,8 +9,9 @@ private:
    int gold;
    string name;
 private:
-   int posX;
+   int posX;// record the current position x and y
    int posY;
+   unsigned int chessmanNumber// record the number of chessman
 private:
    int getX(){
       return posX;
@@ -18,6 +19,12 @@ private:
    int getY(){
       return posY;
    }
+public:
+   Player():gold(0),name("ZhangSan"),posX(0),posY(0),chessmanNumber(0){}
+   Player(string str):gold(0),name(str),posX(0),posY(0),chessmanNumber(0){}
+   ~Player(){}
+   Player(const Playerr&)=delete;
+   Player& operator=(const Player&)=delete;
 public:
    string getName() const
    {
