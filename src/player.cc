@@ -10,8 +10,10 @@ void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
        chessboard.setPos(_x,_y,ch);
        recordChessmanInfo();
   }
-  else
-    std::cout<<"the position is not legal,please set other position!"<<std::endl;
+  else{
+       std::cout<<"the position is not legal,please set other position!"<<std::endl;
+       setPosition(_x,_y,ch,chessboard);
+  }
 }
 
 void Player::recordChessmanInfo()
