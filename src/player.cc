@@ -13,3 +13,8 @@ void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
   else
     std::cout<<"the position is not legal,please set other position!"<<std::endl;
 }
+
+void Player::recordChessmanInfo()
+{
+  //record the infomation of chessman to AI 
+}
