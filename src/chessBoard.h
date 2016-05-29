@@ -10,10 +10,10 @@ private:
 private:
   //friend void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard);//this is the friend function
 private:
-  bool isLegal(int _x,int _y);
   void init();//initial the chess baord
 public:
   void setPos(int _x,int _y,char ch);
+  bool isLegal(int _x,int _y);
 public:
   ChessBoard(){
     init();
