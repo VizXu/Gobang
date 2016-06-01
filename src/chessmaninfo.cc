@@ -8,3 +8,9 @@ int ChessmanInfo::getYPosition()
 {
   return this->yPosition;
 }
+
+void ChessmanInfo::storeChessmanInfo(int _x,int _y)
+{
+  this->xPosition=_x;
+  this->yPosition=_y;
+}
