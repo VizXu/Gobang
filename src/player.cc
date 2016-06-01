@@ -19,5 +19,5 @@ void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
 void Player::recordChessmanInfo(int _x,int_y,int rcdPieces)
 {
   //record the infomation of chessman to AI 
-  //chessmInfo[rcdPieces]
+  chessmInfo[rcdPieces]->storeChessmanInfo(_x,_y);
 }
