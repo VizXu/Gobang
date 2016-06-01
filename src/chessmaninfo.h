@@ -6,7 +6,7 @@ private:
   int xPosition;
   int yPosition;
 public:
-  ChessmanInfo():xPosition(0),yPosition(y){}
+  ChessmanInfo():xPosition(0),yPosition(0){}
   ChessmanInfo(int _x,int _y):xPosition(_x),yPosition(_y){}
   ~ChessmanInfo(){}
 public:
