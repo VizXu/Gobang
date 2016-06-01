@@ -1,5 +1,6 @@
 #ifndef _PLAYER_
 #define _PLAYER_
+#include"chessmaninfo.h"
 #include<string>
 class ChessBoard;
 using std::string;
@@ -8,6 +9,7 @@ class Player
 private:
    int gold;
    string name;
+   ChessmanInfo* chessmInfo;
 private:
    int posX;// record the current position x and y
    int posY;
