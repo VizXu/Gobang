@@ -12,5 +12,7 @@ public:
 public:
   int getXPosition();
   int getYPosition();
+public:
+  void storeChessmanInfo(int _x,int_y);
 };
 #endif//chessmaninfo
