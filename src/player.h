@@ -1,8 +1,12 @@
 #ifndef _PLAYER_
 #define _PLAYER_
-#include"chessmaninfo.h"
-#define PIECES 5
 #include<string>
+#include<memory>
+#include<vector>
+#include"chessmaninfo.h"
+using std::unique_ptr;
+using std::vector;
+#define PIECES 5
 class ChessBoard;
 using std::string;
 class Player
@@ -10,12 +14,12 @@ class Player
 private:
    int gold;
    string name;
-   ChessmanInfo* chessmInfo[PIECES];
+   vector<ChessmanInfo*> chessmInfo;//[PIECES];
 private:
    int posX;// record the current position x and y
    int posY;
-   unsigned int chessmanNumber// record the number of chessman
-private:
+   unsigned int chessmanNumber;// record the number of chessman
+public:
    int getX(){
       return posX;
    }   
@@ -24,10 +28,18 @@ private:
    }
    void recordChessmanInfo(int _x,int _y,int rcdPieces);
 public:
-   Player():gold(0),name("ZhangSan"),posX(0),posY(0),chessmanNumber(0),chessmInfo(new ChessmanInfo[PIECES]){}
-   Player(string str):gold(0),name(str),posX(0),posY(0),chessmanNumber(0),chessmInfo(new ChessmanInfo[PIECES]){}
-   ~Player(){delete chessmInfo;}
-   Player(const Playerr&)=delete;
+   Player():gold(0),name("ZhangSan"),posX(0),posY(0),chessmanNumber(0){
+      for(int i=0;i<PIECES;i++){
+        chessmInfo.push_back(new ChessmanInfo);
+      }
+   }
+   Player(string str):gold(0),name(str),posX(0),posY(0),chessmanNumber(0){
+      for(int i=0;i<PIECES;i++){
+        chessmInfo.push_back(new ChessmanInfo);
+      }
+   }
+   ~Player(){}
+   Player(const Player&)=delete;
    Player& operator=(const Player&)=delete;
 public:
    string getName() const
@@ -41,3 +53,4 @@ public:
    void setPosition(int _x,int _y,char ch,ChessBoard& chessboard);
 };
 #endif//player.h
+
