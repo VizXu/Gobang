@@ -8,7 +8,7 @@ void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
   if(chessboard.isLegal(_x,_y)){
        chessmanNumber++;
        chessboard.setPos(_x,_y,ch);
-       recordChessmanInfo();
+       recordChessmanInfo(_x,_y,3);
   }
   else{
        std::cout<<"the position is not legal,please set other position!"<<std::endl;
@@ -16,7 +16,7 @@ void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
   }
 }
 
-void Player::recordChessmanInfo(int _x,int_y,int rcdPieces)
+void Player::recordChessmanInfo(int _x,int _y,int rcdPieces)
 {
   //record the infomation of chessman to AI 
   chessmInfo[rcdPieces]->storeChessmanInfo(_x,_y);
