@@ -50,7 +50,7 @@ public:
    {
       return this->gold;
    }
-   void setPosition(int _x,int _y,char ch,ChessBoard& chessboard);
+   int setPosition(int _x,int _y,char ch,ChessBoard& chessboard);
 };
 #endif//player.h
 
