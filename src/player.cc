@@ -1,7 +1,7 @@
 #include"player.h"
 #include"chessBoard.h"
 #include<iostream>
-void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
+int Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
 {
   this->posX=_x;
   this->posY=_y;
@@ -9,10 +9,12 @@ void Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
        chessmanNumber++;
        chessboard.setPos(_x,_y,ch);
        recordChessmanInfo(_x,_y,3);
+       return 0;
   }
   else{
        std::cout<<"the position is not legal,please set other position!"<<std::endl;
-       setPosition(_x,_y,ch,chessboard);
+       //setPosition(_x,_y,ch,chessboard);
+       return -1;
   }
 }
 
