@@ -6,7 +6,7 @@
 #include"chessmaninfo.h"
 using std::unique_ptr;
 using std::vector;
-#define PIECES 5
+#define PIECES 50
 class ChessBoard;
 using std::string;
 class Player
@@ -19,7 +19,7 @@ private:
    int posX;// record the current position x and y
    int posY;
    unsigned int chessmanNumber;// record the number of chessman
-public:
+protected:
    int getX(){
       return posX;
    }   
@@ -41,7 +41,7 @@ public:
    ~Player(){}
    Player(const Player&)=delete;
    Player& operator=(const Player&)=delete;
-public:
+protected:
    string getName() const
    {
       return this->name;
