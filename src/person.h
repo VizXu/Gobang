@@ -13,5 +13,6 @@ public:
   ~Person(){}
 public:
   int play(int _x,int _y,char ch,ChessBoard& chessboard);
+  string getName();
 };
 #endif//person.h
