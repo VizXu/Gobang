@@ -12,6 +12,6 @@ public:
   Person(string n="Zhangsan"):Player(n){}
   ~Person(){}
 public:
-  int play();
+  int play(int _x,int _y,char ch,ChessBoard& chessboard);
 };
 #endif//person.h
