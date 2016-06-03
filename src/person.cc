@@ -1,6 +1,6 @@
 #include"person.h"
 #include"chessboard"
-#include"player.h"
+//#include"player.h"
 string Person::getName()
 {
   return this->name;
