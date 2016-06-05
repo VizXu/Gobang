@@ -1,15 +1,18 @@
 #ifndef _COMPUTER_
 #define _COMPUTER_
 #include"player.h"
+#include"types.h""
 #include<string>
-typedef unsigned int U32;
 class Computer:public Player
 {
 private:
-  U32 levels;
+  U8 levels;
   string name;
 public:
+  Computer(string n="Computer"):name(n),Player(n){}
+  ~Computer(){}
+public:
   string getName();
-  U32 getLevel();
+  U8 getLevel();
 };
 #endif//computer.h
