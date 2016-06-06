@@ -1,3 +1,5 @@
-# SmallGameEngine 
-The small game engine is aim at providing artificial intelligence for some small games,like gobang, 2048 and so on.
-This repository uses the Cpp as the main language
+# Gobang 
+This is the game named Gobang,which is run in Linux platform.
+The game uses the characters interface because we only wanna 
+develop a AI engine for GUI. One who is tend to develop GUI 
+with Qt or other tools can use these codes.
