@@ -1,14 +1,14 @@
 #include<iostream>
 #include"chessBoard.h"
-#include"player.h"
+#include"person.h"
 using std::cout;
 using std::endl;
 int main()
 {
   ChessBoard chessBoard;
-  Player player;
+  Person person;
   chessBoard.displayChessBoard();
-  player.setPosition(2,3,'#',chessBoard);
+  person.play(2,3,'#',chessBoard);
   cout<<"-----------------"<<endl;
   chessBoard.displayChessBoard();
 return 0;
