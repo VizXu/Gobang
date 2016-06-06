@@ -13,6 +13,6 @@ public:
   int getXPosition();
   int getYPosition();
 public:
-  void storeChessmanInfo(int _x,int_y);
+  void storeChessmanInfo(int _x,int _y);
 };
 #endif//chessmaninfo
