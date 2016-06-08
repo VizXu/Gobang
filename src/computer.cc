@@ -8,3 +8,8 @@ string Computer::getName()
 {
   return this->name;
 }
+
+void Computer::setLevel(U8 level)
+{
+  this->levels=level;
+}
