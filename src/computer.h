@@ -17,5 +17,6 @@ public:
 public:
   string getName();
   U8 getLevel();
+  void setLevel(U8 level);
 };
 #endif//computer.h
