@@ -1,4 +1,5 @@
 #include"computer.h"
+#include"chessBoard.h"
 U8 Computer::getLevel()
 {
   return this->levels;
