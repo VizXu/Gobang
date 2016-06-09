@@ -10,7 +10,7 @@ private:
   int _x;
   int _y;
 public:
-  Position():_x(0),_y(0){}
+  Position(int x=0,int y=0):_x(x),_y(y){}
   ~Position(){}
 public:
   int getX(){return _x;}
