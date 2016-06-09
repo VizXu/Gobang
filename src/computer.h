@@ -15,6 +15,7 @@ public:
 public:
   int getX(){return _x;}
   int getY(){return _y;}
+  void setXY(int x,int y){_x=x;_y=y;}
 };
 class Computer:public Player
 {
