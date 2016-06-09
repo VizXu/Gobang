@@ -21,6 +21,7 @@ Position Computer::level1()
   int yP;
   xP=rand()%BOARDSIZE;
   yP=rand()%BOARDSIZE;
+  this->position.setXY(xP,yP);
   return Position(xP,yP);
 }
 
