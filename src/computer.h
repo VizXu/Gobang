@@ -4,11 +4,24 @@
 #include"types.h"
 #include<cstdlib>
 #include<string>
+class Position
+{
+private:
+  int _x;
+  int _y;
+public:
+  Position():_x(0),_y(0){}
+  ~Position(){}
+public:
+  int getX(){return _x;}
+  int getY(){return _y;}
+};
 class Computer:public Player
 {
 private:
   U8 levels;
   string name;
+  Position position;
 public:
   Computer(string n="Computer"):name(n),Player(n){
     srand(time(NULL));
@@ -18,5 +31,10 @@ public:
   string getName();
   U8 getLevel();
   void setLevel(U8 level);
+public:
+  Position level1();
+  Position level2();
+  Position level3();
+  Position level4();
 };
 #endif//computer.h
