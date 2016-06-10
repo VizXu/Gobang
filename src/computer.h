@@ -1,7 +1,7 @@
 #ifndef _COMPUTER_
 #define _COMPUTER_
 #include"player.h"
-#include"chessBoard.h""
+#include"chessBoard.h"
 #include"types.h"
 #include<cstdlib>
 #include<string>
