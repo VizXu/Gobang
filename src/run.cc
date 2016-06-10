@@ -3,7 +3,7 @@
 #include"person.h"
 #include"computer.h"
 #include"chessBoard.h"
-#include"types.h""
+#include"types.h"
 using std::cout;
 using std::endl;
 using std::cin;
