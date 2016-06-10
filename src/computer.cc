@@ -48,5 +48,5 @@ int Computer::setPos(ChessBoard& chessboard)
     case 4:level4();break;
     default:break;
   }
-  setPosition(position.getX(),position.getY(),'&',chessboard);
+  return setPosition(position.getX(),position.getY(),'&',chessboard);
 }
