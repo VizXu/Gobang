@@ -21,7 +21,7 @@ void ChessBoard::displayChessBoard()
 
 bool ChessBoard::isLegal(int _x,int _y)
 {
-  if(chessBoard[_x][_y]=='#'||chessBoard[_x][_y]=='*')
+  if(chessBoard[_x][_y]!='+')
     return false;
   else
     return true;
