@@ -1,5 +1,4 @@
 #include"computer.h"
-#include"chessBoard.h"
 U8 Computer::getLevel()
 {
   return this->levels;
@@ -49,5 +48,5 @@ int Computer::setPos(ChessBoard& chessboard)
     case 4:level4();break;
     default:break;
   }
-  setPosition(getX(),getY(),'&',chessboard);
+  setPosition(position.getX(),position.getY(),'&',chessboard);
 }
