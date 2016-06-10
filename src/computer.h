@@ -1,6 +1,7 @@
 #ifndef _COMPUTER_
 #define _COMPUTER_
 #include"player.h"
+#include"chessBoard.h""
 #include"types.h"
 #include<cstdlib>
 #include<string>
@@ -38,6 +39,6 @@ public:
   Position level3();
   Position level4();
 public:
-  int setPos();
+  int setPos(ChessBoard&);
 };
 #endif//computer.h
