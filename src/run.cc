@@ -2,7 +2,8 @@
 #include<string>
 #include"person.h"
 #include"computer.h"
-#include"chessBoard.h""
+#include"chessBoard.h"
+#include"types.h""
 using std::cout;
 using std::endl;
 using std::cin;
@@ -35,4 +36,16 @@ int run()
   ChessBoard chessboard;
   Person person(playerName);
   Computer computer(computName);
+  U8 difcltDgr=0;
+  cout<<"Please chose the difficulty of the game(1,2,3 or 4):"<<endl;
+  flag3:
+    cin>>difcltDgr;
+    if(!cin.good()){
+      cout<<"Please chose the right difficulty!"<<endl;
+      cin.clear();
+      while(cin.get()!='\n')continue;
+      goto flag3;
+    }
+    cout<<"Good,you have chose the level "<<difcltDgr<<" of the game,good luck!"<<endl;
+    computer.setLevel(difcltDgr);
 }
