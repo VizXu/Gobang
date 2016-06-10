@@ -37,5 +37,7 @@ public:
   Position level2();
   Position level3();
   Position level4();
+public:
+  int setPos();
 };
 #endif//computer.h
