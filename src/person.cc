@@ -1,5 +1,5 @@
 #include"person.h"
-#include"chessBoard"
+#include"chessBoard.h"
 //#include"player.h"
 string Person::getName()
 {
