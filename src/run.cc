@@ -48,4 +48,31 @@ int run()
     }
     cout<<"Good,you have chose the level "<<difcltDgr<<" of the game,good luck!"<<endl;
     computer.setLevel(difcltDgr);
+	int xPosition;
+	int yPosition;
+	while(true){
+		cout<<"game is starting..."<<endl;
+		chessboard.displayChessBoard();
+	flag4:
+		cout<<"Please put a chessman:"<<endl;
+		cin>>xPosition>>yPosition;
+		if(!cin.good()){
+			cout<<"put error!"<<endl;
+			cin.clear();
+			while(cin.get()!='\n')continue;
+			goto flag4;
+		}
+		while(true){
+			if(!person.play(xPosition,yPosition,'#',chessboard))break;
+			else goto flag4;
+		}
+		chessboard.displayChessBoard();
+	flag5:
+		cout<<"computer put chessman..."<<endl;
+		while(true){
+			if(!computer.setPos(chessboard))break;
+			else continue;
+		}
+		chessboard.displayChessBoard();
+	}
 }
