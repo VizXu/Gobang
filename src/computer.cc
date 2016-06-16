@@ -18,10 +18,14 @@ Position Computer::level1()
 {
   int xP;
   int yP;
-  xP=rand()%BOARDSIZE;
-  yP=rand()%BOARDSIZE;
-  this->position.setXY(xP,yP);
-  return Position(xP,yP);
+  if(0==getChessmanNumber()){
+    xP=rand()%BOARDSIZE;
+    yP=rand()%BOARDSIZE;
+    this->position.setXY(xP,yP);
+    return Position(xP,yP);
+  }else{
+    //handle chessmanInfo
+  }
 }
 
 Position Computer::level2()
