@@ -51,6 +51,7 @@ protected:
       return this->gold;
    }
    int setPosition(int _x,int _y,char ch,ChessBoard& chessboard);
+   unsigned int getChessmanNumber(){return chessmanNumber;}
 };
 #endif//player.h
 
