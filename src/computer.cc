@@ -14,7 +14,7 @@ void Computer::setLevel(U8 level)
   this->levels=level;
 }
 
-Position Computer::level1()
+Position Computer::level1(const ChessBoard& chessboard)
 {
   int xP;
   int yP;
@@ -28,17 +28,17 @@ Position Computer::level1()
   }
 }
 
-Position Computer::level2()
+Position Computer::level2(const ChessBoard& chessboard)
 {
   
 }
 
-Position Computer::level3()
+Position Computer::level3(const ChessBoard& chessboard)
 {
   
 }
 
-Position Computer::level4()
+Position Computer::level4(const ChessBoard& chessboard)
 {
   
 }
@@ -46,10 +46,10 @@ Position Computer::level4()
 int Computer::setPos(ChessBoard& chessboard)
 {
   switch(levels){
-    case 1:level1();break;
-    case 2:level2();break;
-    case 3:level3();break;
-    case 4:level4();break;
+    case 1:level1(chessboard);break;
+    case 2:level2(chessboard);break;
+    case 3:level3(chessboard);break;
+    case 4:level4(chessboard);break;
     default:break;
   }
   return setPosition(position.getX(),position.getY(),'&',chessboard);
