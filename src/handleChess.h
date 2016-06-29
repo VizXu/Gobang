@@ -5,10 +5,14 @@
 class HandleChessBoard
 {
 private:
-  int _xPosition;
-  int _yPosition;
+  char xChessman;
+  char yChessman;
   U8 levels;
 public:
-  
+  void setLevel();
+  char getXChessman();
+  char getYChessman();
+public:
+  void handleChessBoard(const ChessBoard&);
 };
 #endif//handleChess.h
