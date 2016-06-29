@@ -31,3 +31,8 @@ void ChessBoard::setPos(int _x,int _y,char ch)
 {
   chessBoard[_x][_y]=ch;
 }
+
+char ChessBoard::chessInfo(int _x,int _y)
+{
+  return chessBoard[_x][_y];
+}
