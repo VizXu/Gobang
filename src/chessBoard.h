@@ -23,5 +23,6 @@ public:
   ChessBoard& operator=(const ChessBoard&)=delete;
 public:
   void displayChessBoard();//show the chess baord
+  char chessInfo(int _x,int _y);
 };
 #endif//chessBoard.h
