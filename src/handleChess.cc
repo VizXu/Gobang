@@ -6,7 +6,12 @@ void HandleChessBoard::setLevels(U8 levels)
   this->levels=levels;
 }
 
-U8 HandleChessBoard::getLevels()
+U8 HandleChessBoard::getLevel()
 {
   return this->levels;
+}
+
+int HandleChessBoard::getXChessman()
+{
+  return this->
 }
