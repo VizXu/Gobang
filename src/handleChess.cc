@@ -13,5 +13,10 @@ U8 HandleChessBoard::getLevel()
 
 int HandleChessBoard::getXChessman()
 {
-  return this->
+  return this->xChessman;
+}
+
+int HandleChessBoard::getYChessman()
+{
+  return this->yChessman;
 }
