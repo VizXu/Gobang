@@ -5,13 +5,13 @@
 class HandleChessBoard
 {
 private:
-  char xChessman;
-  char yChessman;
+  int xChessman;
+  int yChessman;
   U8 levels;
 public:
   void setLevel();
-  char getXChessman();
-  char getYChessman();
+  int getXChessman();
+  int getYChessman();
 public:
   void handleChessBoard(const ChessBoard&);
 };
