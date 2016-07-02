@@ -2,6 +2,7 @@
 #define _HANDLECHESS_
 #include"chessBoard.h"
 #include"types.h"
+class ChessBoard;
 class HandleChessBoard
 {
 private:
@@ -12,6 +13,7 @@ public:
   void setLevel(U8 levels);
   int getXChessman();
   int getYChessman();
+private:
   U8  getLevel();
 public:
   void handleChessBoard(const ChessBoard&);
