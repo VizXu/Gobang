@@ -20,3 +20,9 @@ int HandleChessBoard::getYChessman()
 {
   return this->yChessman;
 }
+
+void HandleChessBoard::handleChessBoard()
+{
+  //to make decision of the position to set chessman
+  U8 levels=getLevel();
+}
