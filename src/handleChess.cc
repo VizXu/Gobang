@@ -1,6 +1,7 @@
 #include"chessBoard.h"
 #include"handleChess.h"
-
+#include<vector>
+using std::vector;
 void HandleChessBoard::setLevels(U8 levels)
 {
   this->levels=levels;
@@ -21,8 +22,9 @@ int HandleChessBoard::getYChessman()
   return this->yChessman;
 }
 
-void HandleChessBoard::handleChessBoard()
+void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
 {
   //to make decision of the position to set chessman
+  
   U8 levels=getLevel();
 }
