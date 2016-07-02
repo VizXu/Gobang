@@ -25,6 +25,9 @@ int HandleChessBoard::getYChessman()
 void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
 {
   //to make decision of the position to set chessman
-  
+  vector<vector<int> > blankPosition;
+  vector<vector<int> > playerPosition;
+  vector<vector<int> > computPosition;
+  vector<vector<int> >::iterator iPtr;
   U8 levels=getLevel();
 }
