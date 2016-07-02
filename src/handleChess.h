@@ -12,6 +12,7 @@ public:
   void setLevel(U8 levels);
   int getXChessman();
   int getYChessman();
+  U8  getLevel();
 public:
   void handleChessBoard(const ChessBoard&);
 };
