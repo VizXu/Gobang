@@ -9,7 +9,7 @@ private:
   int yChessman;
   U8 levels;
 public:
-  void setLevel();
+  void setLevel(U8 levels);
   int getXChessman();
   int getYChessman();
 public:
