@@ -36,3 +36,8 @@ char ChessBoard::chessInfo(int _x,int _y)
 {
   return chessBoard[_x][_y];
 }
+
+char getChessman(int _x,int _y)
+{
+  return chessBoard[_x][_y];
+}
