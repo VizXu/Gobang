@@ -25,5 +25,7 @@ public:
   void displayChessBoard();//show the chess baord
   char chessInfo(int _x,int _y);
   char getChessman(int,int);
+public:
+  char operator[][](int,int);
 };
 #endif//chessBoard.h
