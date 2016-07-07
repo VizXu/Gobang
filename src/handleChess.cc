@@ -1,6 +1,8 @@
 #include"chessBoard.h"
 #include"handleChess.h"
 #include<vector>
+#include<memory>
+using std::move;
 using std::vector;
 void HandleChessBoard::setLevels(U8 levels)
 {
@@ -30,4 +32,9 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
   vector<vector<int> > computPosition;
   vector<vector<int> >::iterator iPtr;
   U8 levels=getLevel();
+  for(int i=0;i<BOARDSIZE;++i){
+    for(int j=0;j<BOARDSIZE;++j){
+      switch(chessboard[i][j])
+    }
+  }
 }
