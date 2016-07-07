@@ -26,6 +26,6 @@ public:
   char chessInfo(int _x,int _y);
   char getChessman(int,int);
 public:
-  char operator[][](int,int);
+  //char operator[][](int,int);
 };
 #endif//chessBoard.h
