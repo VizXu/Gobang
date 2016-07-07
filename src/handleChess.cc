@@ -34,7 +34,9 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
   U8 levels=getLevel();
   for(int i=0;i<BOARDSIZE;++i){
     for(int j=0;j<BOARDSIZE;++j){
-      switch(chessboard[i][j])
+      switch(chessboard.getChessman(i,j)){
+        case('+'):;
+      }
     }
   }
 }
