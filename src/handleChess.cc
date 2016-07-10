@@ -35,7 +35,20 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
   for(int i=0;i<BOARDSIZE;++i){
     for(int j=0;j<BOARDSIZE;++j){
       switch(chessboard.getChessman(i,j)){
-        case('+'):;
+        case('+'):
+          Position position(i,j);
+          vector<Position> blankPosition.push_back(std::move(position));
+        break;
+        case('&'):
+          Position position(i,j);
+          vector<Position> playerPosition.push_back(std::move(position));
+          break;
+        case('#'):
+          Position position(i,j);
+          vector<Position> computPosition.push_back(std::move(position));
+          break;
+        default:
+          throw "error chessman";
       }
     }
   }
