@@ -48,8 +48,15 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
           vector<Position> computPosition.push_back(std::move(position));
           break;
         default:
-          throw "error chessman";
+          throw "error chessman";break;
       }
     }
+  }
+  switch(levels){
+    case 1:break;
+    case 2:break;
+    case 3:break;
+    case 4:break;
+    default: throw "out of levels";break;
   }
 }
