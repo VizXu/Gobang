@@ -2,6 +2,8 @@
 #define _HANDLECHESS_
 #include"chessBoard.h"
 #include"types.h"
+#include<cstdlib>
+#include<ctime>
 #include<vector>
 using std::vector;
 class ChessBoard;
@@ -35,6 +37,11 @@ public:
   int getYChessman();
 private:
   U8  getLevel();
+public:
+  HandleChessBoard(){
+    srand(time(NULL));
+  }
+  ~HandleChessBoard(){}
 public:
   void handleChessBoard(const ChessBoard&);
 };
