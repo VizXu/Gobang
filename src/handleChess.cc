@@ -2,8 +2,20 @@
 #include"handleChess.h"
 #include<vector>
 #include<memory>
+#include<algorithm>
 using std::move;
 using std::vector;
+using std::sort;
+
+bool srtVectorPosX(const Position& p1,const Position& p2)
+{
+  return p1.xPos>=p2.xPos;
+}
+
+bool srtVectorPosY(const Position& p1,const Position& p2)
+{
+  return p1.yPos>=p2.yPos;
+}
 void HandleChessBoard::setLevels(U8 levels)
 {
   this->levels=levels;
