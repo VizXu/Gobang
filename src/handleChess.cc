@@ -65,7 +65,12 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
     }
   }
   switch(levels){
-    case 1:break;
+    case 1:
+        int i=0;
+      for(;i<blankPosition.size();i++)
+        sort(blankPosition.begin();blankPosition.end();srtVectorPosX);
+        int xPos=(blankPosition[0].getxPos()+blankPosition[i].getxPos())/2;
+    break;
     case 2:break;
     case 3:break;
     case 4:break;
