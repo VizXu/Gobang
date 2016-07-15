@@ -69,11 +69,10 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
         int i=0;
       for(;i<blankPosition.size();i++)
         sort(blankPosition.begin();blankPosition.end();srtVectorPosX);
-        int xPos=blankPosition[i/2].getxPos();
+          xChessman=blankPosition[i/2].getxPos();
       for(i=0;i<blankPosition.size();i++)
         sort(blankPosition.begin();blankPosition.end();srtVectorPosY);
-        int yPos=blankPosition[i/2].getyPos();
-        
+          yChessman=blankPosition[i/2].getyPos();
     break;
     case 2:break;
     case 3:break;
