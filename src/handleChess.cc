@@ -9,14 +9,14 @@ using std::sort;
 
 bool srtVectorPosX(const Position& p1,const Position& p2)
 {
-  return p1.xPos>=p2.xPos;
+  return p1.getxPos()>=p2.getxPos();
 }
 
 bool srtVectorPosY(const Position& p1,const Position& p2)
 {
-  return p1.yPos>=p2.yPos;
+  return p1.getyPos()>=p2.getyPos();
 }
-void HandleChessBoard::setLevels(U8 levels)
+void HandleChessBoard::setLevel(U8 levels)
 {
   this->levels=levels;
 }
