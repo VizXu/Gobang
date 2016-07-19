@@ -1,4 +1,5 @@
 #include"computer.h"
+#include"handleChess.h"
 U8 Computer::getLevel()
 {
   return this->levels;
@@ -18,14 +19,21 @@ Position Computer::level1(const ChessBoard& chessboard)
 {
   int xP;
   int yP;
-  if(0==getChessmanNumber()){
+ /* if(0==getChessmanNumber()){
     xP=rand()%BOARDSIZE;
     yP=rand()%BOARDSIZE;
     this->position.setXY(xP,yP);
     return Position(xP,yP);
   }else{
     //handle chessmanInfo
-  }
+  }*/
+  HandleChessBoard handboard;
+  handboard.handleChessBoard(chessboard);
+  handboard.setLevel(1);
+  xP=handboard.getXChessman();
+  yP=handboard.getYChessman();
+  this->position.setXY(xP,yP);
+  return Position(xP,yP);
 }
 
 Position Computer::level2(const ChessBoard& chessboard)
