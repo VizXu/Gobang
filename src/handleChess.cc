@@ -7,12 +7,12 @@ using std::move;
 using std::vector;
 using std::sort;
 
-bool srtVectorPosX(const Position& p1,const Position& p2)
+bool srtVectorPosX(const PositionHandle& p1,const PositionHandle& p2)
 {
   return p1.getxPos()>=p2.getxPos();
 }
 
-bool srtVectorPosY(const Position& p1,const Position& p2)
+bool srtVectorPosY(const PositionHandle& p1,const PositionHandle& p2)
 {
   return p1.getyPos()>=p2.getyPos();
 }
@@ -48,16 +48,19 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
     for(int j=0;j<BOARDSIZE;++j){
       switch(chessboard.getChessman(i,j)){
         case('+'):{
-          Position position(i,j);
-          blankPosition.push_back(std::move(position));
+          PositionHandle tmpPosition(i,j);
+		 // tmpPosition.set(i,j);
+          blankPosition.push_back(std::move(tmpPosition));
         break;}
         case('&'):{
-          Position position(i,j);
-          playerPosition.push_back(std::move(position));
+          PositionHandle tmpPosition(i,j);
+		  //tmpPosition.set(i,j);
+          playerPosition.push_back(std::move(tmpPosition));
           break;}
         case('#'):{
-          Position position(i,j);
-          computPosition.push_back(std::move(position));
+          PositionHandle tmpPosition(i,j);
+		  //tmpPosition.set(i,j);
+          computPosition.push_back(std::move(tmpPosition));
           break;}
         default:
           throw "error chessman";
@@ -66,12 +69,12 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
   }
   switch(levels){
     case 1:{
-      int i=0;
+        int i=0;
       for(;i<blankPosition.size();i++)
-        sort(blankPosition.begin();blankPosition.end();srtVectorPosX);
+        sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
           xChessman=blankPosition[i/2].getxPos();
       for(i=0;i<blankPosition.size();i++)
-        sort(blankPosition.begin();blankPosition.end();srtVectorPosY);
+        sort(blankPosition.begin(),blankPosition.end(),srtVectorPosY);
           yChessman=blankPosition[i/2].getyPos();
     break;}
     case 2:{break;}
