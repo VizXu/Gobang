@@ -8,17 +8,18 @@
 using std::vector;
 class ChessBoard;
 
-class Position
+class PositionHandle
 {
 private:
   int xPos;
   int yPos;
 public:
-  Position(int i=0,int j=0):xPos(i),yPos(j){}
-  ~Position(){}
+  PositionHandle(int i=0,int j=0):xPos(i),yPos(j){}
+  ~PositionHandle(){}
 public:
-  int getxPos(){return this->xPos;}
-  int getyPos(){return this->yPos;}
+  //void set(int i=0,int j=0){this->xPos=i;this->yPos=j;}
+  int getxPos()const {return this->xPos;}
+  int getyPos()const {return this->yPos;}
 };
 class HandleChessBoard
 {
@@ -27,10 +28,10 @@ private:
   int yChessman;
   U8 levels;
 private:
-  vector<Position> blankPosition;
-  vector<Position> playerPosition;
-  vector<Position> computPosition;
-  vector<Position>::iterator iPtr;
+  vector<PositionHandle> blankPosition;
+  vector<PositionHandle> playerPosition;
+  vector<PositionHandle> computPosition;
+  vector<PositionHandle>::iterator iPtr;
 public:
   void setLevel(U8 levels);
   int getXChessman();
