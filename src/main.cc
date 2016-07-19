@@ -6,6 +6,11 @@ using std::endl;
 int run();
 int main()
 {
-  run();
+  try{
+    run();
+  }catch(const char* e)
+  {
+    cout<<e<<endl;
+  }
 return 0;
 }
