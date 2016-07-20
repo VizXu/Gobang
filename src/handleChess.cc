@@ -70,11 +70,8 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
   switch(levels){
     case 1:{
         int cnt=blankPosition.size();
-     // for(;i<blankPosition.size();i++)
         sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
           xChessman=blankPosition[cnt/2].getxPos();
-     // for(i=0;i<blankPosition.size();i++)
-        sort(blankPosition.begin(),blankPosition.end(),srtVectorPosY);
           yChessman=blankPosition[cnt/2].getyPos();
     break;}
     case 2:{break;}
