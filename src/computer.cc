@@ -28,8 +28,8 @@ Position Computer::level1(const ChessBoard& chessboard)
     //handle chessmanInfo
   }*/
   HandleChessBoard handboard;
-  handboard.handleChessBoard(chessboard);
   handboard.setLevel(1);
+  handboard.handleChessBoard(chessboard);
   xP=handboard.getXChessman();
   yP=handboard.getYChessman();
   this->position.setXY(xP,yP);
