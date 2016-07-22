@@ -1,5 +1,6 @@
 #include"chessBoard.h"
 #include"handleChess.h"
+#include"log.h"
 #include<vector>
 #include<memory>
 #include<algorithm>
@@ -73,6 +74,7 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
         sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
           xChessman=blankPosition[cnt/2].getxPos();
           yChessman=blankPosition[cnt/2].getyPos();
+          LOG_BUG("x=%d,y=%d\n",xChessman,yChessman);
     break;}
     case 2:{break;}
     case 3:{break;}
