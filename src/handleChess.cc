@@ -74,6 +74,8 @@ void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
         sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
           xChessman=blankPosition[cnt/2].getxPos();
           yChessman=blankPosition[cnt/2].getyPos();
+          vector<PositionHandle> tmp;
+          tmp.swap(blankPosition);
           LOG_BUG("x=%d,y=%d\n",xChessman,yChessman);
     break;}
     case 2:{break;}
