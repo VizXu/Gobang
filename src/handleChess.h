@@ -44,6 +44,6 @@ public:
   }
   ~HandleChessBoard(){}
 public:
-  void handleChessBoard(const ChessBoard&);
+  void handleChessBoard(ChessBoard&);
 };
 #endif//handleChess.h

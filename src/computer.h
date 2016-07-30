@@ -34,10 +34,10 @@ public:
   U8 getLevel();
   void setLevel(U8 level);
 public:
-  Position level1(const ChessBoard&);
-  Position level2(const ChessBoard&);
-  Position level3(const ChessBoard&);
-  Position level4(const ChessBoard&);
+  Position level1(ChessBoard&);
+  Position level2(ChessBoard&);
+  Position level3(ChessBoard&);
+  Position level4(ChessBoard&);
 public:
   int setPos(ChessBoard&);
 };

@@ -1,4 +1,4 @@
-#ifdef LOG_H
+#ifndef LOG_H
 #define LOG_H
 #include<cstdio>
 #define LOG_BUG(x,args...) printf(x,##args)

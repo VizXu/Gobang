@@ -15,7 +15,7 @@ void Computer::setLevel(U8 level)
   this->levels=level;
 }
 
-Position Computer::level1(const ChessBoard& chessboard)
+Position Computer::level1(ChessBoard& chessboard)
 {
   int xP;
   int yP;

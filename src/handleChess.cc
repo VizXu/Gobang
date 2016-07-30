@@ -37,7 +37,7 @@ int HandleChessBoard::getYChessman()
   return this->yChessman;
 }
 
-void HandleChessBoard::handleChessBoard(const ChessBoard& chessboard)
+void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 {
   //to make decision of the position to set chessman
   //vector<vector<int> > blankPosition;
