@@ -36,17 +36,17 @@ Position Computer::level1(ChessBoard& chessboard)
   return Position(xP,yP);
 }
 
-Position Computer::level2(const ChessBoard& chessboard)
+Position Computer::level2(ChessBoard& chessboard)
 {
   
 }
 
-Position Computer::level3(const ChessBoard& chessboard)
+Position Computer::level3(ChessBoard& chessboard)
 {
   
 }
 
-Position Computer::level4(const ChessBoard& chessboard)
+Position Computer::level4(ChessBoard& chessboard)
 {
   
 }
