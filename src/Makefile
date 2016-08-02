@@ -1,6 +1,8 @@
-Gobang: computer.o chessBoard.o chessmaninfo.o \
-	    person.o player.o run.o handleChess.o \
-		main.o
+
+OBJ= computer.o chessBoard.o chessmaninfo.o \
+	 person.o player.o run.o handleChess.o \
+	 test.o main.o
+Gobang: $(OBJ)
 	g++  *.o -o Gobang
 computer.o: computer.cc 
 	g++ -std=c++11 -c computer.cc -o computer.o
@@ -16,6 +18,8 @@ run.o: run.cc
 	g++ -std=c++11 -c run.cc -o run.o
 handleChess.o: handleChess.cc 
 	g++ -std=c++11 -c handleChess.cc -o handleChess.o
+test.o:test.cc
+	g++ -std=c++11 -c test.cc -o test.o
 main.o: main.cc
 	g++ -std=c++11 -c main.cc -o main.o
 clean:

@@ -1,4 +1,5 @@
 #include"player.h"
+#include"test.h"
 #include"chessBoard.h"
 #include<iostream>
 int Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
@@ -8,6 +9,10 @@ int Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
   if(chessboard.isLegal(_x,_y)){
        chessmanNumber++;
        chessboard.setPos(_x,_y,ch);
+	   if(testWinner(_x,_y,ch,chessboard)) 
+	     {
+		  //judge the ch='&' or '#'  
+		 }//add 2016-8-2
        recordChessmanInfo(_x,_y,3);
        return 0;
   }

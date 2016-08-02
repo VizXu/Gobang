@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<unistd.h>
 #include"person.h"
 #include"computer.h"
 #include"chessBoard.h"
@@ -68,6 +69,7 @@ int run()
 		}
 		chessboard.displayChessBoard();
 	flag5:
+		system("clear");
 		cout<<"computer put chessman..."<<endl;
 		while(true){
 			if(!computer.setPos(chessboard))break;

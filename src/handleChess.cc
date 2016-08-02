@@ -4,6 +4,9 @@
 #include<vector>
 #include<memory>
 #include<algorithm>
+#include<iostream>
+using std::cout;
+using std::endl;
 using std::move;
 using std::vector;
 using std::sort;
@@ -39,11 +42,6 @@ int HandleChessBoard::getYChessman()
 
 void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 {
-  //to make decision of the position to set chessman
-  //vector<vector<int> > blankPosition;
-  //vector<vector<int> > playerPosition;
-  //vector<vector<int> > computPosition;
-  //vector<vector<int> >::iterator iPtr;
   U8 levels=getLevel();
   for(int i=0;i<BOARDSIZE;++i){
     for(int j=0;j<BOARDSIZE;++j){
@@ -72,12 +70,11 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
     case 1:{
         int cnt=blankPosition.size();
 	      int position=rand()%cnt;
-       // sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
+        sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
           xChessman=blankPosition[position].getxPos();
           yChessman=blankPosition[position].getyPos();
          // vector<PositionHandle> tmp;
         //  tmp.swap(blankPosition);
-          LOG_BUG("x=%d,y=%d\n",xChessman,yChessman);
     break;}
     case 2:{break;}
     case 3:{break;}
