@@ -1,6 +1,7 @@
 #include"player.h"
 #include"test.h"
 #include"chessBoard.h"
+#include<unistd.h>
 #include<iostream>
 int Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
 {
@@ -12,6 +13,8 @@ int Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)
 	   if(testWinner(_x,_y,ch,chessboard)) 
 	     {
 		  //judge the ch='&' or '#'  
+		     std::cout<<std::endl;
+			// system("clear");
 			 std::cout<<"you win:"<<ch<<std::endl;
 		 }//add 2016-8-2
        recordChessmanInfo(_x,_y,3);

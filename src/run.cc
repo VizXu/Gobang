@@ -51,9 +51,11 @@ int run()
     computer.setLevel(difcltDgr);
 	int xPosition;
 	int yPosition;
-	while(true){
 		cout<<"game is starting..."<<endl;
 		chessboard.displayChessBoard();
+	while(true){
+		//cout<<"game is starting..."<<endl;
+		//chessboard.displayChessBoard();
 	flag4:
 		cout<<"Please put a chessman:"<<endl;
 		cin>>xPosition>>yPosition;
