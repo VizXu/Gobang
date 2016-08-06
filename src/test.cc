@@ -30,7 +30,7 @@ int testWinner(int x,int y,char ch,ChessBoard& chessboard)
 	 xPos++;
   }
   xPos=x-1;
-  while((xPos>=0)&&chessboard.getChessman(x,y)==elem){
+  while((xPos>=0)&&chessboard.getChessman(xPos,y)==elem){
      ++chessCountHrzt;
 	 //add by xujiwei 
      #if TEST
