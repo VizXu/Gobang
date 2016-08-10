@@ -3,12 +3,15 @@
 #include<string>
 #include<memory>
 #include<vector>
+#include<iostream>
 #include"chessmaninfo.h"
 using std::unique_ptr;
 using std::vector;
 #define PIECES 50
 class ChessBoard;
 using std::string;
+using std::cout;
+using std::endl;
 class Player
 {
 private:
@@ -19,6 +22,8 @@ private:
    int posX;// record the current position x and y
    int posY;
    unsigned int chessmanNumber;// record the number of chessman
+public:
+   void judgeWinner(int,int,string,ChessBoard&);
 protected:
    int getX(){
       return posX;
@@ -53,5 +58,6 @@ protected:
    int setPosition(int _x,int _y,char ch,ChessBoard& chessboard);
    unsigned int getChessmanNumber(){return chessmanNumber;}
 };
+
 #endif//player.h
 

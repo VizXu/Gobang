@@ -2,7 +2,7 @@
 #include"types.h"
 #include"log.h"
 //add by xujiwei 2016-8-4
-#define TEST 1
+#define TEST 0  //changed 1->0
 //add by xujiwei
 //
 int testWinner(int x,int y,char ch,ChessBoard& chessboard)
