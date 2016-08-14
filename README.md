@@ -1,6 +1,6 @@
 # Gobang 
 This is the game named Gobang,which runs in Linux platform.The game uses the characters interface because we only wanna 
-develop a AI engine program. One who is tend to develop GUI with Qt or other tools can use these codes as algorithm.
+develop a AI engine program. One who is tending to develop GUI with Qt or other tools can use these codes as algorithm.
 
 These codes run on the Ubuntu or other linux OS,one can download the source code and compile with "make" instruction
 
