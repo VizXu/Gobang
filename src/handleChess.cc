@@ -68,15 +68,20 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
   }
   switch(levels){
     case 1:{
-        int cnt=blankPosition.size();
-	      int position=rand()%cnt;
-        sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
-          xChessman=blankPosition[position].getxPos();
-          yChessman=blankPosition[position].getyPos();
-         // vector<PositionHandle> tmp;
-        //  tmp.swap(blankPosition);
-    break;}
-    case 2:{break;}
+			int bp=blankPosition.size();
+		    int position=bp/2;
+			sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
+			xChessman=blankPosition[position].getxPos();
+			yChessman=blankPosition[position].getyPos();
+            break;
+		   }
+    case 2:{
+			int pp=playerPosition.size();
+			for(int i=0;i<pp;i++){
+				//analyse player position ----add by xujiwei 2016-8-16
+			}
+			   break;
+		   }
     case 3:{break;}
     case 4:{break;}
     default: throw "out of levels";
