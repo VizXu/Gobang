@@ -2,6 +2,9 @@
 OBJ= computer.o chessBoard.o chessmaninfo.o \
 	 person.o player.o run.o handleChess.o \
 	 test.o main.o
+# clean is to remove .o files
+.PHONY:clean
+
 Gobang: $(OBJ)
 	g++  *.o -o Gobang
 computer.o: computer.cc 
