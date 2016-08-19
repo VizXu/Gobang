@@ -10,7 +10,7 @@ using std::endl;
 using std::move;
 using std::vector;
 using std::sort;
-
+using std::find;
 bool srtVectorPosX(const PositionHandle& p1,const PositionHandle& p2)
 {
   return p1.getxPos()>=p2.getxPos();
@@ -29,7 +29,6 @@ void HandleChessBoard::setLevel(U8 levels)
 
 U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle> & positionVal)
 {
-  //x direction
   //-x direction
   //y direction
   //-y direction
@@ -37,14 +36,27 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
   //x-y direction
   //-xy direction
   //-x-y direction
-  U8 flagx;
-  U8 flag_x;
-  U8 flagy;
-  U8 flag_y;
-  U8 flagxy;
-  U8 flagx_y;
-  U8 flag_xy;
-  U8 flag_x_y;
+  U8 flagx=0;
+  U8 flag_x=0;
+  U8 flagy=0;
+  U8 flag_y=0;
+  U8 flagxy=0;
+  U8 flagx_y=0;
+  U8 flag_xy=0;
+  U8 flag_x_y=0;
+  for(int i=posX;i<BOARDSIZE;i++){
+  //x direction
+    vector<PositionHandle>::iterator positionPtr;
+	PositionHandle tmp(i,posY);
+    for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
+	    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==posY)){
+	      flagx++;
+     	}
+    	else{
+	      break;
+    	}
+	}
+  }
 return 0;
 }
 
