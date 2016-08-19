@@ -10,3 +10,7 @@ made by the code.
 //2016-8-10
 
 released the first version 0.1
+
+//2016-8-19
+
+add level 2 AI algorithm 
