@@ -47,6 +47,6 @@ public:
   void handleChessBoard(ChessBoard&);
 private:
   //to test anbient chessman numbers of each position
-  int testNumbersChessman(int,int,vector<PositionHandle> &);
+  U8 testNumbersChessman(int,int,vector<PositionHandle> &);
 };
 #endif//handleChess.h
