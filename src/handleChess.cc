@@ -47,32 +47,64 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
   vector<PositionHandle>::iterator positionPtr;
   for(int i=posX;i<BOARDSIZE;i++){
   //x direction
-	PositionHandle tmp(i,posY);
+	U8 cnt=flagx;
     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
 	    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==posY)){
 	      flagx++;
      	}
     	else{
-	      goto flag1;
+	      continue;
     	}
+	}
+
+	if(cnt==flagx+1){
+	   continue; //found it, then to next position and check it
+	}
+	else{
+	   break;
 	}
   }
 
-flag1:
-
   for(int i=posX;i>=0;i--){
   //-x direction
+    U8 cnt=flag_x;
     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
 	  if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==posY)){
 	    flag_x++;
 	  }
 	  else{
-	    goto flag2;
+	    continue;
 	  }
-	} 
+	}
+    
+    if(cnt==flag_x+1){
+      continue;
+    }
+    else{
+      break;
+    }
   }
 
-flag2:
+
+  for(int j=posY;j>=0;j--){
+  //y direction
+    U8 cnt=flagy;
+     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
+	   if((positionPtr->getxPos()==posX)&&(positionPtr->getyPos()==j)){
+	    flagy++; 
+	   }
+	   else{
+	    continue;
+	   }
+	 }
+
+	 if(cnt==flagy+1){
+	   continue;
+	 }
+	 else{
+	  break;
+	 }
+  }
 
 
 return 0;

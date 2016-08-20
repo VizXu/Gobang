@@ -8,9 +8,14 @@ int main()
 {
   try{
     run();
-  }catch(const char* e)
+  }
+  catch(const char* e)
   {
     cout<<e<<endl;
+  }
+  catch(...)
+  {
+    cout<<"something is wrong,Please check it out!"<<endl;
   }
 return 0;
 }
