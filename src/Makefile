@@ -4,28 +4,35 @@ OBJ= computer.o chessBoard.o chessmaninfo.o \
 	 test.o main.o
 # clean is to remove .o files
 .PHONY:clean
+.PHONY:install
+.PHONY:uninstall
+
+#CXX stands for g++
+
+CXX=g++
+
 PARAMETER=-std=c++11
 
 Gobang: $(OBJ)
-	g++  *.o -o Gobang
+	$(CXX)  *.o -o Gobang
 computer.o: computer.cc 
-	g++ $(PARAMETER) -c computer.cc -o computer.o
+	$(CXX) $(PARAMETER) -c computer.cc -o computer.o
 chessBoard.o: chessBoard.cc 
-	g++ $(PARAMETER) -c chessBoard.cc -o chessBoard.o
+	$(CXX) $(PARAMETER) -c chessBoard.cc -o chessBoard.o
 chessmaninfo.o: chessmaninfo.cc
-	g++ $(PARAMETER) -c chessmaninfo.cc -o chessmaninfo.o
+	$(CXX) $(PARAMETER) -c chessmaninfo.cc -o chessmaninfo.o
 person.o: person.cc 
-	g++ $(PARAMETER) -c person.cc -o person.o
+	$(CXX) $(PARAMETER) -c person.cc -o person.o
 player.o: player.cc 
-	g++ $(PARAMETER) -c player.cc -o player.o
+	$(CXX) $(PARAMETER) -c player.cc -o player.o
 run.o: run.cc
-	g++ $(PARAMETER) -c run.cc -o run.o
+	$(CXX) $(PARAMETER) -c run.cc -o run.o
 handleChess.o: handleChess.cc 
-	g++ $(PARAMETER) -c handleChess.cc -o handleChess.o
+	$(CXX) $(PARAMETER) -c handleChess.cc -o handleChess.o
 test.o:test.cc
-	g++ $(PARAMETER) -c test.cc -o test.o
+	$(CXX) $(PARAMETER) -c test.cc -o test.o
 main.o: main.cc
-	g++ $(PARAMETER) -c main.cc -o main.o
+	$(CXX) $(PARAMETER) -c main.cc -o main.o
 clean:
 	rm ./*.o
 install:
