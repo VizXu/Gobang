@@ -29,8 +29,7 @@ void HandleChessBoard::setLevel(U8 levels)
 
 U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle> & positionVal)
 {
-  //-xy direction
-  //-x-y direction
+
   U8 flagx=0;
   U8 flag_x=0;
   U8 flagy=0;
@@ -158,6 +157,46 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
    }
 
    if(cnt==flagx_y+1){
+    continue;
+   }
+   else{
+    break;
+   }
+  }
+
+  for(int i=posX,j=posY;i>=0&&j>=0;i--,j--){
+  //-xy direction
+   U8 cnt=flag_xy;
+   for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
+    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==j)){
+	 flag_xy++;
+	}
+	else{
+	 continue;
+	}
+   }
+   
+   if(cnt==flag_xy+1){
+    continue;
+   }
+   else{
+    break;
+   }
+  }
+
+  for(int i=posX,j=posY;i>=0&&j<BOARDSIZE;i--,j++){
+  //-x-y direction
+   U8 cnt=flag_x_y;
+   for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
+    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==j)){
+	 flag_x_y++;
+	}
+	else{
+	 continue;
+	}
+   }
+   
+   if(cnt==flag_x_y+1){
     continue;
    }
    else{
