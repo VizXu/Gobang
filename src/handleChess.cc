@@ -203,7 +203,7 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
     break;
    }
   }
-return 0;
+  return maxVal(flagx,maxVal(flagy,maxVal(flagxy,maxVal(flag_xy,maxVal(flagx_y,maxVal(flag_x,maxVal(flag_y,flag_x_y)))))));
 }
 
 U8 HandleChessBoard::getLevel()
@@ -258,8 +258,16 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 		   }
     case 2:{
 			int pp=playerPosition.size();
+			U8  maxLength=0;
+			U8  tmp=0;
+			int positionSite=0;
 			for(int i=0;i<pp;i++){
 				//analyse player position ----add by xujiwei 2016-8-16
+				tmp=testNumbersChessman(playerPosition[i].getxPos(),playerPosition[i].getyPos(),playerPosition);
+				if(tmp>=maxLength){
+				  maxLength=tmp;
+				  positionSite=i;
+				}
 			}
 			   break;
 		   }

@@ -38,6 +38,9 @@ public:
   int getYChessman();
 private:
   U8  getLevel();
+  U8  maxVal(U8 x,U8 y){
+        return x>=y?x:y;
+      }
 public:
   HandleChessBoard(){
     srand(time(NULL));
