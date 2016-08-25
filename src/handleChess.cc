@@ -29,7 +29,16 @@ void HandleChessBoard::setLevel(U8 levels)
 
 void HandleChessBoard::setDirection(U8 d)
 {
-  
+  switch(d){
+	  case 1: direction=XPLUSDirection;        break;
+	  case 2: direction=XNEGADirection;        break;
+	  case 3: direction=YPLUSDirection;        break;
+	  case 4: direction=YNEGADirection;        break;
+	  case 5: direction=XPLUSYPLUSDirection;   break;
+	  case 6: direction=XPLUSYNEGADirection;   break;
+	  case 7: direction=XNEGAYPLUSDirection;   break;
+	  case 8: direction=XNEGAYNEGADirection;   break;
+  }  
 }
 
 Direction HandleChessBoard::getDirection()
@@ -227,28 +236,28 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 	case d==flag_x_y: break;
   }*/
   if(d==flagx){
-  
+    setDirection(1); 
   }
   else if(d==flag_x){
-  
+    setDirection(2); 
   }
   else if(d==flagy){
-  
+    setDirection(3); 
   }
   else if(d==flag_y){
-  
+    setDirection(4); 
   }
   else if(d==flagxy){
-  
+    setDirection(5); 
   }
   else if(d==flag_xy){
-  
+    setDirection(6); 
   }
   else if(d==flagx_y){
-  
+    setDirection(7); 
   }
   else if(d==flag_x_y){
-  
+    setDirection(8); 
   }
 return d;
 }
