@@ -8,6 +8,18 @@
 using std::vector;
 class ChessBoard;
 
+enum Direction
+{
+XPLUSDirection,
+XNEGADirection,
+YPLUSDirection,
+YNEGADirection,
+XPLUSYPLUSDirection,
+XPLUSYNEGADirection,
+XNEGAYPLUSDirection,
+XNEGAYNEGADirection
+};
+
 class PositionHandle
 {
 private:
@@ -27,6 +39,7 @@ private:
   int xChessman;
   int yChessman;
   U8 levels;
+  Direction direction;
 private:
   vector<PositionHandle> blankPosition;
   vector<PositionHandle> playerPosition;

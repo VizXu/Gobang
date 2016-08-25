@@ -38,7 +38,9 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
   U8 flagx_y=0;
   U8 flag_xy=0;
   U8 flag_x_y=0;
-  
+
+  U8 d;
+
   vector<PositionHandle>::iterator positionPtr;
   for(int i=posX;i<BOARDSIZE;i++){
   //x direction
@@ -203,7 +205,43 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
     break;
    }
   }
-  return maxVal(flagx,maxVal(flagy,maxVal(flagxy,maxVal(flag_xy,maxVal(flagx_y,maxVal(flag_x,maxVal(flag_y,flag_x_y)))))));
+  d=maxVal(flagx,maxVal(flagy,maxVal(flagxy,maxVal(flag_xy,maxVal(flagx_y,maxVal(flag_x,maxVal(flag_y,flag_x_y)))))));
+
+/*  switch(d){
+    case d==flagx   : break;
+	case d==flag_x  : break;
+	case d==flagy   : break;
+	case d==flag_y  : break;
+	case d==flagxy  : break;
+	case d==flag_xy : break;
+	case d==flagx_y : break;
+	case d==flag_x_y: break;
+  }*/
+  if(d==flagx){
+  
+  }
+  else if(d==flag_x){
+  
+  }
+  else if(d==flagy){
+  
+  }
+  else if(d==flag_y){
+  
+  }
+  else if(d==flagxy){
+  
+  }
+  else if(d==flag_xy){
+  
+  }
+  else if(d==flagx_y){
+  
+  }
+  else if(d==flag_x_y){
+  
+  }
+return d;
 }
 
 U8 HandleChessBoard::getLevel()
