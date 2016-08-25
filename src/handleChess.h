@@ -49,6 +49,8 @@ public:
   void setLevel(U8 levels);
   int getXChessman();
   int getYChessman();
+  void setDirection(U8);
+  Direction getDirection();
 private:
   U8  getLevel();
   U8  maxVal(U8 x,U8 y){

@@ -27,6 +27,15 @@ void HandleChessBoard::setLevel(U8 levels)
 
 //test anbient chessman number of each position function
 
+void HandleChessBoard::setDirection(U8 d)
+{
+  
+}
+
+Direction HandleChessBoard::getDirection()
+{
+  return this->direction;
+}
 U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle> & positionVal)
 {
 
