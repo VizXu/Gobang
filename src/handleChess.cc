@@ -324,6 +324,19 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 				  maxLength=tmp;
 				  positionSite=i;
 				}
+				int x=playerPosition[positionSite].getxPos();
+				int y=playerPosition[positionSite].getyPos();
+				switch(this->direction){
+                 case XPLUSDirection:      haveTry(x-1,y);  break;
+				 case XNEGADirection:      haveTry(x+1,y);  break;
+			     case YPLUSDirection:      haveTry(x,y-1);  break;
+				 case YNEGADirection:      haveTry(x,y+1);  break;
+				 case XPLUSYPLUSDirection: haveTry(x-1,y+1);break;
+				 case XNEGAYPLUSDirection: haveTry(x+1,y+1);break;      
+				 case XPLUSYNEGADirection: haveTry(x-1,y-1);break;
+				 case XNEGAYNEGADirection: haveTry(x+1,y-1);break;
+				 defualt:break;
+				}
 			}
 			   break;
 		   }
@@ -331,4 +344,9 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
     case 4:{break;}
     default: throw "out of levels";
   }
+}
+
+bool HandleChessBoard::haveTry(int x,int y)
+{
+
 }

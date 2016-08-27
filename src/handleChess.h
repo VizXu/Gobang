@@ -50,6 +50,7 @@ public:
   int getXChessman();
   int getYChessman();
   void setDirection(U8);
+  bool haveTry(int,int);
   Direction getDirection();
 private:
   U8  getLevel();
