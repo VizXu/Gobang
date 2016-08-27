@@ -14,7 +14,7 @@ CXX=g++
 PARAMETER=-std=c++11
 
 Gobang: $(OBJ)
-	$(CXX)  *.o -o Gobang
+	$(CXX)  $(OBJ) -o Gobang
 computer.o: computer.cc 
 	$(CXX) $(PARAMETER) -c computer.cc -o computer.o
 chessBoard.o: chessBoard.cc 
