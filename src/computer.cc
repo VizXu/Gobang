@@ -1,5 +1,6 @@
 #include"computer.h"
 #include"handleChess.h"
+#include"log.h"
 U8 Computer::getLevel()
 {
   return this->levels;
@@ -38,7 +39,16 @@ Position Computer::level1(ChessBoard& chessboard)
 
 Position Computer::level2(ChessBoard& chessboard)
 {
-  
+  int xP;
+  int yP;
+  HandleChessBoard handboard;
+  handboard.setLevel(2);
+  handboard.handleChessBoard(chessboard);//something is wrong---2016-8-27
+  xP=handboard.getXChessman();
+  yP=handboard.getYChessman();
+  LOG_BUG("xujiwei-----xP=%d,yP=%d\n",xP,yP);
+  this->position.setXY(xP,yP);
+  return Position(xP,yP);
 }
 
 Position Computer::level3(ChessBoard& chessboard)

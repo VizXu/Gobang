@@ -314,9 +314,16 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 		   }
     case 2:{
 			int pp=playerPosition.size();
+			//add by xujiwei----2016-8-27
+			LOG_BUG("pp=%d\n",pp);
+			//
 			U8  maxLength=0;
 			U8  tmp=0;
 			int positionSite=0;
+			if(pp==0){
+			 haveTry(-1,-1);
+			 break;
+			}
 			for(int i=0;i<pp;i++){
 				//analyse player position ----add by xujiwei 2016-8-16
 				tmp=testNumbersChessman(playerPosition[i].getxPos(),playerPosition[i].getyPos(),playerPosition);
