@@ -323,7 +323,8 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 				if(tmp>=maxLength){
 				  maxLength=tmp;
 				  positionSite=i;
-				}
+				  }
+			    }
 				int x=playerPosition[positionSite].getxPos();
 				int y=playerPosition[positionSite].getyPos();
 				switch(this->direction){
