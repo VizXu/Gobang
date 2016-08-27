@@ -338,9 +338,8 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 				 case XNEGAYNEGADirection: haveTry(x+1,y-1);break;
 				 defualt:break;
 				}
-			}
 			   break;
-		   }
+			}
     case 3:{break;}
     case 4:{break;}
     default: throw "out of levels";
