@@ -348,5 +348,24 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 
 bool HandleChessBoard::haveTry(int x,int y)
 {
+   if(isBlank(x,y)){
+     xChessman=x;
+	 yChessman=y;
+   }
+   else{
+	int bp=blankPosition.size();
+    int position=bp/2;
+	sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
+	xChessman=blankPosition[position].getxPos();
+	yChessman=blankPosition[position].getyPos();
+   }
+}
 
+bool HandleChessBoard::isBlank(int x,int y)
+{
+   for(int i=0;i<blankPosition.size();i++){
+     if((blankPosition[i].getxPos()==x)&&(blankPosition[i].getyPos()==y)) return true;
+	 else continue;
+   }
+return false;
 }

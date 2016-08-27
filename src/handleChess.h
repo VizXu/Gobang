@@ -52,6 +52,7 @@ public:
   void setDirection(U8);
   bool haveTry(int,int);
   Direction getDirection();
+  bool isBlank(int,int);
 private:
   U8  getLevel();
   U8  maxVal(U8 x,U8 y){
