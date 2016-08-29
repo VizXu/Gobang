@@ -223,8 +223,9 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
     break;
    }
   }
+  LOG_BUG("start---flagx=%d,flag_x=%d,flagy=%d,flag_y=%d,flagxy=%d,flag_xy=%d,flagx_y=%d,flag_x_y=%d\n",flagx,flag_x,flagy,flag_y,flagxy,flag_xy,flagx_y,flag_x_y);
   d=maxVal(flagx,maxVal(flagy,maxVal(flagxy,maxVal(flag_xy,maxVal(flagx_y,maxVal(flag_x,maxVal(flag_y,flag_x_y)))))));
-
+  LOG_BUG("end-----d=%d\n",d);
 /*  switch(d){
     case d==flagx   : break;
 	case d==flag_x  : break;
@@ -334,6 +335,7 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 			    }
 				int x=playerPosition[positionSite].getxPos();
 				int y=playerPosition[positionSite].getyPos();
+				LOG_BUG("x=%d,y=%d,direction=%d\n",x,y,this->direction);
 				switch(this->direction){
                  case XPLUSDirection:      haveTry(x-1,y);  break;
 				 case XNEGADirection:      haveTry(x+1,y);  break;
