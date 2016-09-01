@@ -65,9 +65,12 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 	U8 cnt=flagx;
     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
 	    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==posY)){
+		  //add by xujiwei----2016-9-1 for debuging
+		  LOG_BUG("flagx:i=%d,posX=%d,posY=%d,flagx=%d\n",i,posX,posY,flagx);
 	      flagx++;
      	}
     	else{
+		  LOG_BUG("\n+++\n");
 	      continue;
     	}
 	}
@@ -289,12 +292,12 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 		 // tmpPosition.set(i,j);
           blankPosition.push_back(std::move(tmpPosition));
         break;}
-        case('&'):{
+        case('#'):{ //changed &--->#
           PositionHandle tmpPosition(i,j);
 		  //tmpPosition.set(i,j);
           playerPosition.push_back(std::move(tmpPosition));
           break;}
-        case('#'):{
+        case('&'):{ //changed #--->&
           PositionHandle tmpPosition(i,j);
 		  //tmpPosition.set(i,j);
           computPosition.push_back(std::move(tmpPosition));
@@ -328,6 +331,7 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
 			for(int i=0;i<pp;i++){
 				//analyse player position ----add by xujiwei 2016-8-16
 				tmp=testNumbersChessman(playerPosition[i].getxPos(),playerPosition[i].getyPos(),playerPosition);
+				LOG_BUG("\n-----\n");
 				if(tmp>=maxLength){
 				  maxLength=tmp;
 				  positionSite=i;
