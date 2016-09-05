@@ -67,16 +67,16 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 	    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==posY)){
 		  //add by xujiwei----2016-9-1 for debuging
 		  LOG_BUG("flagx:i=%d,posX=%d,posY=%d,flagx=%d\n",i,posX,posY,flagx);
-	      flagx++;
+	      	  flagx++;
      	}
     	else{
-		  LOG_BUG("\n+++\n");
-	      continue;
+		LOG_BUG("\n+++\n");
+	        continue;
     	}
 	}
 
 	if(cnt==flagx+1){
-	   continue; //found it, then to next position and check it
+	   	continue; //found it, then to next position and check it
 	}
 	else{
 	   break;
@@ -151,7 +151,7 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
   U8 cnt=flagxy;
    for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
     if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==j)){
-	 flagxy++;
+	  flagxy++;
 	}
 	else{
 	 continue;
@@ -159,10 +159,10 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
    }
 
    if(cnt==flagxy+1){
-    continue;
+	continue;
    }
    else{
-    break;
+	break;
    }
   }
 
@@ -172,10 +172,10 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
   U8 cnt=flagx_y;
   for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
    if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==j)){
-     flagx_y++;
+     	flagx_y++;
     }
    else{
-    continue;
+	 continue;
     }
    }
 
@@ -309,50 +309,50 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
   }
   switch(levels){
     case 1:{
-			int bp=blankPosition.size();
-		    int position=bp/2;
-			sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
-			xChessman=blankPosition[position].getxPos();
-			yChessman=blankPosition[position].getyPos();
-            break;
-		   }
+	int bp=blankPosition.size();
+	int position=bp/2;
+	sort(blankPosition.begin(),blankPosition.end(),srtVectorPosX);
+	xChessman=blankPosition[position].getxPos();
+	yChessman=blankPosition[position].getyPos();
+        break;
+	}
     case 2:{
-			int pp=playerPosition.size();
-			//add by xujiwei----2016-8-27
-			LOG_BUG("pp=%d\n",pp);
-			//
-			U8  maxLength=0;
-			U8  tmp=0;
-			int positionSite=0;
-			if(pp==0){
-			 haveTry(-1,-1);
-			 break;
-			}
-			for(int i=0;i<pp;i++){
-				//analyse player position ----add by xujiwei 2016-8-16
-				tmp=testNumbersChessman(playerPosition[i].getxPos(),playerPosition[i].getyPos(),playerPosition);
-				LOG_BUG("\n-----\n");
-				if(tmp>=maxLength){
-				  maxLength=tmp;
-				  positionSite=i;
-				  }
-			    }
-				int x=playerPosition[positionSite].getxPos();
-				int y=playerPosition[positionSite].getyPos();
-				LOG_BUG("x=%d,y=%d,direction=%d\n",x,y,this->direction);
-				switch(this->direction){
-                 case XPLUSDirection:      haveTry(x-1,y);  break;
-				 case XNEGADirection:      haveTry(x+1,y);  break;
-			     case YPLUSDirection:      haveTry(x,y-1);  break;
-				 case YNEGADirection:      haveTry(x,y+1);  break;
-				 case XPLUSYPLUSDirection: haveTry(x-1,y+1);break;
-				 case XNEGAYPLUSDirection: haveTry(x+1,y+1);break;      
-				 case XPLUSYNEGADirection: haveTry(x-1,y-1);break;
-				 case XNEGAYNEGADirection: haveTry(x+1,y-1);break;
-				 defualt:break;
-				}
-			   break;
-			}
+	int pp=playerPosition.size();
+	//add by xujiwei----2016-8-27
+	LOG_BUG("pp=%d\n",pp);
+	//add by xujiwei
+	U8  maxLength=0;
+	U8  tmp=0;
+	int positionSite=0;
+	if(pp==0){
+		 haveTry(-1,-1);
+	 	 break;
+	}
+	for(int i=0;i<pp;i++){
+	//analyse player position ----add by xujiwei 2016-8-16
+		tmp=testNumbersChessman(playerPosition[i].getxPos(),playerPosition[i].getyPos(),playerPosition);
+		LOG_BUG("\n-----\n");
+		f(tmp>=maxLength){
+		maxLength=tmp;
+		positionSite=i;
+		}
+	}
+	int x=playerPosition[positionSite].getxPos();
+	int y=playerPosition[positionSite].getyPos();
+	LOG_BUG("x=%d,y=%d,direction=%d\n",x,y,this->direction);
+	switch(this->direction){
+		case XPLUSDirection:      haveTry(x-1,y);  break;
+		case XNEGADirection:      haveTry(x+1,y);  break;
+		case YPLUSDirection:      haveTry(x,y-1);  break;
+		case YNEGADirection:      haveTry(x,y+1);  break;
+		case XPLUSYPLUSDirection: haveTry(x-1,y+1);break;
+		case XNEGAYPLUSDirection: haveTry(x+1,y+1);break;      
+		case XPLUSYNEGADirection: haveTry(x-1,y-1);break;
+		case XNEGAYNEGADirection: haveTry(x+1,y-1);break;
+		defualt:break;
+		}
+		break;
+	}
     case 3:{break;}
     case 4:{break;}
     default: throw "out of levels";
