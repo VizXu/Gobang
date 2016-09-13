@@ -59,6 +59,21 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 
   U8 d;
 
+  /*
+   *direction
+
+        --------------->> y
+		|
+		|
+		|
+		|
+		|
+	    \/
+
+		x
+
+
+   * */
   vector<PositionHandle>::iterator positionPtr;
   for(int i=posX;i<BOARDSIZE;i++){
   //x direction
@@ -90,7 +105,7 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
   //-x direction
     U8 cnt=flag_x;
     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
-	  if((positionPtr->getxPos()==i)&&(positionPtr->getyPos()==posY)){
+	  if((positionPtr->getxPos()==posX)&&(positionPtr->getyPos()==i)){
 	    flag_x++;
 		LOG_BUG("i=%d,positionPtr->getxPos()=%d,positionPtr->getyPos()=%d\n",i,positionPtr->getxPos(),positionPtr->getyPos());
 		LOG_BUG("flagx:i=%d,posX=%d,posY=%d,flagx=%d\n",i,posX,posY,flagx);
