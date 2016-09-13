@@ -82,13 +82,8 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 	    if((positionPtr->getxPos()==posX)&&(positionPtr->getyPos()==i)){
 		  //add by xujiwei----2016-9-1 for debuging
 	      flagx++;
-		 // LOG_BUG("i=%d,positionPtr->getxPos()=%d,positionPtr->getyPos()=%d\n",i,positionPtr->getxPos(),positionPtr->getyPos());
-		 // LOG_BUG("flagx:i=%d,posX=%d,posY=%d,flagx=%d\n",i,posX,posY,flagx);
-	      //	  flagx++;
      	}
     	else{
-		//LOG_BUG("\n+++\n");
-		//  LOG_BUG("i=%d,positionPtr->getxPos()=%d,positionPtr->getyPos()=%d\n",i,positionPtr->getxPos(),positionPtr->getyPos());
 	        continue;
     	}
 	}
