@@ -75,15 +75,18 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 
    * */
   vector<PositionHandle>::iterator positionPtr;
-  for(int i=posX;i<BOARDSIZE;i++){
+  for(int i=posY;i<BOARDSIZE;i++){
   //x direction
 	U8 cnt=flagx;
     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
 	    if((positionPtr->getxPos()==posX)&&(positionPtr->getyPos()==i)){
 		  //add by xujiwei----2016-9-1 for debuging
+		LOG_BUG("i=%d,positionPtr->getxPos()=%d,positionPtr->getyPos()=%d\n",i,positionPtr->getxPos(),positionPtr->getyPos());
+		LOG_BUG("flagx:i=%d,posX=%d,posY=%d,flagx=%d\n",i,posX,posY,flagx);
 	      flagx++;
      	}
     	else{
+		LOG_BUG("i=%d,positionPtr->getxPos()=%d,positionPtr->getyPos()=%d\n",i,positionPtr->getxPos(),positionPtr->getyPos());
 	        continue;
     	}
 	}
@@ -92,11 +95,11 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 	   	continue; //found it, then to next position and check it
 	}
 	else{
-	  // break;
+	   break;
 	}
   }
 
-  for(int i=posX;i>=0;i--){
+  for(int i=posY;i>=0;i--){
   //-x direction
     U8 cnt=flag_x;
     for(positionPtr=positionVal.begin();positionPtr!=positionVal.end();positionPtr++){
