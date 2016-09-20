@@ -401,3 +401,8 @@ bool HandleChessBoard::isBlank(int x,int y)
    }
 return false;
 }
+
+void HandleChessBoard::storeBoard()
+{
+  //store board information
+}

@@ -45,6 +45,9 @@ private:
   vector<PositionHandle> playerPosition;
   vector<PositionHandle> computPosition;
   vector<PositionHandle>::iterator iPtr;
+private:  //for tmporary store the board information 
+  char tmpBoard[BOARDSIZE][BOARDSIZE];
+  void storeBoard();
 public:
   void setLevel(U8 levels);
   int getXChessman();
@@ -61,6 +64,11 @@ private:
 public:
   HandleChessBoard(){
     srand(time(NULL));
+	for(int i=0;i<BOARDSIZE;i++){
+	   for(int j=0;j<BOARDSIZE;j++){
+	      tmpBoard[i][j]='+';
+	   }
+	}
   }
   ~HandleChessBoard(){}
 public:
