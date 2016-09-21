@@ -59,6 +59,7 @@ U8 HandleChessBoard::testNumbersChessman(int posX,int posY,vector<PositionHandle
 
   U8 d;
 
+   storeBoard(positionVal);
   /*
    *direction
 
