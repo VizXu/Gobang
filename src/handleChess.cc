@@ -402,7 +402,9 @@ bool HandleChessBoard::isBlank(int x,int y)
 return false;
 }
 
-void HandleChessBoard::storeBoard()
+void HandleChessBoard::storeBoard(vector<PositionHandle> & positionInfo)
 {
   //store board information
+
+  
 }

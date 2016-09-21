@@ -47,7 +47,7 @@ private:
   vector<PositionHandle>::iterator iPtr;
 private:  //for tmporary store the board information 
   char tmpBoard[BOARDSIZE][BOARDSIZE];
-  void storeBoard();
+  void storeBoard(vector<PositionHandle> &);
 public:
   void setLevel(U8 levels);
   int getXChessman();
