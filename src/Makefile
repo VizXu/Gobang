@@ -11,7 +11,8 @@ OBJ= computer.o chessBoard.o chessmaninfo.o \
 
 CXX=g++
 
-PARAMETER=-std=c++11
+PARAMETER1=-std=c++11
+PARAMETER2=-std=c++0x
 
 Gobang: $(OBJ)
 	$(CXX)  $(OBJ) -o Gobang
