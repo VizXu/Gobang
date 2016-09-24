@@ -308,17 +308,17 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
     for(int j=0;j<BOARDSIZE;++j){
       switch(chessboard.getChessman(i,j)){
         case('+'):{
-          PositionHandle tmpPosition(i,j);
+          PositionHandle tmpPosition(i,j,'+');
 		 // tmpPosition.set(i,j);
           blankPosition.push_back(std::move(tmpPosition));
         break;}
         case('#'):{ //changed &--->#
-          PositionHandle tmpPosition(i,j);
+          PositionHandle tmpPosition(i,j,'#');
 		  //tmpPosition.set(i,j);
           playerPosition.push_back(std::move(tmpPosition));
           break;}
         case('&'):{ //changed #--->&
-          PositionHandle tmpPosition(i,j);
+          PositionHandle tmpPosition(i,j,'&');
 		  //tmpPosition.set(i,j);
           computPosition.push_back(std::move(tmpPosition));
           break;}
@@ -406,6 +406,11 @@ return false;
 void HandleChessBoard::storeBoard(vector<PositionHandle> & positionInfo)
 {
   //store board information
+  U8 size=positionInfo.size();
+  vector<PositionHandle>::iterator positionPtr=positionInfo.begin();
 
+  for(;positionPtr!=positionInfo.end();positionPtr++){
+    tmpBoard[positionPtr->getxPos()][positionPtr->getyPos()]=positionPtr->getPlayer(); 
+  }
   
 }

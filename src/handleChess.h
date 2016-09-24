@@ -25,13 +25,15 @@ class PositionHandle
 private:
   int xPos;
   int yPos;
+  char player;
 public:
-  PositionHandle(int i=0,int j=0):xPos(i),yPos(j){}
+  PositionHandle(int i=0,int j=0,char c='+'):xPos(i),yPos(j),player(c){}
   ~PositionHandle(){}
 public:
   //void set(int i=0,int j=0){this->xPos=i;this->yPos=j;}
   int getxPos()const {return this->xPos;}
   int getyPos()const {return this->yPos;}
+  int getPlayer() const { return this->player;}
 };
 class HandleChessBoard
 {
