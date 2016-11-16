@@ -3,6 +3,7 @@
 #include"chessBoard.h"
 #include<unistd.h>
 #include<iostream>
+#include<cstdlib>
 //#include"judge.h"
 using std::string;
 int Player::setPosition(int _x,int _y,char ch,ChessBoard& chessboard)

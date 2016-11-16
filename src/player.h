@@ -5,7 +5,7 @@
 #include<vector>
 #include<iostream>
 #include"chessmaninfo.h"
-using std::unique_ptr;
+//using std::unique_ptr;
 using std::vector;
 #define PIECES 50
 class ChessBoard;

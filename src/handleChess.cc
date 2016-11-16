@@ -5,12 +5,14 @@
 #include<memory>
 #include<algorithm>
 #include<iostream>
-using std::cout;
+/*using std::cout;
 using std::endl;
-using std::move;
+//using std::move;
 using std::vector;
 using std::sort;
 using std::find;
+*/
+using namespace std;
 bool srtVectorPosX(const PositionHandle& p1,const PositionHandle& p2)
 {
   return p1.getxPos()>=p2.getxPos();
@@ -310,17 +312,17 @@ void HandleChessBoard::handleChessBoard(ChessBoard& chessboard)
         case('+'):{
           PositionHandle tmpPosition(i,j,'+');
 		 // tmpPosition.set(i,j);
-          blankPosition.push_back(std::move(tmpPosition));
+          blankPosition.push_back(tmpPosition);
         break;}
         case('#'):{ //changed &--->#
           PositionHandle tmpPosition(i,j,'#');
 		  //tmpPosition.set(i,j);
-          playerPosition.push_back(std::move(tmpPosition));
+          playerPosition.push_back(tmpPosition);
           break;}
         case('&'):{ //changed #--->&
           PositionHandle tmpPosition(i,j,'&');
 		  //tmpPosition.set(i,j);
-          computPosition.push_back(std::move(tmpPosition));
+          computPosition.push_back(tmpPosition);
           break;}
         default:
           throw "error chessman";
