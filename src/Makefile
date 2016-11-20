@@ -1,7 +1,7 @@
 
 OBJ= computer.o chessBoard.o chessmaninfo.o \
 	 person.o player.o run.o handleChess.o \
-	 test.o main.o
+	 test.o main.o judgedegree.o
 # clean is to remove .o files
 .PHONY:clean
 .PHONY:install
@@ -41,6 +41,9 @@ handleChess.o: handleChess.cc
 test.o:test.cc
 	$(CXX) $(PARAMETER) -c test.cc -o test.o
 	@echo "test.o is done"
+judgedegree.o:judgedegree.cc
+	$(CXX) -c judgedegree.cc -o judgedegree.o
+	@echo "judgedegree.o is done"
 main.o: main.cc
 	$(CXX) $(PARAMETER) -c main.cc -o main.o
 	@echo "main.o is done"
