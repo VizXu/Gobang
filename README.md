@@ -18,3 +18,7 @@ add level 2 AI algorithm
 //2016-8-10
 
 released the first version 0.1
+
+//2016-12-11
+
+we need to reconsitution
