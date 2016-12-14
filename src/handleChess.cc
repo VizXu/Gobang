@@ -5,13 +5,7 @@
 #include<memory>
 #include<algorithm>
 #include<iostream>
-/*using std::cout;
-using std::endl;
-//using std::move;
-using std::vector;
-using std::sort;
-using std::find;
-*/
+
 using namespace std;
 bool srtVectorPosX(const PositionHandle& p1,const PositionHandle& p2)
 {
