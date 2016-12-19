@@ -14,6 +14,7 @@ void copyChessBoard(char chessBoard[BOARDSIZE][BOARDSIZE],ChessBoard& chessboard
   }
 }
 
+
 void judgeValueDegree(char chessBoard[BOARDSIZE][BOARDSIZE],int value[BOARDSIZE][BOARDSIZE])
 {
   for(int i=0;i<BOARDSIZE;i++){
