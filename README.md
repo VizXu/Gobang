@@ -22,3 +22,7 @@ released the first version 0.1
 //2016-12-11
 
 we need to reconsitution
+
+//2017-2-26
+
+reconstruct the game
