@@ -1,7 +1,7 @@
 #ifndef CHESSBOARD_H_
 #define CHESSBOARD_H_
 
-#include "types.h"
+#include "../types.h"
 #define BOARD_SIZE 8
 
 class ChessBoard
