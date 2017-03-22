@@ -31,4 +31,5 @@ public:
     bool set_chess(u32,u32,s8);
     s8   get_chess(u32,u32) const;
 };
+
 #endif//chessboard.h
