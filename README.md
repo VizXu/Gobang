@@ -26,3 +26,7 @@ we need to reconsitution
 //2017-2-26
 
 reconstruct the game
+
+//2017-3-23
+
+move the core code to CoreEngine directory, one can enter the CoreEngine and compilr the source code with "make"
