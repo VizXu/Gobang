@@ -8,11 +8,7 @@
 #include <list>
 #include <vector>
 
-struct board_position
-{
-  int x_pos;
-  int y_pos;
-};
+#include"boardposition.h"
 
 typedef struct{
       board_position position;
@@ -62,5 +58,8 @@ private:
    void store_analysis_result(const analysis_result&);
 public:
    void analyze_level1(s8);
+   void analyze_level2(s8);
+   void analyze_level3(s8);
 };
 #endif//ai_core.h
+
