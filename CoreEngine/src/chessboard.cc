@@ -40,3 +40,4 @@ s8  Chessboard::get_chess(u32 x_pos,u32 y_pos) const
     if(x_pos > BOARD_SIZE || y_pos > BOARD_SIZE) throw "out of range";
     return this->board[x_pos][y_pos];
 }
+
