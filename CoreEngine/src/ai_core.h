@@ -49,6 +49,7 @@ public:
 public:
    void copy_board(const Chessboard&);
    board_position get_suggest_position();
+   bool is_winner(const board_position&,s8);
 private:
    void store_chess_info();    
    void destroy_present_chess_info();

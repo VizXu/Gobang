@@ -111,6 +111,13 @@ void AI_core::analyze_level3(s8 chesstype)
 
 }
 
+bool AI_core::is_winner(const board_position& position,s8 chess_type)
+{
+    analysis_result tmp_result = analysize_guess_position(position,chess_type);
+    if(tmp_result.max_length >= 5) return true;
+    else return false;   
+}
+
 analysis_result AI_core::analysize_guess_position(const board_position& position,s8 chess_type)
 {
     COPY_BOARD analysis_board;
