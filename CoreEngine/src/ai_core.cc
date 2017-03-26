@@ -40,6 +40,11 @@ void AI_core::store_chess_info()
     }  
 }
 
+analysis_result AI_core::get_present_result()
+{
+  return this->alys_rlt;
+}
+
 void AI_core::destroy_present_chess_info()
 {
    std::list<board_position> tmp;

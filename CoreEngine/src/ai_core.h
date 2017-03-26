@@ -57,6 +57,7 @@ private:
    typedef s8 COPY_BOARD[BOARD_SIZE][BOARD_SIZE];
    void copy_position(COPY_BOARD&);
    void store_analysis_result(const analysis_result&);
+   analysis_result get_present_result();
 public:
    void analyze_level1(s8);
    void analyze_level2(s8);
