@@ -30,3 +30,9 @@ reconstruct the game
 //2017-3-23
 
 move the core code to CoreEngine directory, one can enter the CoreEngine and compilr the source code with "make"
+
+//2017-3-29
+
+upload the arch image
+
+![arch image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/arch.png)
