@@ -108,7 +108,8 @@ void AI_core::analyze_level1(s8 chesstype)
 
 void AI_core::analyze_level2(s8 chesstype)
 {
-
+   this->analyze_level1(chesstype);
+   analysis_result present_result = this->get_present_result();
 }
 
 void AI_core::analyze_level3(s8 chesstype)
