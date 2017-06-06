@@ -6,6 +6,8 @@ OBJ_DIR = objs_dir/
 
 target = target_dir/
 
+inc = headers
+
 CXX = g++
 
 parameters = -std=c++11
@@ -15,31 +17,31 @@ gobang: $(obj)
 	@echo "good,gobang compile done"
 
 player.o : player.cc
-	$(CXX) -c player.cc -o $(OBJ_DIR)player.o $(parameters)
+	$(CXX) -c player.cc -o $(OBJ_DIR)player.o $(parameters) -I$(inc)
 	@echo "player.cc compile"
 
 test.o : test.cc
-	$(CXX) -c test.cc -o $(OBJ_DIR)test.o $(parameters)
+	$(CXX) -c test.cc -o $(OBJ_DIR)test.o $(parameters) -I$(inc)
 	@echo "test.cc compile"
 
 ai_core.o : ai_core.cc
-	$(CXX) -c ai_core.cc -o $(OBJ_DIR)ai_core.o $(parameters)
+	$(CXX) -c ai_core.cc -o $(OBJ_DIR)ai_core.o $(parameters) -I$(inc)
 	@echo "ai_core.cc compile"
 
 computer.o : computer.cc
-	$(CXX) -c computer.cc -o $(OBJ_DIR)computer.o $(parameters)
+	$(CXX) -c computer.cc -o $(OBJ_DIR)computer.o $(parameters) -I$(inc)
 	@echo "computer.cc compile"
 
 human.o : human.cc
-	$(CXX) -c human.cc -o $(OBJ_DIR)human.o $(parameters)
+	$(CXX) -c human.cc -o $(OBJ_DIR)human.o $(parameters) -I$(inc)
 	@echo "human.cc compile"
 
 chessboard.o : chessboard.cc
-	$(CXX) -c chessboard.cc -o $(OBJ_DIR)chessboard.o $(parameters)
+	$(CXX) -c chessboard.cc -o $(OBJ_DIR)chessboard.o $(parameters) -I$(inc)
 	@echo "chessboard.cc compile"
 
 testwinner.o : testwinner.cc
-	$(CXX) -c testwinner.cc -o $(OBJ_DIR)testwinner.o $(parameters)
+	$(CXX) -c testwinner.cc -o $(OBJ_DIR)testwinner.o $(parameters) -I$(inc)
 	@echo "testwinner.cc compile"
 install:
 
