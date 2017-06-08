@@ -1,6 +1,6 @@
 
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
-	testwinner.o
+	testwinner.o storechessmanual.o
 
 OBJ_DIR = objs_dir/
 
@@ -43,6 +43,10 @@ chessboard.o : chessboard.cc
 testwinner.o : testwinner.cc
 	$(CXX) -c testwinner.cc -o $(OBJ_DIR)testwinner.o $(parameters) -I$(inc)
 	@echo "testwinner.cc compile"
+
+storechessmanual.o : storechessmanual.cc
+	$(CXX) -c storechessmanual.cc -o $(OBJ_DIR)storechessmanual.o $(parameters) -I$(inc)
+	@echo "storechessmanual.cc compile"
 install:
 
 uninstall:
