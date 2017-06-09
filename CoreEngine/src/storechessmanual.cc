@@ -21,4 +21,24 @@ StoreChessManual* StoreChessManual::get_chess_manual()
   }
 }
 
+int StoreChessManual::open_file(const std::string& file_name)
+{
+
+}
+
+int StoreChessManual::read_file(const std::string& file_name)
+{
+
+}
+
+void StoreChessManual::close_file(const enum in_out)
+{
+
+}
+
+int StoreChessManual::ops_file(const std::string& file_name)
+{
+ 
+}
+
 StoreChessManual* StoreChessManual::s = NULL;
