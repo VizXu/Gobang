@@ -22,9 +22,9 @@ private:
      out
    };
 private:
-   int open_file(const std::string&);
+   int open_file(const std::string&,const enum in_out);
    void close_file(const enum in_out);
-   int read_file(const std::string&);
+   int read_file(const std::string&,const enum in_out);
    int ops_file(const std::string&);
 public:
    StoreChessManual* get_chess_manual();
