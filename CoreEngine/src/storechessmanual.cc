@@ -26,10 +26,27 @@ int StoreChessManual::open_file(const std::string& file_name,const enum in_out i
 {
    if(i_o == StoreChessManual::in){
       ifile.open(file_name,std::ios_base::in|std::ios_base::binary);
+      if(!ifile.is_open()){
+         DEBUG_LOG("can not open the file!");
+         return -1;
+      }
    }
+   else if(i_o == StoreChessManual::out){
+      ofile.open(file_name,std::ios_base::out|std::ios_base::app);
+      if(!ofile.is_open()){
+        DEBUG_LOG("can not open the file!");
+        return -1;
+      }
+   }
+   else throw "open file error!";
 }
 
 int StoreChessManual::read_file(const std::string& file_name,const enum in_out i_o)
+{
+
+}
+
+int StoreChessManual::write_file(const std::string& file_name,const enum in_out i_o)
 {
 
 }
