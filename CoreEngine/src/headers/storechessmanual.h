@@ -28,7 +28,7 @@ private:
    int write_file(const std::string&, const enum in_out);
    int ops_file(const std::string&);
 public:
-   StoreChessManual* get_chess_manual();
+   static StoreChessManual* get_chess_manual();
 };
 
 #endif // storechessmanual.h

@@ -5,6 +5,7 @@
 #include "computer.h"
 #include "human.h"
 #include "testwinner.h"
+#include "storechessmanual.h"
 
 #define MODE_2
 #if defined(MODE_2)
@@ -118,6 +119,8 @@ void test_mode3()
 
 void test_mode4()
 {
+  StoreChessManual* s = StoreChessManual::get_chess_manual();
+  
   Chessboard chessboard;
   Computer computer("computer");
   Human human("xujiwei");

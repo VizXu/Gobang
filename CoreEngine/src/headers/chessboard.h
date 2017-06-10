@@ -1,9 +1,11 @@
 #ifndef CHESSBOARD_H_
 #define CHESSBOARD_H_
 
+#include <string>
 #include "types.h"
 #define BOARD_SIZE 8
 
+#include "storechessmanual.h"
 
 class Chessboard
 {
@@ -22,6 +24,7 @@ public:
     Chessboard& operator=(const Chessboard&) = delete;
     Chessboard& operator()(const Chessboard&) = delete;
 public:
+    int store_chess_info(const std::string&);
 private:
     u32 scan_board() const;
     bool is_board_empty() const;

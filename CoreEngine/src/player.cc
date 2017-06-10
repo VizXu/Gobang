@@ -1,4 +1,5 @@
 #include "player.h"
+#include "storechessmanual.h"
 
 Player::Player(const string& s):player_name(s)
 {
@@ -27,6 +28,8 @@ board_position Player::get_present_position()
 
 bool Player::make_a_step(Chessboard& chessboard)
 {
+     StoreChessManual* s = StoreChessManual::get_chess_manual();
+
      if(this->player_name == "computer")
        return chessboard.set_chess(this->suggest_position.x_pos,this->suggest_position.y_pos,'@');
      else return false;
