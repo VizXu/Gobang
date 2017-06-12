@@ -7,6 +7,8 @@
 
 #include "storechessmanual.h"
 
+typedef s8 chessboard_info[BOARD_SIZE][BOARD_SIZE];
+
 class Chessboard
 {
 private:
@@ -25,6 +27,7 @@ public:
     Chessboard& operator()(const Chessboard&) = delete;
 public:
     int store_chess_info(const std::string&);
+    chessboard_info&& get_chessboard();
 private:
     u32 scan_board() const;
     bool is_board_empty() const;

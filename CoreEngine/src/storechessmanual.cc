@@ -62,9 +62,9 @@ void StoreChessManual::close_file(const enum in_out i_o)
    else throw "bad close file";
 }
 
-int StoreChessManual::ops_file(const std::string& file_name)
+int StoreChessManual::store_chessboard_info_to_file(const std::string& file_name)
 {
- 
+  
 }
 
 StoreChessManual* StoreChessManual::s = NULL;

@@ -26,7 +26,8 @@ private:
    void close_file(const enum in_out);
    int read_file(const std::string&,const enum in_out);
    int write_file(const std::string&, const enum in_out);
-   int ops_file(const std::string&);
+public:
+   int store_chessboard_info_to_file(const std::string&);
 public:
    static StoreChessManual* get_chess_manual();
 };

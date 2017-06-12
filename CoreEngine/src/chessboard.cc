@@ -45,3 +45,15 @@ int Chessboard::store_chess_info(const std::string& file_name)
 {
    StoreChessManual* s = StoreChessManual::get_chess_manual();
 }
+
+chessboard_info&& Chessboard::get_chessboard()
+{
+  chessboard_info chessboard_to_store;
+  for(int i = 0; i< BOARD_SIZE; i++){
+    for(int j = 0; j< BOARD_SIZE; j++){
+       chessboard_to_store[i][j] = this->board[i][j];
+    }
+  }
+return std::move(chessboard_to_store);
+}
+
