@@ -7,7 +7,19 @@
 
 #include "storechessmanual.h"
 
-typedef s8 chessboard_info[BOARD_SIZE][BOARD_SIZE];
+class chessboard_info
+{
+public:
+   s8 info[BOARD_SIZE][BOARD_SIZE];
+public:
+   s8 get_chess_info(int i,int j){
+     return this->info[i][j];
+   }
+   void set_chess_info(int i,int j,s8 c){
+     this->info[i][j] = c;
+   }
+};
+typedef s8 _chessboard_info[BOARD_SIZE][BOARD_SIZE];
 
 class Chessboard
 {
