@@ -44,13 +44,16 @@ s8  Chessboard::get_chess(u32 x_pos,u32 y_pos) const
 int Chessboard::store_chess_info(const std::string& file_name,chessboard_info& info)
 {
    StoreChessManual* s = StoreChessManual::get_chess_manual();
+   this->get_chessboard(info);
+   s->store_chessboard_info_to_file(file_name,info);
+return 0;
 }
 
 void Chessboard::get_chessboard(chessboard_info& info)
 {
   for(int i = 0; i< BOARD_SIZE; i++){
     for(int j = 0; j< BOARD_SIZE; j++){
-      info.set_chess_info(i,j,this->board[i][j]);// = this->board[i][j];
+      info.set_chess_info(i,j,this->get_chess(i,j));// = this->board[i][j];
     }
   }
 return;

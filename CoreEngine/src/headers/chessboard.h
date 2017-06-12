@@ -43,6 +43,7 @@ public:
 public:
     int store_chess_info(const std::string&,chessboard_info&);
     //chessboard_info get_chessboard();
+private:
     void get_chessboard(chessboard_info&);
 private:
     u32 scan_board() const;
