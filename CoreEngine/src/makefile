@@ -2,6 +2,8 @@
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
 	testwinner.o storechessmanual.o
 
+obj += chessboardinfo.o
+
 OBJ_DIR = objs_dir/
 
 target = target_dir/
@@ -47,6 +49,11 @@ testwinner.o : testwinner.cc
 storechessmanual.o : storechessmanual.cc
 	$(CXX) -c storechessmanual.cc -o $(OBJ_DIR)storechessmanual.o $(parameters) -I$(inc)
 	@echo "storechessmanual.cc compile"
+
+chessboardinfo.o : chessboardinfo.cc
+	$(CXX) -c chessboardinfo.cc -o $(OBJ_DIR)chessboardinfo.o $(parameters) -I$(inc)
+	@echo "chessboardinfo.cc compile"
+
 install:
 
 uninstall:

@@ -6,8 +6,10 @@
 #define BOARD_SIZE 8
 
 #include "storechessmanual.h"
+#include "chessboardinfo.h"
 
-class chessboard_info
+class chessboard_info;
+/*class chessboard_info
 {
 public:
    s8 info[BOARD_SIZE][BOARD_SIZE];
@@ -19,7 +21,8 @@ public:
      this->info[i][j] = c;
    }
 };
-typedef s8 _chessboard_info[BOARD_SIZE][BOARD_SIZE];
+*/
+//typedef s8 _chessboard_info[BOARD_SIZE][BOARD_SIZE];
 
 class Chessboard
 {
@@ -38,8 +41,9 @@ public:
     Chessboard& operator=(const Chessboard&) = delete;
     Chessboard& operator()(const Chessboard&) = delete;
 public:
-    int store_chess_info(const std::string&);
-    chessboard_info&& get_chessboard();
+    int store_chess_info(const std::string&,chessboard_info&);
+    //chessboard_info get_chessboard();
+    void get_chessboard(chessboard_info&);
 private:
     u32 scan_board() const;
     bool is_board_empty() const;

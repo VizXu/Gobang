@@ -4,7 +4,10 @@
 #include "debug.h"
 #include <fstream>
 #include "chessboard.h"
+#include "chessboardinfo.h"
 #include <string>
+
+class chessboard_info;
 
 class StoreChessManual
 {
@@ -27,7 +30,7 @@ private:
    int read_file(const std::string&,const enum in_out);
    int write_file(const std::string&, const enum in_out);
 public:
-   int store_chessboard_info_to_file(const std::string&);
+   int store_chessboard_info_to_file(const std::string&,chessboard_info&);
 public:
    static StoreChessManual* get_chess_manual();
 };
