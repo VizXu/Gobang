@@ -67,4 +67,9 @@ int StoreChessManual::store_chessboard_info_to_file(const std::string& file_name
   
 }
 
+int StoreChessManual::read_chessboard_info_to_file(const std::string& file_name,chessboard_info& info)
+{
+  
+}
+
 StoreChessManual* StoreChessManual::s = NULL;
