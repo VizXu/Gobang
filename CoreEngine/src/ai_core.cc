@@ -231,3 +231,44 @@ void AI_core::store_analysis_result(const analysis_result& r)
     this->alys_rlt.max_length = r.max_length;
     this->position_suggest = r.position;
 }
+
+u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun3(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun4(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun5(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+
+u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos)
+{
+
+}
+

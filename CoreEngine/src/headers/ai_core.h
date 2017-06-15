@@ -62,6 +62,15 @@ public:
    void analyze_level1(s8);
    void analyze_level2(s8);
    void analyze_level3(s8);
+private:
+   u32 the_position_score_fun1(COPY_BOARD&,board_position);
+   u32 the_position_score_fun2(COPY_BOARD&,board_position);
+   u32 the_position_score_fun3(COPY_BOARD&,board_position);
+   u32 the_position_score_fun4(COPY_BOARD&,board_position);
+   u32 the_position_score_fun5(COPY_BOARD&,board_position);
+   u32 the_position_score_fun6(COPY_BOARD&,board_position);
+   u32 the_position_score_fun7(COPY_BOARD&,board_position);
+   u32 the_position_score_fun8(COPY_BOARD&,board_position);
 };
 #endif//ai_core.h
 
