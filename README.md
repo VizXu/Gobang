@@ -36,3 +36,7 @@ move the core code to CoreEngine directory, one can enter the CoreEngine and com
 upload the arch image
 
 ![arch image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/arch.png)
+
+//2017-6-16
+
+update module of chess manual reservation
