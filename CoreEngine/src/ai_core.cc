@@ -1,6 +1,8 @@
 #include "ai_core.h"
 #include "debug.h"
 
+#include<algorithm>
+
 #define DEBUG_MODE 
 //#undef DEBUG_MODE 
 
@@ -277,7 +279,23 @@ bool AI_core::is_safe(const board_position& pos)
 
 }
 
+class find_out
+{
+public:
+ find_out(int x = 0, int y = 0):x_p(x),y_p(y){}
+ bool operator()(board_position& pos){
+    return pos.x_pos == x_p && pos.y_pos == y_p;
+ }
+private:
+ int x_p;
+ int y_p;
+};
+
 bool AI_core::is_empty_site(const board_position& pos)
 {
-
+   this->l_ptr = std::find_if(empty_type.begin(),empty_type.end(),find_out(pos.x_pos,pos.y_pos));
+   if(l_ptr != empty_type.end()){
+     return true; 
+   }
+   else {  return false; }
 }
