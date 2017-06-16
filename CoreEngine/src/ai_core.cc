@@ -272,3 +272,12 @@ u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos)
 
 }
 
+bool AI_core::is_safe(const board_position& pos)
+{
+
+}
+
+bool AI_core::is_empty_site(const board_position& pos)
+{
+
+}

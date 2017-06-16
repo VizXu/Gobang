@@ -51,6 +51,8 @@ public:
    board_position get_suggest_position();
    bool is_winner(const board_position&,s8);
 private:
+   bool is_safe(const board_position&);
+   bool is_empty_site(const board_position&);
    void store_chess_info();    
    void destroy_present_chess_info();
    analysis_result  analysize_guess_position(const board_position&,s8);
