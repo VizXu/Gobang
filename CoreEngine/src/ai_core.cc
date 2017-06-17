@@ -236,7 +236,15 @@ void AI_core::store_analysis_result(const analysis_result& r)
 
 u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
 {
-
+    if(this->is_safe(pos) && this->is_empty_site(pos)) throw "pos site error!";
+    COPY_BOARD tmp_board;
+    copy_position(tmp_board);
+    
+    u32 _x = pos.x_pos;
+    u32 _y = pos.y_pos;
+    for(; _x >= 0 ; _x--){
+       //
+    } 
 }
 
 u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos)
@@ -276,7 +284,8 @@ u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos)
 
 bool AI_core::is_safe(const board_position& pos)
 {
-
+    if(pos.x_pos < 0 || pos.x_pos >= BOARD_SIZE || pos.y_pos < 0 || pos.y_pos >= BOARD_SIZE) return false;
+return true;
 }
 
 class find_out
