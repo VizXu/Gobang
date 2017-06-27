@@ -162,6 +162,13 @@ void test_mode4()
   }
 }
 
+void test_mode5() //test the ai_core.cc
+{
+
+  AI_core* ai_core = new AI_core;
+return;
+}
+
 int main()
 {
    //Chessboard chessboard;
