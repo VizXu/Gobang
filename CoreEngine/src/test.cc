@@ -166,6 +166,9 @@ void test_mode5() //test the ai_core.cc
 {
 
   AI_core* ai_core = new AI_core;
+
+  Chessboard chessboard;
+  ai_core->copy_board(chessboard);
 return;
 }
 

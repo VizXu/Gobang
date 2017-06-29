@@ -234,6 +234,11 @@ void AI_core::store_analysis_result(const analysis_result& r)
     this->position_suggest = r.position;
 }
 
+u32 AI_core::test_mode(int mode)
+{
+return 0;
+}
+
 u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
 {
     if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";

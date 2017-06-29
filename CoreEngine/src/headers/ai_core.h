@@ -50,6 +50,10 @@ public:
    void copy_board(const Chessboard&);
    board_position get_suggest_position();
    bool is_winner(const board_position&,s8);
+// for test mode
+public:
+   u32 test_mode(int);
+// mode end
 private:
    bool is_safe(const board_position&);
    bool is_empty_site(const board_position&);
