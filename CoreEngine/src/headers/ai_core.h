@@ -52,7 +52,7 @@ public:
    bool is_winner(const board_position&,s8);
 // for test mode
 public:
-   u32 test_mode(int);
+   u32 test_mode(int,board_position);
 // mode end
 private:
    bool is_safe(const board_position&);
@@ -61,6 +61,7 @@ private:
    void destroy_present_chess_info();
    analysis_result  analysize_guess_position(const board_position&,s8);
    typedef s8 COPY_BOARD[BOARD_SIZE][BOARD_SIZE];
+   COPY_BOARD score_board;
    void copy_position(COPY_BOARD&);
    void store_analysis_result(const analysis_result&);
    analysis_result get_present_result();

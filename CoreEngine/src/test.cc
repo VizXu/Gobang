@@ -169,6 +169,12 @@ void test_mode5() //test the ai_core.cc
 
   Chessboard chessboard;
   ai_core->copy_board(chessboard);
+
+  board_position tmp_position;
+  tmp_position.x_pos = 4;
+  tmp_position.y_pos = 5;
+  std::cout<<ai_core->test_mode(1,tmp_position)<<std::endl;
+  display_chessboard(chessboard);
 return;
 }
 
@@ -178,7 +184,7 @@ int main()
    //AI_core ai_core;
   //test_mode1();
   #if defined(MODE_2)
-   test_mode4();
+   test_mode5();
   #endif//mode2
 return 0;
 }

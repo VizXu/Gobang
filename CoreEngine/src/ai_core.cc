@@ -234,9 +234,14 @@ void AI_core::store_analysis_result(const analysis_result& r)
     this->position_suggest = r.position;
 }
 
-u32 AI_core::test_mode(int mode)
+u32 AI_core::test_mode(int mode,board_position pos)
 {
-return 0;
+  DEBUG_LOG("xujiwei-----test_mode\n");
+  u32 score =0;
+  switch(mode){
+    case 1: copy_position(score_board); score = this->the_position_score_fun1(score_board,pos); break;
+  }
+return score;
 }
 
 u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
@@ -245,20 +250,35 @@ u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
-    u32 _x = pos.x_pos;
-    u32 _y = pos.y_pos;
+    //debug chessboard;
+/*    for(int i =0;i<BOARD_SIZE;i++){
+      for(int j=0;j<BOARD_SIZE;j++){
+        DEBUG_LOG("%c ",chessboard[i][j]);
+      }
+      DEBUG_LOG("\n");
+    }
+*********/
+   //end
+    int _x = pos.x_pos;
+    int _y = pos.y_pos;
 
     s8 type = chessboard[_x][_y];
+
+    DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
     for(; _x >= 0 ; _x--){
        //
+       DEBUG_LOG("for ---- _x = %d\n",_x);
+
        if(tmp_board[_x][_y] == type) {
+         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
       break;
-    } 
+    }
+return score; 
 }
 
 u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos)
@@ -298,6 +318,7 @@ u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos)
 
 bool AI_core::is_safe(const board_position& pos)
 {
+   DEBUG_LOG("xujiwei----is_safe_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
     if(pos.x_pos < 0 || pos.x_pos >= BOARD_SIZE || pos.y_pos < 0 || pos.y_pos >= BOARD_SIZE) return false;
 return true;
 }
@@ -316,8 +337,11 @@ private:
 
 bool AI_core::is_empty_site(const board_position& pos)
 {
+   DEBUG_LOG("xujiwei----is_empty_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
+
    this->l_ptr = std::find_if(empty_type.begin(),empty_type.end(),find_out(pos.x_pos,pos.y_pos));
    if(l_ptr != empty_type.end()){
+     DEBUG_LOG("xujiwei true!\n");
      return true; 
    }
    else { 
