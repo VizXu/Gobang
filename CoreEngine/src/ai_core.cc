@@ -263,7 +263,7 @@ u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos,s
     int _x = pos.x_pos;
     int _y = pos.y_pos;
 
-    s8 type = chessboard[_x][_y];
+    s8 type = chess_type;
 
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
