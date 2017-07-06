@@ -238,13 +238,14 @@ u32 AI_core::test_mode(int mode,board_position pos)
 {
   DEBUG_LOG("xujiwei-----test_mode\n");
   u32 score =0;
+  s8 type_is = '+'; 
   switch(mode){
-    case 1: copy_position(score_board); score = this->the_position_score_fun1(score_board,pos); break;
+    case 1: copy_position(score_board); score = this->the_position_score_fun1(score_board,pos,type_is); break;
   }
 return score;
 }
 
-u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
     if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
@@ -281,37 +282,37 @@ u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos)
 return score; 
 }
 
-u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
 
-u32 AI_core::the_position_score_fun3(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun3(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
 
-u32 AI_core::the_position_score_fun4(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun4(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
 
-u32 AI_core::the_position_score_fun5(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun5(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
 
-u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
 
-u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
 
-u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos)
+u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
 
 }
