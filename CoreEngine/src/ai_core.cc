@@ -396,17 +396,86 @@ return score;
 
 u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
+ if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+    COPY_BOARD tmp_board;
+    copy_position(tmp_board);
+    
+    int _x = pos.x_pos;
+    int _y = pos.y_pos;
 
+    s8 type = chess_type;
+
+    DEBUG_LOG("type = %c \n",tmp_board[0][0]);
+
+    u32 score = 0;
+    for(; _x >= 0 ; _x--){
+       //
+       DEBUG_LOG("for ---- _x = %d\n",_x);
+
+       if(tmp_board[_x][_y] == type) {
+         DEBUG_LOG("_x = %d\n",_x);
+         ++score;
+         continue;
+       }
+      break;
+    }
+return score; 
 }
 
 u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
+ if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+    COPY_BOARD tmp_board;
+    copy_position(tmp_board);
+    
+    int _x = pos.x_pos;
+    int _y = pos.y_pos;
 
+    s8 type = chess_type;
+
+    DEBUG_LOG("type = %c \n",tmp_board[0][0]);
+
+    u32 score = 0;
+    for(; _x >= 0 ; _x--){
+       //
+       DEBUG_LOG("for ---- _x = %d\n",_x);
+
+       if(tmp_board[_x][_y] == type) {
+         DEBUG_LOG("_x = %d\n",_x);
+         ++score;
+         continue;
+       }
+      break;
+    }
+return score; 
 }
 
 u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
+ if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+    COPY_BOARD tmp_board;
+    copy_position(tmp_board);
+    
+    int _x = pos.x_pos;
+    int _y = pos.y_pos;
 
+    s8 type = chess_type;
+
+    DEBUG_LOG("type = %c \n",tmp_board[0][0]);
+
+    u32 score = 0;
+    for(; _x >= 0 ; _x--){
+       //
+       DEBUG_LOG("for ---- _x = %d\n",_x);
+
+       if(tmp_board[_x][_y] == type) {
+         DEBUG_LOG("_x = %d\n",_x);
+         ++score;
+         continue;
+       }
+      break;
+    }
+return score; 
 }
 
 bool AI_core::is_safe(const board_position& pos)
