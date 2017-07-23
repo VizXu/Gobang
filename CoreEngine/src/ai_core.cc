@@ -234,20 +234,27 @@ void AI_core::store_analysis_result(const analysis_result& r)
     this->position_suggest = r.position;
 }
 
-u32 AI_core::test_mode(int mode,board_position pos)
+u32 AI_core::test_mode(int mode,board_position pos,s8 chess_type)
 {
   DEBUG_LOG("xujiwei-----test_mode\n");
   u32 score =0;
-  s8 type_is = '+'; 
+  s8 type_is = chess_type; 
   switch(mode){
     case 1: copy_position(score_board); score = this->the_position_score_fun1(score_board,pos,type_is); break;
+    case 2: copy_position(score_board); score = this->the_position_score_fun2(score_board,pos,type_is); break;
+    case 3: copy_position(score_board); score = this->the_position_score_fun3(score_board,pos,type_is); break;
+    case 4: copy_position(score_board); score = this->the_position_score_fun4(score_board,pos,type_is); break;
+    case 5: copy_position(score_board); score = this->the_position_score_fun5(score_board,pos,type_is); break;
+    case 6: copy_position(score_board); score = this->the_position_score_fun6(score_board,pos,type_is); break;
+    case 7: copy_position(score_board); score = this->the_position_score_fun7(score_board,pos,type_is); break;
+    case 8: copy_position(score_board); score = this->the_position_score_fun8(score_board,pos,type_is); break;
   }
 return score;
 }
 
 u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
-    if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+    if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -284,7 +291,7 @@ return score;
 
 u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -296,7 +303,7 @@ u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _x < BOARD_SIZE ; _x++){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
@@ -312,7 +319,7 @@ return score;
 
 u32 AI_core::the_position_score_fun3(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -324,7 +331,7 @@ u32 AI_core::the_position_score_fun3(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _y >= 0 ; _y--){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
@@ -340,7 +347,7 @@ return score;
 
 u32 AI_core::the_position_score_fun4(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -352,7 +359,7 @@ u32 AI_core::the_position_score_fun4(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _y < BOARD_SIZE ; _y++){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
@@ -368,7 +375,7 @@ return score;
 
 u32 AI_core::the_position_score_fun5(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -380,7 +387,7 @@ u32 AI_core::the_position_score_fun5(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _x >= 0, _y>=0 ; _x--, _y--){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
@@ -396,7 +403,7 @@ return score;
 
 u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -408,7 +415,7 @@ u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _x >= 0, _y<BOARD_SIZE ; _x--, _y++){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
@@ -424,7 +431,7 @@ return score;
 
 u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -436,7 +443,7 @@ u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _x < BOARD_SIZE, _y > 0 ; _x++,_y--){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
@@ -452,7 +459,7 @@ return score;
 
 u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
- if( !this->is_safe(pos) && !this->is_empty_site(pos)) throw "pos site error!";
+ if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
@@ -464,7 +471,7 @@ u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos,s
     DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
-    for(; _x >= 0 ; _x--){
+    for(; _x < BOARD_SIZE, _y<BOARD_SIZE ; _x++, _y++){
        //
        DEBUG_LOG("for ---- _x = %d\n",_x);
 

@@ -52,7 +52,7 @@ public:
    bool is_winner(const board_position&,s8);
 // for test mode
 public:
-   u32 test_mode(int,board_position);
+   u32 test_mode(int,board_position,s8);
 // mode end
 private:
    bool is_safe(const board_position&);

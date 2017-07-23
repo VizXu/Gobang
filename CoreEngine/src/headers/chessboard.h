@@ -41,7 +41,7 @@ public:
     Chessboard& operator=(const Chessboard&) = delete;
     Chessboard& operator()(const Chessboard&) = delete;
 public:
-    int store_chess_info(const std::string&,chessboard_info&);
+    int store_chessboard_info(const std::string&,chessboard_info&);
     //chessboard_info get_chessboard();
 private:
     void get_chessboard(chessboard_info&);

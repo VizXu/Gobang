@@ -32,6 +32,29 @@ void display_chessboard(const Chessboard& board)
 }
 #endif //display_chessboard
 
+//xujiwei 
+
+s8 rand_type()
+{
+  switch(rand()%3){
+    case 0: return '+';
+    case 1: return '&';
+    case 2: return '@';
+  }
+return '+';
+}
+void rand_chessboard(Chessboard& board)
+{
+   srand(time(NULL));
+   for(u32 i = 0; i< BOARD_SIZE; i++){
+     for(u32 j = 0; j < BOARD_SIZE; j++){
+	board.set_chess(i,j,rand_type());
+     }
+   }
+return;
+}
+//end
+
 void test_mode1()
 {
    Chessboard chessboard;
@@ -168,12 +191,20 @@ void test_mode5() //test the ai_core.cc
   AI_core* ai_core = new AI_core;
 
   Chessboard chessboard;
+  rand_chessboard(chessboard);
+  
   ai_core->copy_board(chessboard);
+  ai_core->analyze_level1('+');
 
   board_position tmp_position;
   tmp_position.x_pos = 4;
   tmp_position.y_pos = 5;
-  std::cout<<ai_core->test_mode(1,tmp_position)<<std::endl;
+  try{
+    std::cout<<ai_core->test_mode(1,tmp_position,'+')<<std::endl;
+  }
+  catch(const char* s){
+    std::cout<<s<<std::endl;
+  }
   display_chessboard(chessboard);
 return;
 }
