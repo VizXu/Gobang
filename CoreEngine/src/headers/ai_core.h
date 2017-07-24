@@ -20,6 +20,9 @@ class AI_core
 {
 private:
    analysis_result alys_rlt;
+   s8 human_chess_type;
+   s8 computer_chess_type;
+   s8 empty_chess_type;
    s8 core_board[BOARD_SIZE][BOARD_SIZE];
    board_position position_suggest;
    std::list<board_position> type1;
@@ -50,6 +53,9 @@ public:
    void copy_board(const Chessboard&);
    board_position get_suggest_position();
    bool is_winner(const board_position&,s8);
+   s8 get_human_chess_type();
+   s8 get_computer_chess_type();
+   s8 get_empty_chess_type();
 // for test mode
 public:
    u32 test_mode(int,board_position,s8);

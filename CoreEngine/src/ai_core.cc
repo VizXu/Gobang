@@ -47,6 +47,21 @@ analysis_result AI_core::get_present_result()
   return this->alys_rlt;
 }
 
+s8 AI_core::get_human_chess_type()
+{
+  return this->human_chess_type;
+}
+
+s8 AI_core::get_computer_chess_type()
+{
+  return this->computer_chess_type;
+}
+
+s8 AI_core::get_empty_chess_type()
+{
+  return this->empty_chess_type;
+}
+
 void AI_core::destroy_present_chess_info()
 {
    std::list<board_position> tmp;
