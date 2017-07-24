@@ -1,7 +1,7 @@
 #include "human.h"
 #include<iostream>
 
-Human::Human(string s):Player("null"),human_name(s)
+Human::Human(string s):Player("null"),human_name(s),human_chess_type('&')
 {
   
 }
@@ -16,11 +16,17 @@ board_position Human::get_present_position()
   return this->present_position;
 }
 
+s8 Human::get_human_chess_type()
+{
+  return this->human_chess_type;
+}
+
 bool Human::make_a_step(Chessboard& chessboard)
 {
   input_position();
+  s8 the_type = get_human_chess_type();
   if(this->move_state == start){
-     if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,'&')){
+     if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,the_type)){
        last_position = present_position;
        present_position = suggest_position;
        return true;

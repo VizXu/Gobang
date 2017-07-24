@@ -24,16 +24,19 @@ void AI_core::store_chess_info()
            case '+': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
+		       if(0 == i && 0 == j) this->empty_chess_type = '+';
                        this->empty_type.push_back(tmp_pos); 
                      } break;
            case '&': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
+		       if(0 == i && 0 == j) this->human_chess_type = '&';
 		       this->type1.push_back(tmp_pos);
                      } break;
            case '@': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
+		       if(0 == i && 0 == j) this->computer_chess_type = '@';
  		       this->type2.push_back(tmp_pos);
 		     } break;
            default: throw "error in store_chess_info";

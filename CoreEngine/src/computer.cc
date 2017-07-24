@@ -1,6 +1,6 @@
 #include"computer.h"
 
-Computer::Computer(string s):Player("computer"),computer_name(s)
+Computer::Computer(string s):Player("computer"),computer_name(s),computer_chess_type('@')
 {
    level = 1;
    this->ai = new AI_core();
@@ -28,12 +28,19 @@ board_position Computer::get_present_position()
    return this->present_position;
 }
 
+
+s8 Computer::get_computer_chess_type()
+{
+  return this->computer_chess_type;
+}
+
 bool Computer::make_a_step(Chessboard& chessboard)
 {
+   s8 the_type = get_computer_chess_type();
    if(this->move_state  == start){
       u32 lvr = this->level;
       ai_analysis(chessboard,lvr);
-      if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,'@')){
+      if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,the_type)){
          this->last_position = this->present_position;
 	 this->present_position = this->suggest_position;
       }
