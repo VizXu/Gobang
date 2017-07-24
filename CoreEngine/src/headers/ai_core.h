@@ -16,6 +16,12 @@ typedef struct{
       u32 max_length;
 }analysis_result;
 
+typedef struct
+{
+   u32 human_score;
+   u32 computer_score;
+}human_computer_score;
+
 class AI_core
 {
 private:
@@ -38,6 +44,10 @@ public:
 
      this->alys_rlt.direction = 0;
      this->alys_rlt.max_length = 0;
+
+     this->human_chess_type = '&';
+     this->computer_chess_type = '@';
+
      for(int i = 0; i < BOARD_SIZE; i++){
        for(int j = 0; j < BOARD_SIZE; j++){
          core_board[i][j] = '+';
@@ -84,6 +94,7 @@ private:
    u32 the_position_score_fun6(COPY_BOARD&,board_position,s8);
    u32 the_position_score_fun7(COPY_BOARD&,board_position,s8);
    u32 the_position_score_fun8(COPY_BOARD&,board_position,s8);
+   human_computer_score empty_position_score(board_position);
 };
 #endif//ai_core.h
 

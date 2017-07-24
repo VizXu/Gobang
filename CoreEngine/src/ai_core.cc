@@ -24,19 +24,19 @@ void AI_core::store_chess_info()
            case '+': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
-		       if(0 == i && 0 == j) this->empty_chess_type = '+';
+		       //if(0 == i && 0 == j) this->empty_chess_type = '+';
                        this->empty_type.push_back(tmp_pos); 
                      } break;
            case '&': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
-		       if(0 == i && 0 == j) this->human_chess_type = '&';
+		       //if(0 == i && 0 == j) this->human_chess_type = '&';
 		       this->type1.push_back(tmp_pos);
                      } break;
            case '@': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
-		       if(0 == i && 0 == j) this->computer_chess_type = '@';
+		      //if(0 == i && 0 == j) this->computer_chess_type = '@';
  		       this->type2.push_back(tmp_pos);
 		     } break;
            default: throw "error in store_chess_info";
@@ -57,6 +57,7 @@ s8 AI_core::get_human_chess_type()
 
 s8 AI_core::get_computer_chess_type()
 {
+  DEBUG_LOG("get_computer_chess_type = %c\n",this->computer_chess_type);
   return this->computer_chess_type;
 }
 
@@ -257,6 +258,12 @@ u32 AI_core::test_mode(int mode,board_position pos,s8 chess_type)
   DEBUG_LOG("xujiwei-----test_mode\n");
   u32 score =0;
   s8 type_is = chess_type; 
+  human_computer_score hcs;
+  
+  this->store_chess_info();
+
+  hcs = this->empty_position_score(pos);
+
   switch(mode){
     case 1: copy_position(score_board); score = this->the_position_score_fun1(score_board,pos,type_is); break;
     case 2: copy_position(score_board); score = this->the_position_score_fun2(score_board,pos,type_is); break;
@@ -268,6 +275,48 @@ u32 AI_core::test_mode(int mode,board_position pos,s8 chess_type)
     case 8: copy_position(score_board); score = this->the_position_score_fun8(score_board,pos,type_is); break;
   }
 return score;
+}
+
+human_computer_score AI_core::empty_position_score(board_position pos)
+{
+    u32 h_s = 0;
+    u32 c_s = 0;
+    human_computer_score h_c_s;
+    s8 h_type = this->get_human_chess_type();
+    s8 c_type = this->get_computer_chess_type();
+   // s8 h_type = '&';
+   // s8 c_type = '@';
+
+    DEBUG_LOG("h_type = %c, c_type = %c \n",h_type,c_type);
+
+    copy_position(score_board);
+   
+    h_s += this->the_position_score_fun1(score_board,pos,h_type);
+    h_s += this->the_position_score_fun2(score_board,pos,h_type);
+    h_s += this->the_position_score_fun3(score_board,pos,h_type);
+    h_s += this->the_position_score_fun4(score_board,pos,h_type);
+    h_s += this->the_position_score_fun5(score_board,pos,h_type);
+    h_s += this->the_position_score_fun6(score_board,pos,h_type);
+    h_s += this->the_position_score_fun7(score_board,pos,h_type);
+    h_s += this->the_position_score_fun8(score_board,pos,h_type);
+
+    DEBUG_LOG("xujiwei----h_s = %d\n",h_s);
+
+    c_s += this->the_position_score_fun1(score_board,pos,c_type);
+    c_s += this->the_position_score_fun2(score_board,pos,c_type);
+    c_s += this->the_position_score_fun3(score_board,pos,c_type);
+    c_s += this->the_position_score_fun4(score_board,pos,c_type);
+    c_s += this->the_position_score_fun5(score_board,pos,c_type);
+    c_s += this->the_position_score_fun6(score_board,pos,c_type);
+    c_s += this->the_position_score_fun7(score_board,pos,c_type);
+    c_s += this->the_position_score_fun8(score_board,pos,c_type);
+
+    DEBUG_LOG("xujiwei----c_s = %d\n",c_s);
+   
+    h_c_s.human_score = h_s;
+    h_c_s.computer_score = c_s;
+
+return h_c_s;
 }
 
 u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos,s8 chess_type)
@@ -285,7 +334,7 @@ u32 AI_core::the_position_score_fun1(COPY_BOARD& chessboard,board_position pos,s
     }
 *********/
    //end
-    int _x = pos.x_pos;
+    int _x = pos.x_pos - 1;
     int _y = pos.y_pos;
 
     s8 type = chess_type;
@@ -313,7 +362,7 @@ u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos,s
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
-    int _x = pos.x_pos;
+    int _x = pos.x_pos + 1;
     int _y = pos.y_pos;
 
     s8 type = chess_type;
@@ -326,7 +375,7 @@ u32 AI_core::the_position_score_fun2(COPY_BOARD& chessboard,board_position pos,s
        DEBUG_LOG("for ---- _x = %d\n",_x);
 
        if(tmp_board[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
+         DEBUG_LOG("_x = %d, type[_x,_y] = %c\n",_x, tmp_board[_x][_y]);
          ++score;
          continue;
        }
@@ -342,7 +391,7 @@ u32 AI_core::the_position_score_fun3(COPY_BOARD& chessboard,board_position pos,s
     copy_position(tmp_board);
     
     int _x = pos.x_pos;
-    int _y = pos.y_pos;
+    int _y = pos.y_pos - 1;
 
     s8 type = chess_type;
 
@@ -370,7 +419,7 @@ u32 AI_core::the_position_score_fun4(COPY_BOARD& chessboard,board_position pos,s
     copy_position(tmp_board);
     
     int _x = pos.x_pos;
-    int _y = pos.y_pos;
+    int _y = pos.y_pos + 1;
 
     s8 type = chess_type;
 
@@ -397,8 +446,8 @@ u32 AI_core::the_position_score_fun5(COPY_BOARD& chessboard,board_position pos,s
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
-    int _x = pos.x_pos;
-    int _y = pos.y_pos;
+    int _x = pos.x_pos - 1;
+    int _y = pos.y_pos - 1;
 
     s8 type = chess_type;
 
@@ -425,8 +474,8 @@ u32 AI_core::the_position_score_fun6(COPY_BOARD& chessboard,board_position pos,s
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
-    int _x = pos.x_pos;
-    int _y = pos.y_pos;
+    int _x = pos.x_pos - 1;
+    int _y = pos.y_pos + 1;
 
     s8 type = chess_type;
 
@@ -453,8 +502,8 @@ u32 AI_core::the_position_score_fun7(COPY_BOARD& chessboard,board_position pos,s
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
-    int _x = pos.x_pos;
-    int _y = pos.y_pos;
+    int _x = pos.x_pos + 1;
+    int _y = pos.y_pos - 1;
 
     s8 type = chess_type;
 
@@ -481,12 +530,12 @@ u32 AI_core::the_position_score_fun8(COPY_BOARD& chessboard,board_position pos,s
     COPY_BOARD tmp_board;
     copy_position(tmp_board);
     
-    int _x = pos.x_pos;
-    int _y = pos.y_pos;
+    int _x = pos.x_pos + 1;
+    int _y = pos.y_pos + 1;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",tmp_board[0][0]);
+  //  DEBUG_LOG("type = %c \n",tmp_board[0][0]);
 
     u32 score = 0;
     for(; _x < BOARD_SIZE, _y<BOARD_SIZE ; _x++, _y++){
@@ -505,7 +554,7 @@ return score;
 
 bool AI_core::is_safe(const board_position& pos)
 {
-   DEBUG_LOG("xujiwei----is_safe_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
+   //DEBUG_LOG("xujiwei----is_safe_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
     if(pos.x_pos < 0 || pos.x_pos >= BOARD_SIZE || pos.y_pos < 0 || pos.y_pos >= BOARD_SIZE) return false;
 return true;
 }
@@ -524,11 +573,11 @@ private:
 
 bool AI_core::is_empty_site(const board_position& pos)
 {
-   DEBUG_LOG("xujiwei----is_empty_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
+   //DEBUG_LOG("xujiwei----is_empty_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
 
    this->l_ptr = std::find_if(empty_type.begin(),empty_type.end(),find_out(pos.x_pos,pos.y_pos));
    if(l_ptr != empty_type.end()){
-     DEBUG_LOG("xujiwei true!\n");
+   //  DEBUG_LOG("xujiwei true!\n");
      return true; 
    }
    else { 
