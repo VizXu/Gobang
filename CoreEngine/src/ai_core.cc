@@ -293,6 +293,7 @@ void AI_core::store_empty_position_score(const board_position pos,const human_co
 
 void AI_core::analysize_empty_position_score()
 {
+  this->destroy_present_chess_info();
   this->store_chess_info();
   this->release_pos_score_info();
   std::list<board_position>::iterator empty_ptr = this->empty_type.begin();
