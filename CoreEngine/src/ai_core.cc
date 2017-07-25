@@ -277,6 +277,31 @@ u32 AI_core::test_mode(int mode,board_position pos,s8 chess_type)
 return score;
 }
 
+void AI_core::release_pos_score_info()
+{
+   std::vector<position_score_info> tmp;
+   this->pos_score_info.swap(tmp);
+}
+
+void AI_core::store_empty_position_score(const board_position pos,const human_computer_score score)
+{
+   position_score_info tmp;
+   tmp.position = pos;
+   tmp.score = score;
+   this->pos_score_info.push_back(std::move(tmp));
+}
+
+void AI_core::analysize_empty_position_score()
+{
+  this->store_chess_info();
+  this->release_pos_score_info();
+  std::list<board_position>::iterator empty_ptr = this->empty_type.begin();
+  for(;empty_ptr != this->empty_type.end(); empty_ptr++){
+    human_computer_score tmp_score = empty_position_score(*empty_ptr);
+    this->store_empty_position_score(*empty_ptr,tmp_score);
+  }
+}
+
 human_computer_score AI_core::empty_position_score(board_position pos)
 {
     u32 h_s = 0;

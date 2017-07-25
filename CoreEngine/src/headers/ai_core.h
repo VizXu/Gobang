@@ -22,6 +22,12 @@ typedef struct
    u32 computer_score;
 }human_computer_score;
 
+typedef struct
+{
+  human_computer_score score;
+  board_position position;
+}position_score_info;
+
 class AI_core
 {
 private:
@@ -36,6 +42,7 @@ private:
    std::list<board_position> empty_type;
    std::list<board_position>::iterator l_ptr;
    std::vector<std::vector<int>> suggest_position_info;/* 0-horizontal 1-vertical 2-hori_vert 3-anti_hori_vert*/
+   std::vector<position_score_info> pos_score_info;
 public:
    AI_core(){
      srand(time(NULL));
@@ -95,6 +102,9 @@ private:
    u32 the_position_score_fun7(COPY_BOARD&,board_position,s8);
    u32 the_position_score_fun8(COPY_BOARD&,board_position,s8);
    human_computer_score empty_position_score(board_position);
+   void release_pos_score_info();
+   void store_empty_position_score(const board_position,const human_computer_score);
+   void analysize_empty_position_score();
 };
 #endif//ai_core.h
 
