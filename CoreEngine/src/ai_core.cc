@@ -356,11 +356,20 @@ void AI_core::analysize_empty_position_score()
   this->destroy_present_chess_info();
   this->store_chess_info();
   this->release_pos_score_info();
+  board_position pos[4];
   std::list<board_position>::iterator empty_ptr = this->empty_type.begin();
   for(;empty_ptr != this->empty_type.end(); empty_ptr++){
     human_computer_score tmp_score = empty_position_score(*empty_ptr);
     this->store_empty_position_score(*empty_ptr,tmp_score);
   }
+   
+  pos[0] = this->get_pos_of_maxhs();
+  pos[1] = this->get_pos_of_minhs();
+  pos[2] = this->get_pos_of_maxcs();
+  pos[3] = this->get_pos_of_mincs();
+
+  DEBUG_LOG("maxhs=(%d,%d),minhs=(%d,%d),maxcs=(%d,%d),mincs=(%d,%d)",pos[0].x_pos,pos[0].y_pos,pos[1].x_pos,pos[1].y_pos,pos[2].x_pos,pos[2].y_pos,pos[3].x_pos,pos[3].y_pos);
+
 }
 
 human_computer_score AI_core::empty_position_score(board_position pos)
