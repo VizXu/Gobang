@@ -102,6 +102,10 @@ private:
    u32 the_position_score_fun7(COPY_BOARD&,board_position,s8);
    u32 the_position_score_fun8(COPY_BOARD&,board_position,s8);
    human_computer_score empty_position_score(board_position);
+   board_position get_pos_of_maxhs();
+   board_position get_pos_of_minhs();
+   board_position get_pos_of_maxcs();
+   board_position get_pos_of_mincs();
    void release_pos_score_info();
    void store_empty_position_score(const board_position,const human_computer_score);
    void analysize_empty_position_score();

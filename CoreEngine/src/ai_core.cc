@@ -291,6 +291,36 @@ void AI_core::store_empty_position_score(const board_position pos,const human_co
    this->pos_score_info.push_back(std::move(tmp));
 }
 
+board_position AI_core::get_pos_of_maxhs()
+{
+   board_position tmp;
+   std::vector<position_score_info>::iterator p_ptr;
+   u32 score = 0;
+
+   for(p_ptr = this->pos_score_info.begin(),score = p_ptr->score.human_score;p_ptr != this->pos_score_info.end();p_ptr++){
+	if(p_ptr->score.human_score >= score){
+	    score = p_ptr->score.human_score;
+	    tmp = p_ptr->position;
+        }
+   }
+return tmp;
+}
+
+board_position AI_core::get_pos_of_minhs()
+{
+
+}
+
+board_position AI_core::get_pos_of_maxcs()
+{
+
+}
+
+board_position AI_core::get_pos_of_mincs()
+{
+
+}
+
 void AI_core::analysize_empty_position_score()
 {
   this->destroy_present_chess_info();
