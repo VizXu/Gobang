@@ -3,7 +3,7 @@
 
 #include <string>
 #include "types.h"
-#define BOARD_SIZE 8
+#define BOARD_SIZE 10
 
 #include "storechessmanual.h"
 #include "chessboardinfo.h"

@@ -19,9 +19,14 @@ using namespace std;
 #ifdef DEBUG
 void display_chessboard(const Chessboard& board)
 {
+  int s = 0;
   for(int i = 0;i<BOARD_SIZE; i++){
     for(int j = 0;j<BOARD_SIZE; j++){
-      if(i == 0 && j == 0) std::cout<<"   0   1   2   3   4   5   6   7"<<std::endl;
+      if(i == 0 && j == 0) {
+         for(;s<BOARD_SIZE;s++)
+         std::cout<<"   "<<s;
+         std::cout<<std::endl;
+      }
       if(j == 0) std::cout<<i<<'|';
       if(j == 0) std::cout<<' ';
       std::cout<<board.get_chess(i,j)<<"   ";
@@ -29,6 +34,7 @@ void display_chessboard(const Chessboard& board)
     std::endl(std::cout);
     std::endl(std::cout);
   }
+  s = 0;
 }
 #endif //display_chessboard
 

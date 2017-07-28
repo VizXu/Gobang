@@ -262,9 +262,11 @@ u32 AI_core::test_mode(int mode,board_position pos,s8 chess_type)
   
   this->store_chess_info();
 
-  hcs = this->empty_position_score(pos);
+  //hcs = this->empty_position_score(pos);
 
-  switch(mode){
+  this->analysize_empty_position_score();
+
+  switch(9){
     case 1: copy_position(score_board); score = this->the_position_score_fun1(score_board,pos,type_is); break;
     case 2: copy_position(score_board); score = this->the_position_score_fun2(score_board,pos,type_is); break;
     case 3: copy_position(score_board); score = this->the_position_score_fun3(score_board,pos,type_is); break;
@@ -368,7 +370,7 @@ void AI_core::analysize_empty_position_score()
   pos[2] = this->get_pos_of_maxcs();
   pos[3] = this->get_pos_of_mincs();
 
-  DEBUG_LOG("maxhs=(%d,%d),minhs=(%d,%d),maxcs=(%d,%d),mincs=(%d,%d)",pos[0].x_pos,pos[0].y_pos,pos[1].x_pos,pos[1].y_pos,pos[2].x_pos,pos[2].y_pos,pos[3].x_pos,pos[3].y_pos);
+  DEBUG_LOG("maxhs=(%d,%d),minhs=(%d,%d),maxcs=(%d,%d),mincs=(%d,%d)\n",pos[0].x_pos,pos[0].y_pos,pos[1].x_pos,pos[1].y_pos,pos[2].x_pos,pos[2].y_pos,pos[3].x_pos,pos[3].y_pos);
 
 }
 
