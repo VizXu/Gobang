@@ -13,6 +13,13 @@ u32 Chessboard::scan_board() const
 return empty_site;
 }
 
+
+bool Chessboard::has_empty_site() const 
+{
+   if(0 != this->scan_board()) return true;
+return false;
+}
+
 bool Chessboard::is_board_empty() const
 {
   if(BOARD_SIZE*BOARD_SIZE == this->scan_board()) return true;

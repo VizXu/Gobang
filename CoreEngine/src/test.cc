@@ -154,6 +154,7 @@ void test_mode4()
   Computer computer("computer");
   Human human("xujiwei");
   Testwinner test_winner;
+  Balance_Territory test_balance;
 
   system("clear");
   display_chessboard(chessboard);
@@ -165,13 +166,19 @@ void test_mode4()
   while(!human.make_a_step(chessboard)){
     std::cout<<"not legal position,please enter again!"<<std::endl;
   }
-  tmp_position = human.get_present_position();
-  if(test_winner(chessboard,tmp_position,'&')){
-     system("clear");
-     std::cout<<"human win!"<<std::endl;
-     display_chessboard(chessboard);
-    return;
-  } 
+    tmp_position = human.get_present_position(); 
+    if(test_balance(chessboard)){
+       system("clear");
+       std::cout<<"chess balance..."<<std::endl;
+       display_chessboard(chessboard);
+       return;
+    }
+    if(test_winner(chessboard,tmp_position,'&')){
+        system("clear");
+        std::cout<<"human win!"<<std::endl;
+        display_chessboard(chessboard);
+     return; 
+    }
   human.change_state(); //stop
 
   DEBUG_LOG("\n----------------------------\n"); 
@@ -221,7 +228,7 @@ int main()
    //AI_core ai_core;
   //test_mode1();
   #if defined(MODE_2)
-   test_mode5();
+   test_mode4();
   #endif//mode2
 return 0;
 }

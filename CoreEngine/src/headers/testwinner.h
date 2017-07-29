@@ -23,4 +23,10 @@ public:
 public:
    bool operator()(const Chessboard&,const board_position&,s8);
 };
+
+class Balance_Territory
+{
+public:
+   bool operator()(const Chessboard&);
+};
 #endif //testwinner.h
