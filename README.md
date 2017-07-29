@@ -1,4 +1,5 @@
 # Gobang 
+***
 	Gobang is an athletic chess game, which players can set chessman in an empty site of chessboard each other step by step and one wins the game until he has five chessman connected that being a line. 
 ***
 	As a coding-lover and AI-lover,I wrote the Gobang with C++,which runs in Linux platform.The game uses the characters interface because I just only wanna develop an AI engine program. One who is tending to develop GUI with Qt or other tools can use these codes as algorithm.
@@ -7,28 +8,28 @@
 ***
 	These codes run on the Ubuntu or other linux OS,one can download the source code and compile with "make" instruction.Anyone has the authority to download the source code and modify it,but I also do not take the responsibility to any lost made by the code.
 
-#2016-8-19
+# 2016-8-19
 
 add level 2 AI algorithm 
 
 
-#2016-8-10
+# 2016-8-10
 
 released the first version 0.1
 
-#2016-12-11
+# 2016-12-11
 
 we need to reconsitution
 
-#2017-2-26
+# 2017-2-26
 
 reconstruct the game
 
-#2017-3-23
+# 2017-3-23
 
 move the core code to CoreEngine directory, one can enter the CoreEngine and compilr the source code with "make"
 
-#2017-3-29
+# 2017-3-29
 
 upload the arch image
 
