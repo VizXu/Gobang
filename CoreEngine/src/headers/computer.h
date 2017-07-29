@@ -25,6 +25,6 @@ public:
    State change_state();
    board_position get_present_position();
 private:
-   void ai_analysis(Chessboard&,u32);
+   void ai_analysis(const Chessboard&,u32);
 };
 #endif//computer.h

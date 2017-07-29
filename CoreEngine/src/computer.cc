@@ -50,7 +50,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
     }
 }
 
-void Computer::ai_analysis(Chessboard& chessboard,u32 level)
+void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
 {
    ai->copy_board(chessboard);
    
