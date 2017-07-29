@@ -8,6 +8,7 @@ develop GUI with Qt or other tools can use these codes as algorithm.
 In the recent years,huge process has been made in AI domin, but most gobang AI based on rules strategy,which is not "real" AI that has self-learning ability.So I wanna try to develop a core AI engine so that one can use it as a gobang AI algorithm. 
 
 These codes run on the Ubuntu or other linux OS,one can download the source code and compile with **"make"** instruction.Anyone has the authority to download the source code and modify it,but I also do not take the responsibility to any lost made by the code.
+
 ---
 ##### 2016-8 to 2017-7
 
