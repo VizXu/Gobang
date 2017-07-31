@@ -31,7 +31,7 @@ private:
    int write_file(const std::string&, const enum in_out);
 public:
    int store_chessboard_info_to_file(const std::string&,chessboard_info&);
-   int read_chessboard_info_to_file(const std::string&,chessboard_info&);
+   int read_chessboard_info_from_file(const std::string&,chessboard_info&);
 public:
    static StoreChessManual* get_chess_manual();
 };

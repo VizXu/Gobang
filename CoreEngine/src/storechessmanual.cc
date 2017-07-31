@@ -71,7 +71,7 @@ int StoreChessManual::store_chessboard_info_to_file(const std::string& file_name
 return 0;  
 }
 
-int StoreChessManual::read_chessboard_info_to_file(const std::string& file_name,chessboard_info& info)
+int StoreChessManual::read_chessboard_info_from_file(const std::string& file_name,chessboard_info& info)
 {
   if(-1 == this->open_file(file_name,StoreChessManual::in)) return -1;
 
