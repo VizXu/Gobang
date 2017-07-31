@@ -32,7 +32,7 @@ int StoreChessManual::open_file(const std::string& file_name,const enum in_out i
       }
    }
    else if(i_o == StoreChessManual::out){
-      ofile.open(file_name,std::ios_base::out|std::ios_base::app);
+      ofile.open(file_name,std::ios_base::out|std::ios_base::binary|std::ios_base::app);
       if(!ofile.is_open()){
         DEBUG_LOG("can not open the file!");
         return -1;
@@ -41,14 +41,14 @@ int StoreChessManual::open_file(const std::string& file_name,const enum in_out i
    else throw "open file error!";
 }
 
-int StoreChessManual::read_file(const std::string& file_name,const enum in_out i_o)
+int StoreChessManual::read_file(char* buf)
 {
 
 }
 
-int StoreChessManual::write_file(const std::string& file_name,const enum in_out i_o)
+int StoreChessManual::write_file(char* buf)
 {
-
+  // ofile.write();
 }
 
 void StoreChessManual::close_file(const enum in_out i_o)

@@ -27,8 +27,8 @@ private:
 private:
    int open_file(const std::string&,const enum in_out);
    void close_file(const enum in_out);
-   int read_file(const std::string&,const enum in_out);
-   int write_file(const std::string&, const enum in_out);
+   int read_file(char* buf);
+   int write_file(char* buf);
 public:
    int store_chessboard_info_to_file(const std::string&,chessboard_info&);
    int read_chessboard_info_from_file(const std::string&,chessboard_info&);
