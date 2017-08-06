@@ -1,10 +1,13 @@
 
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
-	testwinner.o storechessmanual.o
+	testwinner.o storechessmanual.o chessboardinfo.o \
+#	add.o
 
-obj += chessboardinfo.o
+INPUT = yes
 
 OBJ_DIR = objs_dir/
+
+INPUT_DIR = input/
 
 target = target_dir/
 
@@ -13,6 +16,10 @@ inc = headers
 CXX = g++
 
 parameters = -std=c++11
+
+ifeq ($(INPUT),yes)
+#obj += add.o
+endif
 
 gobang: $(obj)
 	$(CXX) $(OBJ_DIR)*.o -o $(target)gobang $(parameters)
@@ -53,6 +60,11 @@ storechessmanual.o : storechessmanual.cc
 chessboardinfo.o : chessboardinfo.cc
 	$(CXX) -c chessboardinfo.cc -o $(OBJ_DIR)chessboardinfo.o $(parameters) -I$(inc)
 	@echo "chessboardinfo.cc compile"
+#ifeq ($(INPUT),yes)
+add.o:	add.cc
+	$(CXX) -c $(INPUT_DIR)add.cc -o $(OBJ_DIR)add.o $(parameters) -I$(inc)
+	@echo "hahhhhah"
+#endif
 
 install:
 
