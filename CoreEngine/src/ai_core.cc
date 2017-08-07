@@ -132,6 +132,17 @@ void AI_core::analyze_level2(s8 chesstype)
    this->analyze_level1(chesstype);
    analysis_result present_result = this->get_present_result();
    COPY_BOARD tmp_board;
+   this->analysize_empty_position_score();
+
+   std::vector<board_position>::iterator s_ptr = this->empty_position_score_results.begin();
+   for(; s_ptr != this->empty_position_score_results.end(); s_ptr++){
+     if(s_ptr->x_pos == present_result.position.x_pos && s_ptr->y_pos == present_result.position.y_pos){
+	DEBUG_LOG("match the position x= %d, y= %d\n",s_ptr->x_pos,s_ptr->y_pos);
+     }
+     continue;
+   }
+   DEBUG_LOG("present_result position x= %d, y= %d\n",present_result.position.x_pos,present_result.position.y_pos);
+
 }
 
 void AI_core::analyze_level3(s8 chesstype)
@@ -353,6 +364,11 @@ board_position AI_core::get_pos_of_mincs()
 return tmp;
 }
 
+void AI_core::release_empty_position_score_results()
+{
+   std::vector<board_position> tmp;
+   this->empty_position_score_results.swap(tmp);
+}
 void AI_core::analysize_empty_position_score()
 {
   this->destroy_present_chess_info();
@@ -369,6 +385,11 @@ void AI_core::analysize_empty_position_score()
   pos[1] = this->get_pos_of_minhs();
   pos[2] = this->get_pos_of_maxcs();
   pos[3] = this->get_pos_of_mincs();
+
+  this->release_empty_position_score_results();
+  for(int i=0;i<sizeof(pos)/sizeof(pos[0]);i++){
+     this->empty_position_score_results.push_back(pos[i]);
+  }
 
   DEBUG_LOG("maxhs=(%d,%d),minhs=(%d,%d),maxcs=(%d,%d),mincs=(%d,%d)\n",pos[0].x_pos,pos[0].y_pos,pos[1].x_pos,pos[1].y_pos,pos[2].x_pos,pos[2].y_pos,pos[3].x_pos,pos[3].y_pos);
 

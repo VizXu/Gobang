@@ -207,7 +207,7 @@ void test_mode5() //test the ai_core.cc
   rand_chessboard(chessboard);
   
   ai_core->copy_board(chessboard);
-  ai_core->analyze_level1('+');
+  ai_core->analyze_level1('@');
 
   board_position tmp_position;
   tmp_position.x_pos = 4;
@@ -222,13 +222,25 @@ void test_mode5() //test the ai_core.cc
 return;
 }
 
+void test_mode6()
+{
+  AI_core* ai_core = new AI_core;
+
+  Chessboard chessboard;
+  rand_chessboard(chessboard);
+  
+  ai_core->copy_board(chessboard);
+  ai_core->analyze_level2('+');
+return;
+}
+
 int main()
 {
    //Chessboard chessboard;
    //AI_core ai_core;
   //test_mode1();
   #if defined(MODE_2)
-   test_mode4();
+   test_mode6();
   #endif//mode2
 return 0;
 }

@@ -43,6 +43,7 @@ private:
    std::list<board_position>::iterator l_ptr;
    std::vector<std::vector<int>> suggest_position_info;/* 0-horizontal 1-vertical 2-hori_vert 3-anti_hori_vert*/
    std::vector<position_score_info> pos_score_info;
+   std::vector<board_position> empty_position_score_results;
 public:
    AI_core(){
      srand(time(NULL));
@@ -107,6 +108,7 @@ private:
    board_position get_pos_of_maxcs();
    board_position get_pos_of_mincs();
    void release_pos_score_info();
+   void release_empty_position_score_results();
    void store_empty_position_score(const board_position,const human_computer_score);
    void analysize_empty_position_score();
 };
