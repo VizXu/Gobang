@@ -44,6 +44,7 @@ private:
    std::vector<std::vector<int>> suggest_position_info;/* 0-horizontal 1-vertical 2-hori_vert 3-anti_hori_vert*/
    std::vector<position_score_info> pos_score_info;
    std::vector<board_position> empty_position_score_results;
+   analysis_result analysis_result_position;
 public:
    AI_core(){
      srand(time(NULL));
@@ -83,6 +84,7 @@ private:
    bool is_empty_site(const board_position&);
    void store_chess_info();    
    void destroy_present_chess_info();
+   analysis_result get_suggest_analysis_result();
    analysis_result  analysize_guess_position(const board_position&,s8);
    typedef s8 COPY_BOARD[BOARD_SIZE][BOARD_SIZE];
    COPY_BOARD score_board;

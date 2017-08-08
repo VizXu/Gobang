@@ -78,6 +78,11 @@ board_position AI_core::get_suggest_position()
   return this->position_suggest;
 }
 
+analysis_result AI_core::get_suggest_analysis_result()
+{
+  return this->analysis_result_position;
+}
+
 void AI_core::analyze_level1(s8 chesstype)
 {
   destroy_present_chess_info();
@@ -264,6 +269,7 @@ void AI_core::store_analysis_result(const analysis_result& r)
     this->alys_rlt.direction = r.direction;
     this->alys_rlt.max_length = r.max_length;
     this->position_suggest = r.position;
+    this->analysis_result_position = r;
 }
 
 u32 AI_core::test_mode(int mode,board_position pos,s8 chess_type)
