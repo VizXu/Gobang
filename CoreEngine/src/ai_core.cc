@@ -340,8 +340,8 @@ board_position AI_core::get_pos_of_maxcs()
    std::vector<position_score_info>::iterator p_ptr;
    u32 score = 0;
 
-   for(p_ptr = this->pos_score_info.begin(),score = p_ptr->score.human_score;p_ptr != this->pos_score_info.end();p_ptr++){
-	if(p_ptr->score.human_score >= score){
+   for(p_ptr = this->pos_score_info.begin(),score = p_ptr->score.computer_score;p_ptr != this->pos_score_info.end();p_ptr++){
+	if(p_ptr->score.computer_score >= score){
 	    score = p_ptr->score.computer_score;
 	    tmp = p_ptr->position;
         }
@@ -355,8 +355,8 @@ board_position AI_core::get_pos_of_mincs()
    std::vector<position_score_info>::iterator p_ptr;
    u32 score = 0;
 
-   for(p_ptr = this->pos_score_info.begin(),score = p_ptr->score.human_score;p_ptr != this->pos_score_info.end();p_ptr++){
-	if(p_ptr->score.human_score <= score){
+   for(p_ptr = this->pos_score_info.begin(),score = p_ptr->score.computer_score;p_ptr != this->pos_score_info.end();p_ptr++){
+	if(p_ptr->score.computer_score <= score){
 	    score = p_ptr->score.computer_score;
 	    tmp = p_ptr->position;
         }

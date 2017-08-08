@@ -230,7 +230,8 @@ void test_mode6()
   rand_chessboard(chessboard);
   
   ai_core->copy_board(chessboard);
-  ai_core->analyze_level2('+');
+  ai_core->analyze_level2('@');
+  display_chessboard(chessboard);
 return;
 }
 
