@@ -57,7 +57,7 @@ void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
    switch(level)
    {
      case 1:ai->analyze_level1('&');break;
-     case 2:ai->analyze_level1('@');break;
+     case 2:ai->analyze_level2('@');break;
      case 3:ai->analyze_level1('@');break;
      default:break;
    }

@@ -129,19 +129,21 @@ void AI_core::analyze_level1(s8 chesstype)
 
 void AI_core::analyze_level2(s8 chesstype)
 {
-   this->analyze_level1(chesstype);
-   analysis_result present_result = this->get_present_result();
-   COPY_BOARD tmp_board;
+   s8 human_chess_type = this->get_human_chess_type();
+   s8 computer_chess_type = this->get_computer_chess_type();
+   this->analyze_level1(human_chess_type);
+   analysis_result human_result = this->get_present_result();
+   //COPY_BOARD tmp_board;
    this->analysize_empty_position_score();
 
    std::vector<board_position>::iterator s_ptr = this->empty_position_score_results.begin();
    for(; s_ptr != this->empty_position_score_results.end(); s_ptr++){
-     if(s_ptr->x_pos == present_result.position.x_pos && s_ptr->y_pos == present_result.position.y_pos){
+     if(s_ptr->x_pos == human_result.position.x_pos && s_ptr->y_pos == human_result.position.y_pos){
 	DEBUG_LOG("match the position x= %d, y= %d\n",s_ptr->x_pos,s_ptr->y_pos);
      }
      continue;
    }
-   DEBUG_LOG("present_result position x= %d, y= %d\n",present_result.position.x_pos,present_result.position.y_pos);
+   DEBUG_LOG("present_result position x= %d, y= %d\n",human_result.position.x_pos,human_result.position.y_pos);
 
 }
 
