@@ -138,7 +138,7 @@ void AI_core::analyze_level2(s8 chesstype)
    s8 computer_chess_type = this->get_computer_chess_type();
    this->analyze_level1(human_chess_type);
    analysis_result human_result = this->get_present_result();
-   //COPY_BOARD tmp_board;
+
    this->analysize_empty_position_score();
 
    std::vector<board_position>::iterator s_ptr = this->empty_position_score_results.begin();
@@ -148,13 +148,26 @@ void AI_core::analyze_level2(s8 chesstype)
      }
      continue;
    }
-   DEBUG_LOG("present_result position x= %d, y= %d\n",human_result.position.x_pos,human_result.position.y_pos);
 
 }
 
 void AI_core::analyze_level3(s8 chesstype)
 {
 
+}
+
+analysis_result AI_core::greedy_analysis()
+{
+   s8 human_chess_type = this->get_human_chess_type();
+   s8 computer_chess_type = this->get_computer_chess_type();
+   this->analyze_level1(human_chess_type);
+   analysis_result human_result = this->get_present_result();
+   //COPY_BOARD tmp_board;
+   this->analyze_level1(computer_chess_type);
+   analysis_result computer_result = this->get_present_result();
+
+   DEBUG_LOG("human_result position x= %d, y= %d\n",human_result.position.x_pos,human_result.position.y_pos);
+   DEBUG_LOG("computer_result position x= %d, y= %d\n",computer_result.position.x_pos,computer_result.position.y_pos);
 }
 
 bool AI_core::is_winner(const board_position& position,s8 chess_type)

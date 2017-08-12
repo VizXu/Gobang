@@ -92,6 +92,8 @@ private:
    void store_analysis_result(const analysis_result&);
    analysis_result get_present_result();
 public:
+   analysis_result greedy_analysis();
+public:
    void analyze_level1(s8);
    void analyze_level2(s8);
    void analyze_level3(s8);

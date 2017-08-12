@@ -241,7 +241,7 @@ int main()
    //AI_core ai_core;
   //test_mode1();
   #if defined(MODE_2)
-   test_mode4();
+   test_mode6();
   #endif//mode2
 return 0;
 }
