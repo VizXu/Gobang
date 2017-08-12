@@ -101,7 +101,7 @@ private:
    std::list<board_position> empty_type_of_greedy_analysis;
    void copy_chess_for_analysis(COPY_BOARD);
    void destory_chess_for_analysis();
-   int  chessboard_greedy_analysis(COPY_BOARD,int);
+   int  chessboard_greedy_analysis(COPY_BOARD,board_position,int);
    void store_chess_for_analysis();
 public:
    void analyze_level1(s8);

@@ -203,7 +203,7 @@ void AI_core::store_chess_for_analysis()
     } 
 }
 
-int AI_core::chessboard_greedy_analysis(COPY_BOARD board,int flag)
+int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int flag)
 {
     COPY_BOARD tmp_board;// = board;
     [=](COPY_BOARD chessboard)->void{
@@ -214,12 +214,14 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,int flag)
         }
     }(tmp_board);
 	
+    board_position tmp_position = pos;
+
     if(flag > 10){
 	return 0;
     }
     else{
 	//analysis the board
-	this->chessboard_greedy_analysis(tmp_board,++flag);
+	this->chessboard_greedy_analysis(tmp_board,tmp_position,++flag);
     }
 
 }
@@ -229,7 +231,10 @@ analysis_result AI_core::greedy_analysis()
   this->store_chess_info();
   COPY_BOARD chess_board_for_analysis;
   this->copy_position(chess_board_for_analysis);
-  this->chessboard_greedy_analysis(chess_board_for_analysis,0);
+	
+  board_position suggest_pos;
+
+  this->chessboard_greedy_analysis(chess_board_for_analysis,suggest_pos,0);
 
 /*   s8 human_chess_type = this->get_human_chess_type();
    s8 computer_chess_type = this->get_computer_chess_type();
