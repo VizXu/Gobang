@@ -27,19 +27,19 @@ void AI_core::store_chess_info()
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
 		       //if(0 == i && 0 == j) this->empty_chess_type = '+';
-                       this->empty_type.push_back(tmp_pos); 
+                       this->empty_type.push_back(std::move(tmp_pos)); 
                      } break;
            case '&': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
 		       //if(0 == i && 0 == j) this->human_chess_type = '&';
-		       this->type1.push_back(tmp_pos);
+		       this->type1.push_back(std::move(tmp_pos));
                      } break;
            case '@': {
 		       tmp_pos.x_pos = i;
 		       tmp_pos.y_pos = j;
 		      //if(0 == i && 0 == j) this->computer_chess_type = '@';
- 		       this->type2.push_back(tmp_pos);
+ 		       this->type2.push_back(std::move(tmp_pos));
 		     } break;
            default: throw "error in store_chess_info";
         }
@@ -158,9 +158,80 @@ void AI_core::analyze_level3(s8 chesstype)
 
 }
 
+
+void AI_core::copy_chess_for_analysis(COPY_BOARD board)
+{
+    for(int i = 0;i < BOARD_SIZE; i++){
+     for(int j = 0; j < BOARD_SIZE; j++){
+	  this->board_for_analysis[i][j] = board[i][j];
+    }
+   }
+}
+
+void AI_core::destory_chess_for_analysis()
+{
+   std::list<board_position> tmp;
+   this->empty_type_of_greedy_analysis.swap(tmp);
+   this->human_type_of_greedy_analysis.swap(tmp);
+   this->computer_type_of_greedy_analysis.swap(tmp);
+}
+
+void AI_core::store_chess_for_analysis()
+{
+    for(int i = 0;i < BOARD_SIZE; i++){
+      for(int j = 0; j < BOARD_SIZE; j++){
+        board_position tmp_pos;
+        switch(this->board_for_analysis[i][j]){
+           case '+': {
+		       tmp_pos.x_pos = i;
+		       tmp_pos.y_pos = j;
+		       this->empty_type_of_greedy_analysis.push_back(std::move(tmp_pos));
+                     } break;
+           case '&': {
+		       tmp_pos.x_pos = i;
+		       tmp_pos.y_pos = j;
+		       this->human_type_of_greedy_analysis.push_back(std::move(tmp_pos));
+                     } break;
+           case '@': {
+		       tmp_pos.x_pos = i;
+		       tmp_pos.y_pos = j;
+		       this->computer_type_of_greedy_analysis.push_back(std::move(tmp_pos));
+		     } break;
+           default: throw "error in store_chess_info";
+        }
+      }
+    } 
+}
+
+int AI_core::chessboard_greedy_analysis(COPY_BOARD board,int flag)
+{
+    COPY_BOARD tmp_board;// = board;
+    [=](COPY_BOARD chessboard)->void{
+        for(int i = 0; i< BOARD_SIZE; i++){
+	   for(int j = 0; j< BOARD_SIZE; j++){
+		chessboard[i][j] = board[i][j];
+	   }
+        }
+    }(tmp_board);
+	
+    if(flag > 10){
+	return 0;
+    }
+    else{
+	//analysis the board
+	this->chessboard_greedy_analysis(tmp_board,++flag);
+    }
+
+}
+
 analysis_result AI_core::greedy_analysis()
 {
-   s8 human_chess_type = this->get_human_chess_type();
+  this->store_chess_info();
+  COPY_BOARD chess_board_for_analysis;
+  this->copy_position(chess_board_for_analysis);
+  this->chessboard_greedy_analysis(chess_board_for_analysis,0);
+
+/*   s8 human_chess_type = this->get_human_chess_type();
    s8 computer_chess_type = this->get_computer_chess_type();
    this->analyze_level1(human_chess_type);
    analysis_result human_result = this->get_present_result();
@@ -170,6 +241,7 @@ analysis_result AI_core::greedy_analysis()
 
    DEBUG_LOG("human_result position x= %d, y= %d\n",human_result.position.x_pos,human_result.position.y_pos);
    DEBUG_LOG("computer_result position x= %d, y= %d\n",computer_result.position.x_pos,computer_result.position.y_pos);
+*/
 }
 
 bool AI_core::is_winner(const board_position& position,s8 chess_type)
