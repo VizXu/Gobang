@@ -31,6 +31,7 @@ typedef struct
 class AI_core
 {
 private:
+   bool is_copied_already;
    analysis_result alys_rlt;
    s8 human_chess_type;
    s8 computer_chess_type;
@@ -62,6 +63,7 @@ public:
          core_board[i][j] = '+';
        }
      }
+     this->is_copied_already = false;
    }      
    ~AI_core(){}
 public:
@@ -100,23 +102,25 @@ private:
    std::list<board_position> computer_type_of_greedy_analysis;
    std::list<board_position> empty_type_of_greedy_analysis;
    void copy_chess_for_analysis(COPY_BOARD);
-   void destory_chess_for_analysis();
+   void destory_chessboard_for_analysis();
    int  chessboard_greedy_analysis(COPY_BOARD,board_position,int);
-   void store_chess_for_analysis();
+   void store_chessboard_for_analysis();
+   void flush_chessboard_for_analysis();
+   void greedy_analysis_empty_position_score(const COPY_BOARD&);
 public:
    void analyze_level1(s8);
    void analyze_level2(s8);
    void analyze_level3(s8);
 private:
-   u32 the_position_score_fun1(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun2(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun3(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun4(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun5(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun6(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun7(COPY_BOARD&,board_position,s8);
-   u32 the_position_score_fun8(COPY_BOARD&,board_position,s8);
-   human_computer_score empty_position_score(board_position);
+   u32 the_position_score_fun1(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun2(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun3(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun4(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun5(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun6(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun7(const COPY_BOARD&,board_position,s8);
+   u32 the_position_score_fun8(const COPY_BOARD&,board_position,s8);
+   human_computer_score empty_position_score(board_position,const COPY_BOARD&);
    board_position get_pos_of_maxhs();
    board_position get_pos_of_minhs();
    board_position get_pos_of_maxcs();
