@@ -77,7 +77,15 @@ void AI_core::destroy_present_chess_info()
 }
 board_position AI_core::get_suggest_position()
 {
-  return this->position_suggest;
+  std::list<board_position>::iterator empty_ptr = empty_type.begin();
+
+  for(int i = 0; i< empty_type.size(); i++){
+	empty_ptr++;
+  }  
+
+  if(is_empty_site(this->position_suggest))
+  	return this->position_suggest;
+  else return *empty_ptr;
 }
 
 analysis_result AI_core::get_suggest_analysis_result()
