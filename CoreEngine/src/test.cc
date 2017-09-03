@@ -235,7 +235,19 @@ void test_mode6()
 return;
 }
 
-int main()
+void test_mode_for_Qt()
+{
+  Chessboard chessboard;
+  Computer computer("computer");
+  Human human("xujiwei");
+  Testwinner test_winner;
+  Balance_Territory test_balance;
+
+  system("clear");
+return;
+}
+
+int main(int argc, char* args[])
 {
    //Chessboard chessboard;
    //AI_core ai_core;
