@@ -1,4 +1,7 @@
 #include<iostream>
+#include<unistd.h>
+#include<cstdio>
+#include<cctype>
 #include "chessboard.h"
 #include "debug.h"
 #include "ai_core.h"
@@ -249,11 +252,43 @@ return;
 
 int main(int argc, char* args[])
 {
+
+   char result;
+   void (*fun)() = test_mode6;
+   int mode = 1;
+
+   for(;;){
+	result = getopt(argc,args,"m:h");
+	if(-1 == result){
+		 break;
+	}
+	
+	switch(result){
+	   case 'm': 
+		if(!isdigit(atoi(optarg))){
+		   mode = atoi(optarg);
+		   printf("mode = %d\n",mode);
+		   switch(mode){
+			case 1: fun = test_mode1; break;
+			case 2: fun = test_mode2; break;
+			case 3: fun = test_mode3; break;
+			case 4: fun = test_mode4; break;
+			case 5: fun = test_mode5; break;
+			case 6: fun = test_mode6; break;
+			case 7: fun = test_mode_for_Qt; break;
+			default: fun = test_mode6; break;
+		   }
+
+		} break; 
+	   case 'h': printf("usage:goband -m [number]\n"); break;
+	   default:  printf("error...\n");break;
+	}
+   }
    //Chessboard chessboard;
    //AI_core ai_core;
-  //test_mode1();
+  fun();
   #if defined(MODE_2)
-   test_mode6();
+  // test_mode6();
   #endif//mode2
 return 0;
 }
