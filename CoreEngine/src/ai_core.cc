@@ -242,6 +242,11 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int 
 	this->copy_chess_for_analysis(tmp_board);
     	this->flush_chessboard_for_analysis(); // chessboard is stored at stl greedy_analysis list<board_position> empty, human, computer
 	this->greedy_analysis_empty_position_score(tmp_board);
+	
+	tmp_position.x_pos =  this->empty_position_score_results[0].x_pos;
+	tmp_position.y_pos =  this->empty_position_score_results[0].y_pos;
+
+	tmp_board[tmp_position.x_pos][tmp_position.y_pos] = '&';
 
 	this->chessboard_greedy_analysis(tmp_board,tmp_position,++flag);
     }
