@@ -28,3 +28,5 @@ These codes run on the Ubuntu or other linux OS,one can download the source code
 - update module of chess manual reservation
 
 - add eveluation function method to update AI 
+
+- add the autoconf tools
