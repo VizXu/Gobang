@@ -31,8 +31,8 @@ player.o : player.cc
 #	@echo "player.cc compile"
 
 judgesituation.o : judgesituation.cc
-        $(CXX) -c judgesituation.cc -o $(OBJ_DIR)judgesituation.o $(parameters) -I$(inc)
-        @echo "judgesituation.cc compile"
+	$(CXX) -c judgesituation.cc -o $(OBJ_DIR)judgesituation.o $(parameters) -I$(inc)
+	@echo "judgesituation.cc compile"
 
 test.o : test.cc
 	$(CXX) -c test.cc -o $(OBJ_DIR)test.o $(parameters) -I$(inc)
