@@ -1,6 +1,7 @@
 
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
 	testwinner.o storechessmanual.o chessboardinfo.o \
+	judgesituation.o
 #	add.o
 
 INPUT = yes
@@ -28,6 +29,10 @@ gobang: $(obj)
 player.o : player.cc
 	$(CXX) -c player.cc -o $(OBJ_DIR)player.o $(parameters) -I$(inc)
 #	@echo "player.cc compile"
+
+judgesituation.o : judgesituation.cc
+        $(CXX) -c judgesituation.cc -o $(OBJ_DIR)judgesituation.o $(parameters) -I$(inc)
+        @echo "judgesituation.cc compile"
 
 test.o : test.cc
 	$(CXX) -c test.cc -o $(OBJ_DIR)test.o $(parameters) -I$(inc)
