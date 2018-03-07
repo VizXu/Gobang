@@ -15,12 +15,17 @@ public:
    int get_xpos() const;
    int get_ypos() const;
    int get_direction() const;
+   void set_xpos(int);
+   void set_ypos(int);
+   void set_direction(int);
    const Info& operator()(int, int, int);
+   void set(int,int,int);
    bool operator==(const Info&);
 };
 class Chessmen_info
 {
 private:
+public:
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8];
    Info*   ihas_won[BOARD_SIZE*BOARD_SIZE];
    Info*   ilive4[BOARD_SIZE*BOARD_SIZE];
@@ -49,7 +54,7 @@ public:
    char whois_winner() const;
 private:
    bool won_the_game(char) const;
-   void scan_analysis_chessmen(char) const;
+   Chessmen_info* scan_analysis_chessmen(char) const;
 };
 
 class JudgeSituation
