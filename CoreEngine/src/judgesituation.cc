@@ -1,4 +1,57 @@
 #include "judgesituation.h"
+#include <cstdlib>
+#include <unistd.h>
+#include <memory.h>
+
+int Info::get_xpos() const
+{
+   return this->x_pos;
+};
+
+int Info::get_ypos() const
+{
+   return this->y_pos;
+};
+
+int Info::get_direction() const
+{
+   return this->direction;
+};
+
+const Info& Info::operator()(int _x = 0, int _y = 0, int _d = 0)
+{
+   return std::move(Info(_x,_y,_d));
+}
+
+bool Info::operator==(const Info& info)
+{
+   return this->x_pos == info.get_xpos() && this->y_pos == info.get_ypos() && this->direction == info.get_direction();
+}
+
+Chessmen_info::Chessmen_info()
+{
+   memset(chessmen_of_each_direction,0,sizeof(chessmen_of_each_direction));
+   for(int i = 0; i < BOARD_SIZE*BOARD_SIZE; i++){
+	ihas_won[i] = new Info();
+	ilive4[i] = new Info();
+	ilive4heap[i] = new Info();
+	ilive3[i] = new Info();
+	isleep3[i] = new Info();
+	ilive2[i] = new Info();
+	isleep2[i] = new Info();
+   }
+}
+
+Chessmen_info::~Chessmen_info()
+{
+	delete [] ihas_won;
+	delete [] ilive4;
+	delete [] ilive4heap;
+	delete [] ilive3;
+	delete [] isleep3;
+	delete [] ilive2;
+	delete [] isleep2;
+}
 
 JudgeWin::JudgeWin()
 {
@@ -27,9 +80,8 @@ void JudgeWin::copy_chessboard(const Chessboard& chessboard)
     }
 }
 
-bool JudgeWin::won_the_game(char chessman) const
+void JudgeWin::scan_analysis_chessmen(char chessman) const
 {
-   //judge analysis
    int x_tmp;
    int y_tmp;
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8] = { 0 };
@@ -83,6 +135,12 @@ bool JudgeWin::won_the_game(char chessman) const
 	    }
 	}
    }
+}
+
+bool JudgeWin::won_the_game(char chessman) const
+{
+   //judge analysis
+
 return true;
 }
 
