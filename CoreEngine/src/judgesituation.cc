@@ -124,8 +124,8 @@ Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman) const
 		switch(info->chessmen_of_each_direction[i][j][0]){
 		   case 5:info->ihas_won[i*BOARD_SIZE+j]->set(i,j,0);break;
 		   case 4:info->ilive4[i*BOARD_SIZE+j]->set(i,j,0);break;
-		   case 3:break;
-		   case 2:break;
+		   case 3:info->ilive3[i*BOARD_SIZE+j]->set(i,j,0);break;
+		   case 2:info->ilive2[i*BOARD_SIZE+j]->set(i,j,0);break;
 		   default:break;
 		}
 
