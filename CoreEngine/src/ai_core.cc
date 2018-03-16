@@ -10,20 +10,20 @@ class find_out;
 
 void AI_core::copy_board(const Chessboard& board)
 {
-   if(this->is_copied_already) return;
-   else{
+//   if(this->is_copied_already) return;
+//   else{
        for(int i = 0;i < BOARD_SIZE; i++){
          for(int j = 0; j < BOARD_SIZE; j++){
             this->core_board[i][j]= board.get_chess(i,j);
      	 }
       }
-     this->is_copied_already = true;
-   }
+//     this->is_copied_already = true;
+//   }
 }
 
 void AI_core::store_chess_info()
 {
-    DEBUG_LOG("store chess info\n");
+//    DEBUG_LOG("store chess info\n");
     for(int i = 0;i < BOARD_SIZE; i++){
       for(int j = 0; j < BOARD_SIZE; j++){
         board_position tmp_pos;
@@ -48,7 +48,7 @@ void AI_core::store_chess_info()
 		     } break;
            default: throw "error in store_chess_info";
         }
-	   DEBUG_LOG("this->core_board[%d][%d] = %c\n",i,j,this->core_board[i][j]);
+	 //  DEBUG_LOG("this->core_board[%d][%d] = %c\n",i,j,this->core_board[i][j]);
       }
     }
 }
@@ -65,7 +65,7 @@ s8 AI_core::get_human_chess_type()
 
 s8 AI_core::get_computer_chess_type()
 {
-  DEBUG_LOG("get_computer_chess_type = %c\n",this->computer_chess_type);
+//  DEBUG_LOG("get_computer_chess_type = %c\n",this->computer_chess_type);
   return this->computer_chess_type;
 }
 
@@ -106,7 +106,7 @@ void AI_core::analyze_level1(s8 chesstype)
   u32 size = this->empty_type.size();
   this->l_ptr = empty_type.begin();
 
-   DEBUG_LOG("empty size = %d\n",size);
+//  DEBUG_LOG("empty size = %d\n",size);
 
   /*
   int tmp = rand()%size;
@@ -135,11 +135,11 @@ void AI_core::analyze_level1(s8 chesstype)
   }
  
   #if defined(DEBUG_MODE)
-  DEBUG_LOG("xujiwei---suggest_info1 = %d\n",this->suggest_position_info[0][0]);
-  DEBUG_LOG("xujiwei---suggest_info2 = %d\n",this->suggest_position_info[1][0]);
-  DEBUG_LOG("xujiwei---suggest_info3 = %d\n",this->suggest_position_info[2][0]);
-  DEBUG_LOG("xujiwei---suggest_info4 = %d\n",this->suggest_position_info[3][0]);
-  DEBUG_LOG("analysis result = %d and %d,x_pos=%d,y_pos=%d\n",rslt.direction,rslt.max_length,rslt.position.x_pos,rslt.position.y_pos);
+//  DEBUG_LOG("xujiwei---suggest_info1 = %d\n",this->suggest_position_info[0][0]);
+//  DEBUG_LOG("xujiwei---suggest_info2 = %d\n",this->suggest_position_info[1][0]);
+//  DEBUG_LOG("xujiwei---suggest_info3 = %d\n",this->suggest_position_info[2][0]);
+//  DEBUG_LOG("xujiwei---suggest_info4 = %d\n",this->suggest_position_info[3][0]);
+//  DEBUG_LOG("analysis result = %d and %d,x_pos=%d,y_pos=%d\n",rslt.direction,rslt.max_length,rslt.position.x_pos,rslt.position.y_pos);
   #endif 
 
     this->store_analysis_result(rslt); // store the suggest position_info 

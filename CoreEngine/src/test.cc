@@ -171,7 +171,7 @@ void test_mode4()
   computer.make_a_step(chessboard);
   
   tmp_position = computer.get_present_position();
-  DEBUG_LOG("computer---x= %d, y = %d\n",tmp_position.x_pos,tmp_position.y_pos);
+  //DEBUG_LOG("computer---x= %d, y = %d\n",tmp_position.x_pos,tmp_position.y_pos);
   if(test_winner(chessboard,tmp_position,'@')){
      system("clear");
      std::cout<<"computer win!"<<std::endl;
