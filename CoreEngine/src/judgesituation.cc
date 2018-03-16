@@ -104,6 +104,20 @@ void JudgeWin::copy_chessboard(const Chessboard& chessboard)
     }
 }
 
+void JudgeWin::analysis_ilives(Chessmen_info* info, int level, int i, int j, int direction) const
+{
+	switch(level){
+	   case IHAS_WON:info->ihas_won[i*BOARD_SIZE+j]->set(i,j,direction);break; 
+	   case ILIVE4:info->ilive4[i*BOARD_SIZE+j]->set(i,j,direction);break; 
+	   case ILIVE4HEAP:info->ilive4heap[i*BOARD_SIZE+j]->set(i,j,direction);break; 
+	   case ILIVE3:info->ilive3[i*BOARD_SIZE+j]->set(i,j,direction);break; 
+	   case ISLEEP3:info->isleep3[i*BOARD_SIZE+j]->set(i,j,direction);break; 
+	   case ILIVE2:info->ilive2[i*BOARD_SIZE+j]->set(i,j,direction);break; 
+	   case ISLEEP2:info->isleep2[i*BOARD_SIZE+j]->set(i,j,direction);break;
+	   default:break; 
+	}	
+}
+
 Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman) const
 {
    int x_tmp;
@@ -116,16 +130,52 @@ Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman) const
 	    if(board_for_judge[i][j] == chessman){
 		// -x direction(up)
 		int k = 0;
+		int p = 0;
+		int q = 0;
+		int r = 0;
 		for(k = i; k >= 0; k--){
 		   if(board_for_judge[k][j] == chessman) info->chessmen_of_each_direction[i][j][0] += 1;
 		   else break;
 		}
 
 		switch(info->chessmen_of_each_direction[i][j][0]){
-		   case 5:info->ihas_won[i*BOARD_SIZE+j]->set(i,j,0);break;
-		   case 4:info->ilive4[i*BOARD_SIZE+j]->set(i,j,0);break;
-		   case 3:info->ilive3[i*BOARD_SIZE+j]->set(i,j,0);break;
-		   case 2:info->ilive2[i*BOARD_SIZE+j]->set(i,j,0);break;
+		   case 5:{
+			this->analysis_ilives(info,IHAS_WON,i,j,0);
+		   }
+		   break;
+		   case 4:{
+			this->analysis_ilives(info,ILIVE4,i,j,0);
+		   }
+		   break;
+		   case 3:{
+			p = k - 1;
+			if(p >= 0 && board_for_judge[p][j] == chessman){
+				this->analysis_ilives(info,ILIVE4HEAP,i,j,0);
+			}
+
+			this->analysis_ilives(info,ILIVE3,i,j,0);
+		   }
+		   break;
+		   case 2:{
+			p = k -1;
+			q = k -2;
+			if(p >= 0 && board_for_judge[p][j] == chessman){
+			   if(q >= 0 && board_for_judge[q][j] == chessman){
+				this->analysis_ilives(info,ILIVE4HEAP,i,j,0);
+			   }
+			   else{
+				this->analysis_ilives(info,ISLEEP3,i,j,0);
+			   }
+			}
+			this->analysis_ilives(info,ILIVE2,i,j,0);
+		   }
+		   break;
+		   case 1:{
+			p = k -1;
+			q = k -2;
+			r = k -3;	
+		   }
+		   break;
 		   default:break;
 		}
 

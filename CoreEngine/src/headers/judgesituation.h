@@ -2,6 +2,15 @@
 #define _JUDGESITUATION_
 #include "chessboard.h"
 
+const int IHAS_WON = 0;
+const int ILIVE4 = 1;
+const int ILIVE4HEAP = 2;
+const int ILIVE3 = 3;
+const int ISLEEP3 = 4;
+const int ILIVE2 = 5;
+const int ISLEEP2 = 6;
+
+
 class Info
 {
 private:
@@ -34,6 +43,13 @@ public:
    Info*   isleep3[BOARD_SIZE*BOARD_SIZE];
    Info*   ilive2[BOARD_SIZE*BOARD_SIZE];
    Info*   isleep2[BOARD_SIZE*BOARD_SIZE];
+   static int IHAS_WON;
+   static int ILIVE4;
+   static int ILIVE4HEAP;
+   static int ILIVE3;
+   static int ISLEEP3;
+   static int ILIVE2;
+   static int ISLEEP2;
 public:
    Chessmen_info();
    ~Chessmen_info();
@@ -55,6 +71,7 @@ public:
 private:
    bool won_the_game(char) const;
    Chessmen_info* scan_analysis_chessmen(char) const;
+   void analysis_ilives(Chessmen_info*, int, int, int, int) const;
 };
 
 class JudgeSituation
