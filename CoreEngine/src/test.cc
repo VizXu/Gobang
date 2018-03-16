@@ -20,25 +20,7 @@ using namespace std;
 
 #define MODE_1
 #ifdef DEBUG
-void display_chessboard(const Chessboard& board)
-{
-  int s = 0;
-  for(int i = 0;i<BOARD_SIZE; i++){
-    for(int j = 0;j<BOARD_SIZE; j++){
-      if(i == 0 && j == 0) {
-         for(;s<BOARD_SIZE;s++)
-         std::cout<<"   "<<s;
-         std::cout<<std::endl;
-      }
-      if(j == 0) std::cout<<i<<'|';
-      if(j == 0) std::cout<<' ';
-      std::cout<<board.get_chess(i,j)<<"   ";
-    }
-    std::endl(std::cout);
-    std::endl(std::cout);
-  }
-  s = 0;
-}
+extern void display_chessboard(const Chessboard&);
 #endif //display_chessboard
 
 //xujiwei 
@@ -189,7 +171,7 @@ void test_mode4()
   computer.make_a_step(chessboard);
   
   tmp_position = computer.get_present_position();
-//  DEBUG_LOG("computer---x= %d, y = %d\n",tmp_position.x_pos,tmp_position.y_pos);
+  DEBUG_LOG("computer---x= %d, y = %d\n",tmp_position.x_pos,tmp_position.y_pos);
   if(test_winner(chessboard,tmp_position,'@')){
      system("clear");
      std::cout<<"computer win!"<<std::endl;

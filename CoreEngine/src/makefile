@@ -1,7 +1,7 @@
 
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
 	testwinner.o storechessmanual.o chessboardinfo.o \
-	judgesituation.o
+	judgesituation.o display.o
 #	add.o
 
 INPUT = yes
@@ -25,6 +25,10 @@ endif
 gobang: $(obj)
 	$(CXX) $(OBJ_DIR)*.o -o $(target)gobang $(parameters)
 #	@echo "good,gobang compile done"
+
+display.o : display.cc
+	$(CXX) -c display.cc -o $(OBJ_DIR)display.o $(parameters) -I$(inc)
+#	@echo "display.cc compile"
 
 player.o : player.cc
 	$(CXX) -c player.cc -o $(OBJ_DIR)player.o $(parameters) -I$(inc)

@@ -37,8 +37,10 @@ s8 Computer::get_computer_chess_type()
 bool Computer::make_a_step(Chessboard& chessboard)
 {
    s8 the_type = get_computer_chess_type();
+   DEBUG_LOG("make_a_step,type = %c\n",the_type);
    if(this->move_state  == start){
       u32 lvr = this->level;
+      DEBUG_LOG("level = %d\n",lvr);
       ai_analysis(chessboard,lvr);
       if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,the_type)){
          this->last_position = this->present_position;
