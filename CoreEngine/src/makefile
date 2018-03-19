@@ -1,7 +1,8 @@
 
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
 	testwinner.o storechessmanual.o chessboardinfo.o \
-	judgesituation.o display.o
+	judgesituation.o display.o serverinput.o gamerunning.o \
+	chessboardpattern.o
 #	add.o
 
 INPUT = yes
@@ -26,6 +27,18 @@ gobang: $(obj)
 	$(CXX) $(OBJ_DIR)*.o -o $(target)gobang $(parameters)
 #	@echo "good,gobang compile done"
 
+gamerunning.o : gamerunning.cc
+	$(CXX) -c gamerunning.cc -o $(OBJ_DIR)gamerunning.o $(parameters) -I$(inc)
+#	@echo "gamerunning.cc compile"
+
+serverinput.o : serverinput.cc
+	$(CXX) -c serverinput.cc -o $(OBJ_DIR)serverinput.o $(parameters) -I$(inc)
+#	@echo "serverinput.cc compile"
+
+chessboardpattern.o : chessboardpattern.cc
+	$(CXX) -c chessboardpattern.cc -o $(OBJ_DIR)chessboardpattern.o $(parameters) -I$(inc)
+#	@echo "chessboardpattern.cc compile"
+
 display.o : display.cc
 	$(CXX) -c display.cc -o $(OBJ_DIR)display.o $(parameters) -I$(inc)
 #	@echo "display.cc compile"
@@ -36,7 +49,7 @@ player.o : player.cc
 
 judgesituation.o : judgesituation.cc
 	$(CXX) -c judgesituation.cc -o $(OBJ_DIR)judgesituation.o $(parameters) -I$(inc)
-	@echo "judgesituation.cc compile"
+#	@echo "judgesituation.cc compile"
 
 test.o : test.cc
 	$(CXX) -c test.cc -o $(OBJ_DIR)test.o $(parameters) -I$(inc)

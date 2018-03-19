@@ -18,10 +18,12 @@ public:
 public:
    s8 get_human_chess_type();
    bool make_a_step(Chessboard&);
+   bool make_a_step_via_net(Chessboard&,int,int);
    string get_name();
    State change_state();
    board_position get_present_position();
 private:
    void input_position();
+   void input_position(int,int);
 };
 #endif //human.h

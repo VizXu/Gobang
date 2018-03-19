@@ -232,7 +232,7 @@ void test_mode_for_Qt()
 return;
 }
 
-int main(int argc, char* args[])
+int test(int argc, char* args[])
 {
 
    char result;

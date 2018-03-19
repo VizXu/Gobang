@@ -12,6 +12,7 @@ extern int handle_process(int);
 
 int main(int argc,char* args[])
 {
+    int num = 0;
     int server_fd = 0;
     int listen_fd = 0;
     int client_fd = 0; 
@@ -48,12 +49,14 @@ int main(int argc,char* args[])
 		std::cerr<<"accept error!"<<std::endl;
 		continue;
 	}
-	if(!fork()){//child process
-		handle_process(client_fd);
+	if(send(client_fd,(void*)&num,sizeof(num),0) == -1){
+		std::cerr<<"send error!"<<std::endl;
+	}
+	else{
+		num++;
 		close(client_fd);	
 	}
 	close(client_fd);
-	break;
     }
 return 0;
 }

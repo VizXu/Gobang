@@ -35,6 +35,20 @@ bool Human::make_a_step(Chessboard& chessboard)
   else return false;
 }
 
+bool Human::make_a_step_via_net(Chessboard& chessboard,int x, int y)
+{
+  input_position(x,y);
+  s8 the_type = get_human_chess_type();
+  if(this->move_state == start){
+     if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,the_type)){
+       last_position = present_position;
+       present_position = suggest_position;
+       return true;
+     }
+  }
+  else return false;
+}
+
 void Human::input_position()
 {
     int x = 0;
@@ -57,6 +71,12 @@ void Human::input_position()
        this->suggest_position.y_pos = y;
        present_position = suggest_position;
     }
+}
+
+void Human::input_position(int xpos,int ypos)
+{
+   this->suggest_position.x_pos = xpos;
+   this->suggest_position.y_pos = ypos;
 }
 
 State Human::change_state()
