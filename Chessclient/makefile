@@ -1,14 +1,18 @@
+obj = client.o run.o
 
 CXX=g++
 
 parameters=-std=c++11
 
 
-ChessClient: client.o
-	$(CXX) client.o -o $@
+ChessClient: $(obj)
+	$(CXX) $^ -o $@
 
 client.o : client.cc
 	$(CXX) -c client.cc -o $@
+
+run.o : run.cc
+	$(CXX) -c run.cc -o $@
 
 clean:
 	rm ./*.o 
