@@ -4,9 +4,20 @@
 #include<netinet/in.h>
 #include<sys/socket.h>
 
+#include "chessboardpattern.h"
+#include "chessboard.h"
+
 #define BUF_SIZE 1024
 
-extern int test(int argc,char* args[]);
+int sendInfo(int sockfd)
+{
+
+}
+
+int recvInfo(int sockfd,int xpos,int ypos,char player,int steps)
+{
+
+}
 
 int handle_process(int sockfd)
 {

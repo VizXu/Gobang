@@ -15,10 +15,13 @@ ChessboardPattern::~ChessboardPattern()
 
 ChessboardPattern* ChessboardPattern::getPattern(const char* c = "computer", const char* h = "human")
 {
-    if(!pattern){
+    if(NULL == pattern){
 	pattern = new ChessboardPattern(c,h);
+	return pattern;
     }
-return pattern;
+    else{
+	return pattern;
+    }
 }
 
 const char* ChessboardPattern::getComputerName() const
@@ -34,6 +37,11 @@ const char* ChessboardPattern::getHumanName() const
 void ChessboardPattern::gameRunning()
 {
    
+}
+
+const Chessboard& ChessboardPattern::getChessboard() const
+{
+	return this->chessboard;
 }
 
 ChessboardPattern* ChessboardPattern::pattern = NULL;

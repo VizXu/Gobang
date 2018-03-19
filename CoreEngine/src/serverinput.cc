@@ -6,9 +6,13 @@
 #include<cstring>
 #include<iostream>
 
+#include "chessboardpattern.h"
+
 #define MAX_SOCK 20
 
 extern int handle_process(int);
+extern void display_chessboard(const Chessboard&);
+
 
 int main(int argc,char* args[])
 {
@@ -21,6 +25,13 @@ int main(int argc,char* args[])
     server_input.sin_family = AF_INET;
     server_input.sin_addr.s_addr = htonl(INADDR_ANY);
     server_input.sin_port = 80;
+
+    const char* computer = "computer";
+    const char* human    = "xujiwei";
+
+    ChessboardPattern* pattern = ChessboardPattern::getPattern(computer,human);
+
+    //display_chessboard(pattern->getChessboard());
 
     if(daemon(0,0) < 0){
 	std::cerr<<"daemon error,exit!"<<std::endl;

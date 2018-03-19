@@ -19,7 +19,7 @@ private:
     Testwinner test_winner;
     Balance_Territory test_balance;
 public:
-    ChessboardPattern* getPattern(const char*,const char*);
+    static ChessboardPattern* getPattern(const char*,const char*);
 private:
     ChessboardPattern(const char*,const char*);
 public:
@@ -28,5 +28,6 @@ public:
     void gameRunning(); 
     const char* getComputerName() const;
     const char* getHumanName() const;
+    const Chessboard& getChessboard() const;
 };
 #endif//chessboardpattern.h
