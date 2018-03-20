@@ -5,6 +5,7 @@
 #include "chessboard.h"
 #include "human.h"
 #include "testwinner.h"
+#include "gameinfo.h"
 
 class ChessboardPattern
 {
@@ -25,7 +26,8 @@ private:
 public:
     ~ChessboardPattern();
 public:
-    void gameRunning(); 
+    void initGame(int);
+    struct game_status gameRunning(const struct client_info& info); 
     const char* getComputerName() const;
     const char* getHumanName() const;
     const Chessboard& getChessboard() const;

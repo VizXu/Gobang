@@ -55,5 +55,6 @@ public:
     s8   get_chess(u32,u32) const;
 public:
     bool has_empty_site() const;
+    void init(int);
 };
 #endif//chessboard.h

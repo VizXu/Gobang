@@ -128,6 +128,8 @@ int main(int argc, char* args[])
 	static const struct option opts[] = {
 		{ "host",     required_argument, NULL, 't' },
 		{ "size",     required_argument, NULL, 's' },
+		{ "xpos",     required_argument, NULL, 'x' },
+		{ "ypos",     required_argument, NULL, 'y' },
 		{ "port",     optional_argument, NULL, 'p' },
 		{ NULL,       0,                 NULL,  0  }
 	};
@@ -142,7 +144,7 @@ int main(int argc, char* args[])
 	memset(&server, 0, sizeof(server));
 	
 	for(;;){
-	   results = getopt_long(argc,args,"t:p::s",opts,NULL);	
+	   results = getopt_long(argc,args,"t:p::sxy",opts,NULL);	
 	   if(-1 == results){
 		break;	
 	   }
@@ -167,6 +169,8 @@ int main(int argc, char* args[])
 		for (int i = 0; cmds[i].name != NULL; i++)
 			if (!strcmp(cmds[i].name, cmd)) {
 				optind = 0;
+				std::cout<<"cmds["<<i<<"] = "<<cmds[i].name<<std::endl;
+				std::cout<<"argc = "<<argc<<std::endl;
 				rc = run_command(&cmds[i], sockfd, argc, args);
 				goto success;
 		}
