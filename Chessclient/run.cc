@@ -8,6 +8,7 @@
 #include <cstdlib>
 
 #define CMD_BUF 64
+#define BOARD_BUF 2048
 
 struct client_info
 {
@@ -18,6 +19,15 @@ struct client_info
 	int ypos;
   }info;
 };
+
+struct game_info
+{
+   int status;
+   int step;
+   int size;
+   char chessboard[BOARD_BUF];
+};
+
 int gobang_init(int sockfd, int argc, char* args[])
 {
 
@@ -33,6 +43,8 @@ int gobang_init(int sockfd, int argc, char* args[])
 
    struct client_info info;
    memset(&info, 0, sizeof(info));
+   struct game_info game;
+   memset(&game, 0, sizeof(game));
 
    for(;;){
 	rc = getopt_long(argc,args,"s:h:",opts,NULL);
@@ -54,14 +66,13 @@ int gobang_init(int sockfd, int argc, char* args[])
 	return -1;
    }
 
-   if(sizeof(int) != recv(sockfd,(void*)&num,sizeof(int),0)){
+   if(sizeof(struct game_info) != recv(sockfd,(void*)&game,sizeof(struct game_info),0)){
 	std::cout<<"recv error!"<<std::endl;
 	return -1;
    }
 
-	std::cout<<"recv, num = "<<num<<std::endl;
-
-	std::cout<<"send success!"<<std::endl;
+	std::cout<<"send client success!"<<std::endl;
+	std::cout<<"recv game info,status = "<<game.status<<",size = "<<game.size<<",step = "<<game.step<<std::endl;
 return 0;
 }
 
