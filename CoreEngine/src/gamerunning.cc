@@ -10,29 +10,6 @@
 #include "chessboard.h"
 #include "gameinfo.h"
 
-/*
-#define BUF_SIZE 1024
-#define BOARD_BUF 2048
-
-#define CMD_BUF 64
-
-struct client_info{
-   char cmd[CMD_BUF];
-   struct _info{
-	int size;
-	int xpos;
-	int ypos;
-   }info;
-};
-
-struct game_info{
-   int status;
-   int step;
-   int size;
-   char chessinfo[BOARD_BUF];
-};
-*/
-
 void transfer(const Chessboard& board, struct game_info& info)
 {
    const int size = BOARD_SIZE;
@@ -63,8 +40,8 @@ int handle_init(struct client_info& info, struct game_info& game)
 	pattern->initGame(BOARD_SIZE);
 	Chessboard board = pattern->getChessboard();
 	game.status = 0;
-	game.step = 1;
-	game.size = info.info.size;	
+	game.step = pattern->getGameStep();
+	game.size = BOARD_SIZE;	
 	transfer(board,game);
 
 return 0;
@@ -77,7 +54,7 @@ int handle_set(struct client_info& info, struct game_info& game)
 	gameStatus = pattern->gameRunning(info);
 	Chessboard board = pattern->getChessboard();
         game.status = 0;
-        game.step = info.info.xpos;
+        game.step = pattern->getGameStep();
         game.size = BOARD_SIZE;//info.info.size;
         transfer(board,game);
 return 0;
@@ -85,7 +62,13 @@ return 0;
 
 int handle_get(int sockfd, struct client_info& info, struct game_info& game)
 {
+	struct game_status gameStatus;
 	ChessboardPattern* pattern = ChessboardPattern::getPattern();
+	Chessboard board = pattern->getChessboard();
+	game.status = 0;
+	game.step = pattern->getGameStep();
+	game.size = BOARD_SIZE;
+	transfer(board,game);
 return 0;
 }
 

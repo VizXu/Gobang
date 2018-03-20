@@ -149,5 +149,58 @@ return 0;
 
 int gobang_get(int sockfd, int argc, char* args[])
 {
+/*  static const struct option opts[] = {
+        {"xpos", required_argument, NULL, 'x'},
+        {"ypos", required_argument, NULL, 'y'},
+        {"host", required_argument, NULL, 'h'},
+        {NULL, 0, NULL, 0}
+   };
+*/
+   int rc = 0;
+  // int num = 0;
+  // int x = 0;
+  // int y = 0;
+
+   struct client_info info;
+   memset(&info, 0, sizeof(info));
+   struct game_info game;
+   memset(&game, 0, sizeof(game));
+
+/*   for(;;){
+        rc = getopt_long(argc,args,"x:y:h:",opts,NULL);
+        if(-1 == rc) break;
+        switch(rc){
+           case 'x':x = atoi(optarg); break;
+           case 'y':y = atoi(optarg); break;
+           case 'h':break;
+           case '?':break;
+           default:break;
+        }
+   }
+*/
+
+   strncpy(info.cmd,"get",sizeof("get"));
+ //  std::cout<<"x = "<<x<<",y = "<<y<<std::endl;
+
+ //  info.info.xpos = x;
+ //  info.info.ypos = y;
+
+   //std::cout<<"info.cmd = "<<info.cmd<<std::endl;
+   //info.info.size = size;
+
+   if(-1 == send(sockfd,(void*)&info,sizeof(info),0)){
+        std::cout<<"send error!"<<std::endl;
+        return -1;
+   }
+
+   if(sizeof(struct game_info) != recv(sockfd,(void*)&game,sizeof(struct game_info),0)){
+        std::cout<<"recv error!"<<std::endl;
+        return -1;
+   }
+
+        std::cout<<"get success!"<<std::endl;
+        std::cout<<"recv game info,status = "<<game.status<<",size = "<<game.size<<",step = "<<game.step<<std::endl;
+        display_chessboard(game);
+return 0;
 
 }

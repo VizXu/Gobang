@@ -14,6 +14,7 @@ public:
 private:
     const char* computerName;
     const char* humanName;
+    int gameStep;
     Chessboard chessboard;
     Computer* computer;
     Human* human;
@@ -26,6 +27,7 @@ private:
 public:
     ~ChessboardPattern();
 public:
+    int getGameStep() const;
     void initGame(int);
     struct game_status gameRunning(const struct client_info& info); 
     const char* getComputerName() const;
