@@ -19,7 +19,7 @@ private:
     Testwinner test_winner;
     Balance_Territory test_balance;
 public:
-    static ChessboardPattern* getPattern(const char*,const char*);
+    static ChessboardPattern* getPattern();
 private:
     ChessboardPattern(const char*,const char*);
 public:

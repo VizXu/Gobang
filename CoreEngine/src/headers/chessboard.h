@@ -37,7 +37,7 @@ public:
       }
     }
     ~Chessboard(){}
-    Chessboard(const Chessboard&) = delete;
+    //Chessboard(const Chessboard&) = delete;
     Chessboard& operator=(const Chessboard&) = delete;
     Chessboard& operator()(const Chessboard&) = delete;
 public:

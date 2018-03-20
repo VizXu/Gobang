@@ -13,8 +13,10 @@ ChessboardPattern::~ChessboardPattern()
     delete human;
 }
 
-ChessboardPattern* ChessboardPattern::getPattern(const char* c = "computer", const char* h = "human")
+ChessboardPattern* ChessboardPattern::getPattern()
 {
+    const char* c = "computer";
+    const char* h = "human";
     if(NULL == pattern){
 	pattern = new ChessboardPattern(c,h);
 	return pattern;

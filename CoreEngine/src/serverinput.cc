@@ -26,10 +26,10 @@ int main(int argc,char* args[])
     server_input.sin_addr.s_addr = htonl(INADDR_ANY);
     server_input.sin_port = 80;
 
-    const char* computer = "computer";
-    const char* human    = "xujiwei";
+    //const char* computer = "computer";
+    //const char* human    = "xujiwei";
 
-    ChessboardPattern* pattern = ChessboardPattern::getPattern(computer,human);
+    ChessboardPattern* pattern = ChessboardPattern::getPattern();
 
     //display_chessboard(pattern->getChessboard());
 
@@ -60,13 +60,14 @@ int main(int argc,char* args[])
 		std::cerr<<"accept error!"<<std::endl;
 		continue;
 	}
-	if(send(client_fd,(void*)&num,sizeof(num),0) == -1){
+	handle_process(client_fd);
+	/*if(send(client_fd,(void*)&num,sizeof(num),0) == -1){
 		std::cerr<<"send error!"<<std::endl;
 	}
 	else{
 		num++;
 		close(client_fd);	
-	}
+	}*/
 	close(client_fd);
     }
 return 0;
