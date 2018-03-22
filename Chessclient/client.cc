@@ -93,9 +93,6 @@ static int run_command(const struct command *cmd, int fd, int argc, char *argv[]
 
 void set_server(struct sockaddr_in& server,int port,char* ip)
 {
-	std::cout<<"ip = ";
-	ip?std::cout<<ip:std::cout<<"NULL";
-	std::endl(std::cout);
 	server.sin_family = AF_INET;
 	server.sin_port   = port;
 	server.sin_addr.s_addr = inet_addr(ip);
@@ -126,7 +123,7 @@ int main(int argc, char* args[])
 {
 
 	static const struct option opts[] = {
-		{ "host",     required_argument, NULL, 't' },
+		{ "host",     required_argument, NULL, 'h' },
 		{ "size",     required_argument, NULL, 's' },
 		{ "xpos",     required_argument, NULL, 'x' },
 		{ "ypos",     required_argument, NULL, 'y' },
@@ -144,13 +141,13 @@ int main(int argc, char* args[])
 	memset(&server, 0, sizeof(server));
 	
 	for(;;){
-	   results = getopt_long(argc,args,"t:p::sxy",opts,NULL);	
+	   results = getopt_long(argc,args,"h:p::s:x:y:",opts,NULL);	
 	   if(-1 == results){
 		break;	
 	   }
 
 	   switch(results){
-		case 't':  ip         = optarg;                   break;
+		case 'h':  ip         = optarg;                   break;
 		case 'p':  port       = optarg?atoi(optarg):PORT; break;
 		case '?': goto usage;
 		default: break;
@@ -169,8 +166,6 @@ int main(int argc, char* args[])
 		for (int i = 0; cmds[i].name != NULL; i++)
 			if (!strcmp(cmds[i].name, cmd)) {
 				optind = 0;
-				std::cout<<"cmds["<<i<<"] = "<<cmds[i].name<<std::endl;
-				std::cout<<"argc = "<<argc<<std::endl;
 				rc = run_command(&cmds[i], sockfd, argc, args);
 				goto success;
 		}
