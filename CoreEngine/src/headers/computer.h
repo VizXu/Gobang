@@ -2,6 +2,7 @@
 #define _COMPUTER_H
 
 #include "player.h"
+#include "judgesituation.h"
 
 class Computer:public Player
 {

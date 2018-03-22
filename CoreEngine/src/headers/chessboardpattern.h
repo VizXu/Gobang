@@ -1,6 +1,8 @@
 #ifndef CHESSBOARDPATTERN
 #define CHESSBOARDPATTERN
 
+#include <exception>
+#include <stdexcept>
 #include "computer.h"
 #include "chessboard.h"
 #include "human.h"
@@ -15,6 +17,7 @@ private:
     const char* computerName;
     const char* humanName;
     int gameStep;
+    int gamelevel;
     Chessboard chessboard;
     Computer* computer;
     Human* human;
@@ -24,11 +27,16 @@ public:
     static ChessboardPattern* getPattern();
 private:
     ChessboardPattern(const char*,const char*);
+    void setLevel(int);
+    int getLevel() const;
+    struct game_status&& gameRunningLevel1(const struct client_info& info); 
+    struct game_status&& gameRunningLevel2(const struct client_info& info); 
+    struct game_status&& gameRunningLevel3(const struct client_info& info); 
 public:
     ~ChessboardPattern();
 public:
     int getGameStep() const;
-    void initGame(int);
+    void initGame(int,int);
     struct game_status gameRunning(const struct client_info& info); 
     const char* getComputerName() const;
     const char* getHumanName() const;

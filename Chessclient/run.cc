@@ -7,9 +7,9 @@
 #include <memory.h>
 #include <cstdlib>
 
-#define CMD_BUF 64
-#define BOARD_BUF 2048
+#include "gameinfo.h"
 
+/*
 struct client_info
 {
   char cmd[CMD_BUF];
@@ -27,6 +27,7 @@ struct game_info
    int size;
    char chessboard[BOARD_BUF];
 };
+*/
 
 void display_chessboard(struct game_info& info)
 {
@@ -34,7 +35,7 @@ void display_chessboard(struct game_info& info)
   // std::cout<<"board_size = "<<size<<std::endl;
    for(int i = 0; i < size; i++){
       for(int j = 0; j < size; j++){
-	 std::cout<<info.chessboard[i*size + j]<<" ";
+	 std::cout<<info.chessinfo[i*size + j]<<" ";
       }
 	std::endl(std::cout);
    }
@@ -45,6 +46,7 @@ int gobang_init(int sockfd, int argc, char* args[])
 
    static const struct option opts[] = {
 	{"size", required_argument, NULL, 's'},
+	{"level", required_argument, NULL, 'l'},
 	{"host", required_argument, NULL, 'h'},
 	{NULL, 0, NULL, 0}
    };
@@ -52,6 +54,7 @@ int gobang_init(int sockfd, int argc, char* args[])
    int rc = 0;
    int size = 0;
    int num = 0;
+   int level = 0;
 
    struct client_info info;
    memset(&info, 0, sizeof(info));
@@ -59,21 +62,23 @@ int gobang_init(int sockfd, int argc, char* args[])
    memset(&game, 0, sizeof(game));
 
    for(;;){
-	rc = getopt_long(argc,args,"s:h:",opts,NULL);
+	rc = getopt_long(argc,args,"s:h:l:",opts,NULL);
 	if(-1 == rc) break;
 	switch(rc){
 	   case 's':size = atoi(optarg); break;
+	   case 'l':level = atoi(optarg); break;
 	   case 'h':break;
 	   case '?':break;
 	   default:break;
 	}
    }
-   if(0 == size) return -1;
+   if(0 == size || 0 == level) return -1;
 
    strncpy(info.cmd,"init",sizeof("init"));
 
    //std::cout<<"info.cmd = "<<info.cmd<<std::endl;
    info.info.size = size;
+   info.info.level = level;
 
    if(-1 == send(sockfd,(void*)&info,sizeof(info),0)){
 	std::cout<<"send error!"<<std::endl;

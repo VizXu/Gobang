@@ -8,7 +8,8 @@
 #include <list>
 #include <vector>
 
-#include"boardposition.h"
+#include "boardposition.h"
+#include "judgesituation.h"
 
 typedef struct{
       board_position position;
@@ -46,11 +47,15 @@ private:
    std::vector<position_score_info> pos_score_info;
    std::vector<board_position> empty_position_score_results;
    analysis_result analysis_result_position;
+private:
+   JudgeWin* judgewin_ai;
 public:
    AI_core(){
      srand(time(NULL));
      position_suggest.x_pos = BOARD_SIZE/2;
      position_suggest.y_pos = BOARD_SIZE/2;
+     
+     this->judgewin_ai = new JudgeWin;
 
      this->alys_rlt.direction = 0;
      this->alys_rlt.max_length = 0;

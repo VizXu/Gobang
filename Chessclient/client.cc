@@ -19,7 +19,7 @@ extern int gobang_set(int sockfd, int argc,char* args[]);
 void usage()
 {
   std::cout<<"usage:    "<<std::endl;
-  std::cout<<"ChessClient init --host(-h) [127.0.0.1] <--port(-p) 80> --size(-s) [10]"<<std::endl;
+  std::cout<<"ChessClient init --host(-h) [127.0.0.1] <--port(-p) 80> --size(-s) [10] --level(-l) [1-3]"<<std::endl;
   std::cout<<"ChessClient set  --host(-h) [127.0.0.1] <--port(-p) 80> --xpos(-x) [5] --ypos(-y) [4]"<<std::endl;
   std::cout<<"ChessClient get  --host(-h) [127.0.0.1] <--port(-p) 80>"<<std::endl;
 }
@@ -125,6 +125,7 @@ int main(int argc, char* args[])
 	static const struct option opts[] = {
 		{ "host",     required_argument, NULL, 'h' },
 		{ "size",     required_argument, NULL, 's' },
+		{ "level",    required_argument, NULL, 'l' },
 		{ "xpos",     required_argument, NULL, 'x' },
 		{ "ypos",     required_argument, NULL, 'y' },
 		{ "port",     optional_argument, NULL, 'p' },
@@ -141,7 +142,7 @@ int main(int argc, char* args[])
 	memset(&server, 0, sizeof(server));
 	
 	for(;;){
-	   results = getopt_long(argc,args,"h:p::s:x:y:",opts,NULL);	
+	   results = getopt_long(argc,args,"h:p::s:x:y:l:",opts,NULL);	
 	   if(-1 == results){
 		break;	
 	   }

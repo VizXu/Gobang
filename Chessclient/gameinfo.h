@@ -34,3 +34,4 @@ struct game_info{
 };
 
 #endif //gameinfo.h
+

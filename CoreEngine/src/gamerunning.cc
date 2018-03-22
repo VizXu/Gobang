@@ -37,7 +37,7 @@ int recvInfo(int sockfd,int xpos,int ypos,char player,int steps)
 int handle_init(struct client_info& info, struct game_info& game)
 {
 	ChessboardPattern* pattern = ChessboardPattern::getPattern();
-	pattern->initGame(BOARD_SIZE);
+	pattern->initGame(BOARD_SIZE,info.info.level);
 	Chessboard board = pattern->getChessboard();
 	game.status = 0;
 	game.step = pattern->getGameStep();
@@ -51,7 +51,15 @@ int handle_set(struct client_info& info, struct game_info& game)
 {
 	struct game_status gameStatus;
 	ChessboardPattern* pattern = ChessboardPattern::getPattern();
-	gameStatus = pattern->gameRunning(info);
+
+	gameStatus = pattern->gameRunning(info);	
+/*	switch(info.info.level){
+	    case 1:   gameStatus = pattern->gameRunningLevel1(info);break;
+	    case 2:   gameStatus = pattern->gameRunningLevel1(info);break;
+	    case 3:   gameStatus = pattern->gameRunningLevel1(info);break;
+	    defulat:  gameStatus = pattern->gameRunningLevel1(info);break;
+	}
+*/
 	Chessboard board = pattern->getChessboard();
         game.status = 0;
         game.step = pattern->getGameStep();
@@ -60,7 +68,7 @@ int handle_set(struct client_info& info, struct game_info& game)
 return 0;
 }
 
-int handle_get(int sockfd, struct client_info& info, struct game_info& game)
+int handle_get(struct client_info& info, struct game_info& game)
 {
 	struct game_status gameStatus;
 	ChessboardPattern* pattern = ChessboardPattern::getPattern();
@@ -101,7 +109,7 @@ int handle_process(int sockfd)
 	   rc = handle_set(c_info,game);
 	}
 	else if(!strncmp(cmd,"get",sizeof("get"))){
-	   rc = handle_get(sockfd, c_info,game);
+	   rc = handle_get(c_info,game);
 	}
 	else{
 	   rc = -1;
