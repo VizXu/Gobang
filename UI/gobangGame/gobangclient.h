@@ -2,6 +2,7 @@
 #define GOBANGCLIENT_H
 
 #include <QProcess>
+#include <QStringList>
 #include "debug.h"
 #include "gameinfo.h"
 
@@ -9,12 +10,15 @@ class gobangClient
 {
 private:
     QProcess* clientProcess;
-    gameinfo info;
+    ChessboardInfo statusinfo;
+    QStringList chessboard;
+    QStringList boardInfo;
     debug bug_log;
 public:
     gobangClient();
     ~gobangClient();
 public:
+    QStringList getChessboardInfo() const;
     void handleRecv(const QString& cmd);
     void clientGet(const char* _ip);
 public slots:

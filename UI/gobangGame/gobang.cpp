@@ -10,6 +10,12 @@ gobang::~gobang()
 {
 }
 
+QStringList gobang::getChessboardInfo() const
+{
+    QStringList info = this->g_client->getChessboardInfo();
+return info;
+}
+
 void gobang::initGame(int _size, int _level)
 {
     this->g_client->clientInit(this->ip,_level,_size);

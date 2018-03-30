@@ -15,6 +15,7 @@
 #include <QVBoxLayout>
 #include <QComboBox>
 #include <QImage>
+#include <QLabel>
 #include <QPixmap>
 #include "gobang.h"
 #include "gobangclient.h"
@@ -32,6 +33,7 @@ private:
     QPainter* paint;
     QPoint* point1;
     QWidget* centerWidget;
+    QLabel* label;
     QWidget* image;
     QComboBox* level;
     QPushButton* initGame;
@@ -44,7 +46,8 @@ private:
 signals:
     void setChessman(QPoint point);
 public slots:
-    void flashChessboard(ChessboardInfo &info);
+    void flashChessboard(QStringList boardInfo);
+    void startGame();
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();

@@ -7,6 +7,8 @@ void MainWindow::initLayout(QWidget *widget)
 {
     QVBoxLayout* vLayout = new QVBoxLayout;
     QHBoxLayout* hLayout = new QHBoxLayout;
+    QHBoxLayout* levelLayout = new QHBoxLayout;
+    QHBoxLayout* startLayout = new QHBoxLayout;
     QHBoxLayout* cLayout = new QHBoxLayout;
     this->image = new QWidget;
 
@@ -22,8 +24,12 @@ void MainWindow::initLayout(QWidget *widget)
 
     this->image->setPalette(pal);
 
-    hLayout->addWidget(this->initGame);
-    hLayout->addWidget(this->level);
+    startLayout->addWidget(this->initGame);
+    levelLayout->addWidget(this->label);
+    levelLayout->addWidget(this->level);
+
+    hLayout->addLayout(startLayout);
+    hLayout->addLayout(levelLayout);
     cLayout->addWidget(this->image);
     vLayout->addLayout(hLayout);
     vLayout->addLayout(cLayout);
@@ -48,16 +54,32 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void MainWindow::flashChessboard(ChessboardInfo &info)
+void MainWindow::flashChessboard(QStringList boardInfo)
 {
+    qDebug()<<"flash chessboard";
+    qDebug()<<"info size = "<<boardInfo.size();
+    for(int i = 0; i < boardInfo.size(); i++){
+        qDebug()<<"flash line "<<i<<" = "<<boardInfo.at(i);
+    }
     //if()
+}
+
+void MainWindow::startGame()
+{
+    this->game->initGame(10,1);
+    this->flashChessboard(this->game->getChessboardInfo());
 }
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     this->initUI();
-    this->initGame = new QPushButton("start game");
+    this->initGame = new QPushButton("Start game");
+
+    connect(this->initGame,SIGNAL(clicked()),this,SLOT(startGame()));
+
+    this->label = new QLabel("Select level:");
+    this->label->setAlignment(Qt::AlignRight);
     this->level = new QComboBox;
     this->chessboard = new QPixmap;
     if(!this->chessboard->load("./timg.jpg")){
@@ -76,6 +98,10 @@ MainWindow::~MainWindow()
     delete this->desktopWindow;
     delete this->game;
     delete this->client;
+    delete this->level;
+    delete this->chessboard;
+    delete this->centerWidget;
+    delete this->image;
 }
 
 void MainWindow::initUI()
@@ -91,6 +117,4 @@ void MainWindow::initUI()
     this->move(this->position);
     this->paint = new QPainter;
     this->point1 = new QPoint;
-
-    //game->initGame(10,1);
 }

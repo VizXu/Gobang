@@ -59,9 +59,24 @@ void gameinfo::setStatus(int _status)
     this->status = _status;
 }
 
+void gameinfo::setStep(int _step)
+{
+    this->steps = _step;
+}
+
 int gameinfo::getStep() const
 {
     return this->steps;
+}
+
+void ChessboardInfo::setSize(int size)
+{
+    this->info.setSize(size);
+}
+
+void ChessboardInfo::setStep(int step)
+{
+    this->info.setStep(step);
 }
 
 int ChessboardInfo::getStep() const

@@ -24,6 +24,7 @@ public:
     void setLevel(int);
     int getStatus() const;
     void setStatus(int);
+    void setStep(int);
     int getStep() const;
 };
 
@@ -33,6 +34,8 @@ public:
     gameinfo info;
     char* chessboard;
 public:
+    void setSize(int size);
+    void setStep(int step);
     int getStep() const;
     int getSize() const;
     char* getChessboard() const;
