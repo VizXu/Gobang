@@ -8,7 +8,14 @@
 #include <QPen>
 #include <QBrush>
 #include <QMouseEvent>
+#include <QPushButton>
 #include <QDebug>
+#include <QLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QComboBox>
+#include <QImage>
+#include <QPixmap>
 #include "gobang.h"
 #include "gobangclient.h"
 
@@ -24,9 +31,20 @@ private:
 private:
     QPainter* paint;
     QPoint* point1;
+    QWidget* centerWidget;
+    QWidget* image;
+    QComboBox* level;
+    QPushButton* initGame;
+    QPixmap* chessboard;
+private:
+    void initLayout(QWidget* widget);
 private:
     void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent * e);
+signals:
+    void setChessman(QPoint point);
+public slots:
+    void flashChessboard(ChessboardInfo &info);
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();

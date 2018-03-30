@@ -1,4 +1,5 @@
 #include "gameinfo.h"
+#include <iostream>
 
 gameinfo::gameinfo()
 {
@@ -40,12 +41,12 @@ void gameinfo::setSize(int _size)
 
 int gameinfo::getLevel() const
 {
-    return this->lelve;
+    return this->level;
 }
 
 void gameinfo::setLevel(int _level)
 {
-    this->lelve = _level;
+    this->level = _level;
 }
 
 int gameinfo::getStatus() const
@@ -58,3 +59,36 @@ void gameinfo::setStatus(int _status)
     this->status = _status;
 }
 
+int gameinfo::getStep() const
+{
+    return this->steps;
+}
+
+int ChessboardInfo::getStep() const
+{
+    return this->info.getStep();
+}
+
+int ChessboardInfo::getSize() const
+{
+    return this->info.getSize();
+}
+
+char* ChessboardInfo::getChessboard() const
+{
+    return this->chessboard ? this->chessboard:NULL;
+}
+
+bool ChessboardInfo::copyInfoFromClient(char *src, int dataSize)
+{
+    const int size = this->getSize();
+    if(!src || size != dataSize) return false;
+
+    this->chessboard = new char[size*size];
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
+            this->chessboard[i*size + j] = src[i*size + j];
+        }
+    }
+return true;
+}

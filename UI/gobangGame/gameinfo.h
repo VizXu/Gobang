@@ -7,8 +7,9 @@ private:
     int xpos;
     int ypos;
     int size;
-    int lelve;
+    int level;
     int status;
+    int steps;
 public:
     gameinfo();
     ~gameinfo();
@@ -23,6 +24,19 @@ public:
     void setLevel(int);
     int getStatus() const;
     void setStatus(int);
+    int getStep() const;
+};
+
+class ChessboardInfo
+{
+public:
+    gameinfo info;
+    char* chessboard;
+public:
+    int getStep() const;
+    int getSize() const;
+    char* getChessboard() const;
+    bool copyInfoFromClient(char* src, int dataSize);
 };
 
 #endif // GAMEINFO_H

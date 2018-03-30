@@ -3,6 +3,8 @@
 #include <QProcess>
 #include <QDebug>
 #include <QByteArray>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include <QString>
 
 int main(int argc, char *argv[])
@@ -15,7 +17,11 @@ int main(int argc, char *argv[])
 //    QByteArray b = p->readAll();
 //    qDebug()<<b.data();
 
+
+
+
     MainWindow gobangWindow;
+
     gobangWindow.show();
 
     return app.exec();

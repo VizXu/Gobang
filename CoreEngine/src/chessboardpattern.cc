@@ -64,10 +64,10 @@ int ChessboardPattern::getLevel() const
 struct game_status ChessboardPattern::gameRunning(const struct client_info& info)
 {
    switch(this->getLevel()){
-      case 1: return this->gameRunning(info);
-      case 2: return this->gameRunning(info);
-      case 3: return this->gameRunning(info);
-      default: return this->gameRunning(info);
+      case 1: return this->gameRunningLevel1(info);
+      case 2: return this->gameRunningLevel1(info);
+      case 3: return this->gameRunningLevel1(info);
+      default: return this->gameRunningLevel1(info);
    } 
 }
 

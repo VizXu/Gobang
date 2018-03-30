@@ -14,10 +14,14 @@ private:
 public:
     gobangClient();
     ~gobangClient();
+public:
+    void handleRecv(const QString& cmd);
+    void clientGet(const char* _ip);
 public slots:
-    void clinetInit(const char* _ip,int _level,int _size);
-    gameinfo clinetGet(const char* _ip);
-    void clinetSet(const char* _ip,gameinfo _info);
+    void clientInit(const char* _ip,int _level,int _size);
+    void clientSet(const char* _ip,gameinfo _info);
+signals:
+    void sendChessboard(ChessboardInfo info);
 };
 
 #endif // GOBANGCLIENT_H
