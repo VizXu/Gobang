@@ -73,6 +73,7 @@ void gobangClient::clientGet(const char* _ip)
     cmd += " --host ";
     cmd += _ip;
     bug_log.LOG(cmd);
+    this->handleRecv(cmd);
 }
 
 void gobangClient::clientSet(const char* _ip,gameinfo info)
@@ -87,4 +88,5 @@ void gobangClient::clientSet(const char* _ip,gameinfo info)
     cmd += " --ypos ";
     cmd += ypos;
     bug_log.LOG(cmd);
+    this->handleRecv(cmd);
 }
