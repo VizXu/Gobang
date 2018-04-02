@@ -29,6 +29,16 @@ private:
     QSize windowSize;
     QDesktopWidget* desktopWindow;
     QPoint position;
+    int chessboardSize;
+private:
+    //four positions
+    QPoint p1;//(34,62);
+    QPoint p2;//(684,62);
+    QPoint p3;//(34,508);
+    QPoint p4;//(684,508);
+    int lengthEachStepX;
+    int lengthEachStepY;
+    bool hasStarted;
 private:
     QPainter* paint;
     QPoint* point1;
@@ -38,16 +48,24 @@ private:
     QComboBox* level;
     QPushButton* initGame;
     QPixmap* chessboard;
+    QPoint lastPos;
 private:
     void initLayout(QWidget* widget);
+    QPoint filterSetPos(const QPoint& point);
+    void paintChessman(int x, int y, char chessman);
 private:
     void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent * e);
+public:
+    int getChessboardSize() const;
+    void setChessboardSize(int _size);
+    void changeEvent(QEvent * e);
 signals:
     void setChessman(QPoint point);
 public slots:
     void flashChessboard(QStringList boardInfo);
     void startGame();
+    void makeStep(QPoint point);
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();

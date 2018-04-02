@@ -3,6 +3,7 @@
 
 #include <QProcess>
 #include <QStringList>
+#include <QMessageBox>
 #include "debug.h"
 #include "gameinfo.h"
 

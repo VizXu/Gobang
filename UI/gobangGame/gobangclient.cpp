@@ -24,25 +24,43 @@ void gobangClient::handleRecv(const QString& cmd)
     QString boardinfo = this->clientProcess->readAllStandardOutput();
     QStringList info = boardinfo.split(QRegExp("[\n\r]"));
     QString action = cmd.split(" ").at(1);
+    QList<QString> tmp;
+    this->boardInfo.swap(tmp);
 
-    qDebug()<<info.size();
+    if(QString("send error!") == info.at(0)){
+       QMessageBox::information(NULL, "error!", "send error! the core server is down!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+       return;
+    }
 
     if(action == QString("init")){
-        QString commentLine = info.at(0);
+//        QString commentLine = info.at(0);
         QString eachLine;
         for(int i = 0; i < this->statusinfo.getSize(); i++){
             eachLine = info.at(i + 1);
-            qDebug()<<"line "<<i<<" = "<<eachLine.toStdString().c_str();
+//            qDebug()<<"line "<<i<<" = "<<eachLine.toStdString().c_str();
             this->boardInfo.push_back(eachLine);
         }
-        qDebug()<<"action = "<<action.toStdString().c_str();
-        qDebug()<<commentLine.toStdString().c_str();
+//        qDebug()<<"action = "<<action.toStdString().c_str();
+//        qDebug()<<commentLine.toStdString().c_str();
     }
     else if(action == QString("get")){
         qDebug()<<"action = "<<action.toStdString().c_str();
     }
     else if(action == QString("set")){
-        qDebug()<<"action = "<<action.toStdString().c_str();
+//        qDebug()<<"action = "<<action.toStdString().c_str();
+//        QString posLine = info.at(0);
+//        QString commentLine1 = info.at(1);
+//        QString commentLine2 = info.at(2);
+        QString eachLine;
+        for(int i = 0; i < this->statusinfo.getSize(); i++){
+            eachLine = info.at(i + 3);
+//            qDebug()<<"line "<<i<<" = "<<eachLine.toStdString().c_str();
+            this->boardInfo.push_back(eachLine);
+        }
+//        qDebug()<<"action = "<<action.toStdString().c_str();
+//        qDebug()<<"posLine = "<<posLine.toStdString().c_str();
+//        qDebug()<<"commentLine1 = "<<commentLine1.toStdString().c_str();
+//        qDebug()<<"commentLine2 = "<<commentLine2.toStdString().c_str();
     }
     else{
         qDebug()<<"action error!";
@@ -63,7 +81,6 @@ void gobangClient::clientInit(const char * _ip, int _level, int _size)
     cmd += " --level ";
     cmd += level;
     bug_log.LOG(cmd);
-    //this->clientProcess->start();
     this->handleRecv(cmd);
 }
 
