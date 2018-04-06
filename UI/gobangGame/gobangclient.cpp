@@ -49,8 +49,23 @@ void gobangClient::handleRecv(const QString& cmd)
     else if(action == QString("set")){
 //        qDebug()<<"action = "<<action.toStdString().c_str();
 //        QString posLine = info.at(0);
-//        QString commentLine1 = info.at(1);
-//        QString commentLine2 = info.at(2);
+//        QString setStatus = info.at(1);
+        QString gameStatus = info.at(2);
+
+        QString winnerStatus = gameStatus.split(',').at(1).split('=').at(1);
+        qDebug()<<"winnerStatus = "<<winnerStatus.toStdString().c_str();
+
+        if(winnerStatus.contains(QString("2"))){
+            QMessageBox::information(NULL, "Human Win!", "Congratulations! You won the game!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+            return;
+        }
+        else if(winnerStatus.contains(QString("1"))){
+            QMessageBox::information(NULL, "Computer Win!", "Sorry! You failed!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+            return;
+        }
+
+//        qDebug()<<posLine.toStdString().c_str();
+
         QString eachLine;
         for(int i = 0; i < this->statusinfo.getSize(); i++){
             eachLine = info.at(i + 3);

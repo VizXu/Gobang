@@ -73,12 +73,14 @@ struct game_status ChessboardPattern::getCurrentGameStatus() const
 
 struct game_status ChessboardPattern::gameRunning(const struct client_info& info)
 {
+   struct game_status status;
    switch(this->getLevel()){
-      case 1: return this->gameRunningLevel1(info);
-      case 2: return this->gameRunningLevel1(info);
-      case 3: return this->gameRunningLevel1(info);
-      default: return this->gameRunningLevel1(info);
+      case 1: status = this->gameRunningLevel1(info); break;
+      case 2: status = this->gameRunningLevel1(info); break;
+      case 3: status = this->gameRunningLevel1(info); break;
+      default: status = this->gameRunningLevel1(info); break;
    } 
+return status;
 }
 
 struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_info& info)
@@ -88,16 +90,21 @@ struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_in
     struct game_status gameStatus;
     board_position tmp_position;
 
-    this->human->change_state();//start   
-    if(!this->human->make_a_step_via_net(chessboard,xpos,ypos)){
-	gameStatus.status = INVALID_POS;
-	return std::move(gameStatus);
-    }
-    tmp_position = this->human->get_present_position();
     if(this->test_balance(chessboard)){
 	 gameStatus.status = BALANCE;
          return std::move(gameStatus);
     }
+
+    this->human->change_state();//start   
+    if(!this->human->make_a_step_via_net(chessboard,xpos,ypos)){
+	gameStatus.status = -10;//INVALID_POS;
+//	return std::move(gameStatus);
+    }
+    else{
+	gameStatus.status = STATUS_OK;
+    }
+
+    tmp_position = this->human->get_present_position();
     if(this->test_winner(chessboard,tmp_position,'&')){
 	 gameStatus.status = CLIENT_WIN;
          return std::move(gameStatus);

@@ -39,7 +39,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
 {
    s8 the_type = get_computer_chess_type();
 //   DEBUG_LOG("make_a_step,type = %c\n",the_type);
-   if(this->move_state  == start){
+//   if(this->move_state  == start){
       u32 lvr = this->level;
 
 //      DEBUG_LOG("level = %d\n",lvr);
@@ -52,7 +52,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
          this->last_position = this->present_position;
 	 this->present_position = this->suggest_position;
       }
-    }
+//    }
     else{
        return false;
     }
