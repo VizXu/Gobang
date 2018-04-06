@@ -9,6 +9,7 @@
 #define STATUS_OK      0
 #define COMPUTER_WIN   1
 #define CLIENT_WIN     2
+#define BALANCE	       3
 #define INVALID_POS    -1
 #define INLEGAL_POS    -2
 

@@ -39,7 +39,7 @@ int handle_init(struct client_info& info, struct game_info& game)
 	ChessboardPattern* pattern = ChessboardPattern::getPattern();
 	pattern->initGame(BOARD_SIZE,info.info.level);
 	Chessboard board = pattern->getChessboard();
-	game.status = 0;
+	game.status = STATUS_OK;
 	game.step = pattern->getGameStep();
 	game.size = BOARD_SIZE;	
 	transfer(board,game);
@@ -61,7 +61,7 @@ int handle_set(struct client_info& info, struct game_info& game)
 	}
 */
 	Chessboard board = pattern->getChessboard();
-        game.status = 0;
+        game.status = gameStatus.status;
         game.step = pattern->getGameStep();
         game.size = BOARD_SIZE;//info.info.size;
         transfer(board,game);
@@ -73,7 +73,7 @@ int handle_get(struct client_info& info, struct game_info& game)
 	struct game_status gameStatus;
 	ChessboardPattern* pattern = ChessboardPattern::getPattern();
 	Chessboard board = pattern->getChessboard();
-	game.status = 0;
+	game.status = pattern->getCurrentGameStatus().status;
 	game.step = pattern->getGameStep();
 	game.size = BOARD_SIZE;
 	transfer(board,game);

@@ -18,6 +18,7 @@ private:
     const char* humanName;
     int gameStep;
     int gamelevel;
+    struct game_status currentGameStatus;
     Chessboard chessboard;
     Computer* computer;
     Human* human;
@@ -25,8 +26,10 @@ private:
     Balance_Territory test_balance;
 public:
     static ChessboardPattern* getPattern();
+    struct game_status getCurrentGameStatus() const;
 private:
     ChessboardPattern(const char*,const char*);
+    void setCurrentGameStatus(struct game_status&);
     void setLevel(int);
     int getLevel() const;
     struct game_status&& gameRunningLevel1(const struct client_info& info); 

@@ -61,6 +61,16 @@ int ChessboardPattern::getLevel() const
    return this->gamelevel;
 }
 
+void ChessboardPattern::setCurrentGameStatus(struct game_status& status)
+{
+   this->currentGameStatus = status;
+}
+
+struct game_status ChessboardPattern::getCurrentGameStatus() const
+{
+  return this->currentGameStatus;
+}
+
 struct game_status ChessboardPattern::gameRunning(const struct client_info& info)
 {
    switch(this->getLevel()){
@@ -80,16 +90,16 @@ struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_in
 
     this->human->change_state();//start   
     if(!this->human->make_a_step_via_net(chessboard,xpos,ypos)){
-	gameStatus.status = -1;
+	gameStatus.status = INVALID_POS;
 	return std::move(gameStatus);
     }
     tmp_position = this->human->get_present_position();
     if(this->test_balance(chessboard)){
-	 gameStatus.status = 0;
+	 gameStatus.status = BALANCE;
          return std::move(gameStatus);
     }
     if(this->test_winner(chessboard,tmp_position,'&')){
-	 gameStatus.status = 1;
+	 gameStatus.status = CLIENT_WIN;
          return std::move(gameStatus);
     }
     this->human->change_state(); //stop
@@ -99,23 +109,29 @@ struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_in
 
     tmp_position = this->computer->get_present_position();
     if(this->test_winner(chessboard,tmp_position,'@')){
-	 gameStatus.status = 2;
+	 gameStatus.status = COMPUTER_WIN;
          return std::move(gameStatus);
     }
     this->computer->change_state(); //stop
     this->gameStep += 1;
+
+    this->setCurrentGameStatus(gameStatus);
 
 return std::move(gameStatus);
 }
 
 struct game_status&& ChessboardPattern::gameRunningLevel2(const struct client_info& info)
 {
-
+    struct game_status gameStatus;
+    this->setCurrentGameStatus(gameStatus);
+return std::move(gameStatus);
 }
 
 struct game_status&& ChessboardPattern::gameRunningLevel3(const struct client_info& info)
 {
-
+    struct game_status gameStatus;
+    this->setCurrentGameStatus(gameStatus);
+return std::move(gameStatus);
 }
 
 const Chessboard& ChessboardPattern::getChessboard() const
