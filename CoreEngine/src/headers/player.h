@@ -28,6 +28,8 @@ protected:
 protected:
    board_position suggest_position;
 public:
+   void initMoveState();
+public:
    virtual bool make_a_step(Chessboard&);
    virtual void analysis(Chessboard&,AI_core&,u32);
 public:

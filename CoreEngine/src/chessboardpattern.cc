@@ -43,6 +43,8 @@ void ChessboardPattern::initGame(int size,int level)
     this->gameStep = 0;
     this->setLevel(level);
     this->chessboard.init(size);
+    this->human->initMoveState();
+    this->computer->initMoveState();
 }
 
 int ChessboardPattern::getGameStep() const

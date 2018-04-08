@@ -44,3 +44,8 @@ string Player::get_player_name()
 {
   return this->player_name;
 }
+
+void Player::initMoveState()
+{
+  this->move_state = stop;
+}

@@ -14,12 +14,14 @@ private:
     ChessboardInfo statusinfo;
     QStringList chessboard;
     QStringList boardInfo;
+    QStringList originalInfo;
     debug bug_log;
 public:
     gobangClient();
     ~gobangClient();
 public:
-    QStringList getChessboardInfo() const;
+    QStringList getChessboardInfo(bool isOriginal = false);
+    void initBoardInfo();
     void handleRecv(const QString& cmd);
     void clientGet(const char* _ip);
 public slots:
