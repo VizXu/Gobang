@@ -12,9 +12,25 @@ gobangClient::~gobangClient()
     delete this->clientProcess;
 }
 
-QStringList gobangClient::getChessboardInfo() const
+QStringList gobangClient::getChessboardInfo(bool isOriginal)
 {
+    if(isOriginal){
+        this->initBoardInfo();
+        return this->originalInfo;
+    }
     return this->boardInfo;
+}
+
+void gobangClient::initBoardInfo()
+{
+    QString eachLine;
+    QStringList tmp;
+    this->originalInfo.swap(tmp);
+    for(int i = 0; i < this->boardInfo.size(); i++){
+        eachLine = this->boardInfo.at(i);
+        eachLine.replace(QChar('&'),QChar('+'));
+        this->originalInfo.push_back(eachLine);
+    }
 }
 
 void gobangClient::handleRecv(const QString& cmd)

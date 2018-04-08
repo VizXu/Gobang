@@ -12,7 +12,7 @@ public:
     gobang(gobangClient* client);
     ~gobang();
 public:
-    QStringList getChessboardInfo() const;
+    QStringList getChessboardInfo(bool isOriginal = false) const;
     void initGame(int _size,int _level);
     gameinfo getGameInfo() const;
     void setPosition(int _x, int _y);
