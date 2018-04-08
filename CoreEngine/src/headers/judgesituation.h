@@ -200,6 +200,7 @@ public:
    char whois_winner() const;
 private:
    int transferIndex(int,int,int);
+   void rotate(int);
    void rotate0(s8 originBoard[][BOARD_SIZE]);
    void rotate90(s8 originBoard[][BOARD_SIZE]);
    void rotate180(s8 originBoard[][BOARD_SIZE]);
@@ -207,9 +208,9 @@ private:
 
 private:
    bool won_the_game(char) const;
-   Chessmen_info* scan_analysis_chessmen(char) const;
+   Chessmen_info* scan_analysis_chessmen(char);
    void analysis_for_each_direction(char chessman,s8 temp[][BOARD_SIZE],Chessmen_info* info,int rotate);
-   void analysis_ilives(Chessmen_info*, int, int, int) const;
+   void analysis_ilives(Chessmen_info*, int, int, int);
 };
 
 class JudgeSituation

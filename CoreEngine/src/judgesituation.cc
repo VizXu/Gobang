@@ -115,7 +115,7 @@ void JudgeWin::copy_chessboard(const Chessboard& chessboard)
     }
 }
 
-void JudgeWin::analysis_ilives(Chessmen_info* info, int level, int index, int direction) const
+void JudgeWin::analysis_ilives(Chessmen_info* info, int level, int index, int direction)
 {
 	switch(level){
 	   case IHAS_WON:info->ihas_won[index]->set(index,direction);break; 
@@ -127,6 +127,22 @@ void JudgeWin::analysis_ilives(Chessmen_info* info, int level, int index, int di
 	   case ISLEEP2:info->isleep2[index]->set(index,direction);break;
 	   default:break; 
 	}	
+}
+
+void JudgeWin::rotate(int r)
+{
+	if(ROTATE0 == r){
+		rotate0(this->board_for_judge);
+	}
+	else if(ROTATE90 == r){
+		rotate90(this->board_for_judge);
+	}
+	else if(ROTATE180 == r){
+		rotate180(this->board_for_judge);
+	}
+	else if(ROTATE270 == r){
+		rotate270(this->board_for_judge);
+	}
 }
 
 void JudgeWin::rotate0(s8 originBoard[][BOARD_SIZE])
@@ -289,10 +305,19 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 
 }
 
-Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman) const
+Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman)
 {
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8] = { 0 };
    Chessmen_info* info = new Chessmen_info();
+
+   this->rotate(ROTATE0);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE0);
+   this->rotate(ROTATE90);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE90);
+   this->rotate(ROTATE180);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE180);
+   this->rotate(ROTATE270);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE270);
    
 return info;
 }
