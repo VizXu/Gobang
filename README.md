@@ -1,4 +1,4 @@
-# Gobang 
+# Gobang Introduction 
 
 Gobang is an athletic chess game, which players can set chessman in an empty site of chessboard each other step by step and one wins the game until he has five chessman connected that being a line. 
 
@@ -9,13 +9,7 @@ As a coding-lover and AI-lover,I use spare time to develop a gobang game AI engi
 The server codes is in GobangGame/CoreEngine/src/ and client code is in GobangGame/CoreEngine/Client/, one can download the source code and compile with **"make"** instruction. The client side is developed by character interface runs ubuntu OS, GUI developing can use these codes. Anyone has the authority to download the source code and modify it,but I also do not take the responsibility to any lost made by the code.
 
 
-
-
-
 ---
-##### 2017-8 to 2018-4
-- add UI
-
 ##### 2016-8 to 2017-7
 
 - add level 2 AI algorithm 
@@ -36,3 +30,34 @@ The server codes is in GobangGame/CoreEngine/src/ and client code is in GobangGa
 - add eveluation function method to update AI 
 
 - add the autoconf tools
+
+##### 2017-8 to 2018-4
+- add UI
+
+## How to use it
+
+-compile
+
+	I.   compile CoreEngine
+		cd ~/CoreEngine/src/ && make
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/1.png)
+
+	II.  compile Chessclient
+		cd ~/Chessclient/ && make
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/3.png)
+
+	III. compile UI
+		cd ~/UI/ && qmake && make
+
+-usage
+	I.   run gobang daemon
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/2.png)
+
+	II.  cp ChessClient to /usr/bin
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/4.png)
+
+	III. start the game, first select level to be 1 and push the "Start game" button
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/5.png)
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/6.png)
+
+
