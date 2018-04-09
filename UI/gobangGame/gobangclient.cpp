@@ -60,7 +60,7 @@ void gobangClient::handleRecv(const QString& cmd)
 //        qDebug()<<commentLine.toStdString().c_str();
     }
     else if(action == QString("get")){
-        qDebug()<<"action = "<<action.toStdString().c_str();
+        //qDebug()<<"action = "<<action.toStdString().c_str();
     }
     else if(action == QString("set")){
 //        qDebug()<<"action = "<<action.toStdString().c_str();
@@ -69,7 +69,7 @@ void gobangClient::handleRecv(const QString& cmd)
         QString gameStatus = info.at(2);
 
         QString winnerStatus = gameStatus.split(',').at(1).split('=').at(1);
-        qDebug()<<"winnerStatus = "<<winnerStatus.toStdString().c_str();
+        //qDebug()<<"winnerStatus = "<<winnerStatus.toStdString().c_str();
 
         if(winnerStatus.contains(QString("2"))){
             QMessageBox::information(NULL, "Human Win!", "Congratulations! You won the game!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);

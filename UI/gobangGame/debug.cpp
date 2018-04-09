@@ -10,6 +10,6 @@ debug::~debug()
 
 void debug::LOG(QString& s) const
 {
-    qDebug()<<s.toStdString().data();
+    //qDebug()<<s.toStdString().data();
 }
 
