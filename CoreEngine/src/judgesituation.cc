@@ -23,6 +23,11 @@ void Info::set_xpos(int xpos)
    this->x_pos = xpos;
 };
 
+void Info::set_index(int index)
+{
+   this->index = index;
+};
+
 void Info::set_ypos(int ypos) 
 {
    this->y_pos = ypos;
@@ -42,6 +47,12 @@ void Info::set(int xpos, int ypos, int direction)
 {
    this->set_xpos(xpos);
    this->set_ypos(ypos);
+   this->set_direction(direction);
+}
+
+void Info::set(int index, int direction)
+{
+   this->set_index(index);
    this->set_direction(direction);
 }
 
@@ -104,122 +115,210 @@ void JudgeWin::copy_chessboard(const Chessboard& chessboard)
     }
 }
 
-void JudgeWin::analysis_ilives(Chessmen_info* info, int level, int i, int j, int direction) const
+void JudgeWin::analysis_ilives(Chessmen_info* info, int level, int index, int direction)
 {
 	switch(level){
-	   case IHAS_WON:info->ihas_won[i*BOARD_SIZE+j]->set(i,j,direction);break; 
-	   case ILIVE4:info->ilive4[i*BOARD_SIZE+j]->set(i,j,direction);break; 
-	   case ILIVE4HEAP:info->ilive4heap[i*BOARD_SIZE+j]->set(i,j,direction);break; 
-	   case ILIVE3:info->ilive3[i*BOARD_SIZE+j]->set(i,j,direction);break; 
-	   case ISLEEP3:info->isleep3[i*BOARD_SIZE+j]->set(i,j,direction);break; 
-	   case ILIVE2:info->ilive2[i*BOARD_SIZE+j]->set(i,j,direction);break; 
-	   case ISLEEP2:info->isleep2[i*BOARD_SIZE+j]->set(i,j,direction);break;
+	   case IHAS_WON:info->ihas_won[index]->set(index,direction);break; 
+	   case ILIVE4:info->ilive4[index]->set(index,direction);break; 
+	   case ILIVE4HEAP:info->ilive4heap[index]->set(index,direction);break; 
+	   case ILIVE3:info->ilive3[index]->set(index,direction);break; 
+	   case ISLEEP3:info->isleep3[index]->set(index,direction);break; 
+	   case ILIVE2:info->ilive2[index]->set(index,direction);break; 
+	   case ISLEEP2:info->isleep2[index]->set(index,direction);break;
 	   default:break; 
 	}	
 }
 
-Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman) const
+void JudgeWin::rotate(int r)
 {
-   int x_tmp;
-   int y_tmp;
+	if(ROTATE0 == r){
+		rotate0(this->board_for_judge);
+	}
+	else if(ROTATE90 == r){
+		rotate90(this->board_for_judge);
+	}
+	else if(ROTATE180 == r){
+		rotate180(this->board_for_judge);
+	}
+	else if(ROTATE270 == r){
+		rotate270(this->board_for_judge);
+	}
+}
+
+void JudgeWin::rotate0(s8 originBoard[][BOARD_SIZE])
+{
+	for(int i = 0; i < BOARD_SIZE; i++){
+		for(int j = 0; j < BOARD_SIZE; j++){
+			this->each_direction_board_for_judge[i][j] = originBoard[i][j];
+		}
+	}	
+}
+
+void JudgeWin::rotate90(s8 originBoard[][BOARD_SIZE])
+{
+	for(int i = 0; i < BOARD_SIZE; i++){
+		for(int j = 0; j < BOARD_SIZE; j++){
+			this->each_direction_board_for_judge[i][j] = originBoard[i][j];
+		}
+	}	
+}
+
+void JudgeWin::rotate180(s8 originBoard[][BOARD_SIZE])
+{
+	for(int i = 0; i < BOARD_SIZE; i++){
+		for(int j = 0; j < BOARD_SIZE; j++){
+			this->each_direction_board_for_judge[i][j] = originBoard[i][j];
+		}
+	}	
+}
+
+void JudgeWin::rotate270(s8 originBoard[][BOARD_SIZE])
+{
+	for(int i = 0; i < BOARD_SIZE; i++){
+		for(int j = 0; j < BOARD_SIZE; j++){
+			this->each_direction_board_for_judge[i][j] = originBoard[i][j];
+		}
+	}	
+}
+
+int JudgeWin::transferIndex(int i, int j, int rotate)
+{
+	int index = -1;
+	if(ROTATE0 == rotate){
+		index = i*BOARD_SIZE + j;
+	}
+	else if(ROTATE90 == rotate){  //90
+
+	}
+	else if(ROTATE180 == rotate){  //180
+
+	}
+	else if(ROTATE270 == rotate){  //270
+
+	}
+return index;
+}
+
+void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE], Chessmen_info * info,int rotate)
+{
+	int x_tmp;
+	int y_tmp;
+	int index = -1;
+
+	for(int i = 0; i < BOARD_SIZE; i++){
+	 for(int j = 0; j < BOARD_SIZE; j++){
+		 index = this->transferIndex(i, j, rotate);
+		 if(temp[i][j] == chessman){
+		 // -x direction(up)
+		 int k = 0;
+		 int p = 0;
+		 int q = 0;
+		 int r = 0;
+		 for(k = i; k >= 0; k--){
+			if(temp[k][j] == chessman) info->chessmen_of_each_direction[i][j][rotate] += 1;
+			else break;
+		 }
+	
+		 switch(info->chessmen_of_each_direction[i][j][rotate]){
+			case 5:{
+			 this->analysis_ilives(info,IHAS_WON,index,rotate);
+			}
+			break;
+			case 4:{
+			 this->analysis_ilives(info,ILIVE4,index,rotate);
+			}
+			break;
+			case 3:{
+			 p = k + 1;
+			 if(p <= BOARD_SIZE && temp[p][j] == chessman){
+				 this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+			 }
+	
+			 this->analysis_ilives(info,ILIVE3,index,rotate);
+			}
+			break;
+			case 2:{
+			 p = k + 1;
+			 q = k + 2;
+			 if(p <= BOARD_SIZE && temp[p][j] == chessman){
+				if(q <= BOARD_SIZE && temp[q][j] == chessman){
+				 this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+				}
+				else{
+				 this->analysis_ilives(info,ISLEEP3,index,rotate);
+				}
+			 }
+			 this->analysis_ilives(info,ILIVE2,index,rotate);
+			}
+			break;
+			case 1:{
+			 p = k -1;
+			 q = k -2;
+			 r = k -3;	 
+			}
+			break;
+			default:break;
+		 }
+	
+		 /* +y direction(right)
+		 		 for(k = j; k < BOARD_SIZE; k++){
+					if(board_for_judge[i][k] == chessman) info->chessmen_of_each_direction[i][j][1] += 1;
+					else break;
+				 }
+		 // +x direction(down)
+				 for(k = i; k < BOARD_SIZE; k++){
+					if(board_for_judge[k][j] == chessman) info->chessmen_of_each_direction[i][j][2] += 1;
+					else break;
+				 }
+		 // -y direction(left)
+				 for(k = j; k >= 0; k--){
+					if(board_for_judge[i][j] == chessman) info->chessmen_of_each_direction[i][j][3] += 1;
+					else break;
+				 }
+		 // -x|+y direction(up|right)
+				 for(x_tmp = i, y_tmp = j; x_tmp >= 0 && y_tmp < BOARD_SIZE; x_tmp--,y_tmp++){
+					if(board_for_judge[x_tmp][y_tmp] == chessman) info->chessmen_of_each_direction[i][j][4] += 1;
+					else break;
+				 }
+		 // +x|+y direction(right|down)
+				 for(x_tmp = i, y_tmp = j; x_tmp < BOARD_SIZE && y_tmp < BOARD_SIZE; x_tmp++,y_tmp++){
+					if(board_for_judge[x_tmp][y_tmp] == chessman) info->chessmen_of_each_direction[i][j][5] += 1;
+					else break;
+				 }
+		 // -y|+x direction(left|down)
+				 for(x_tmp = i, y_tmp = j; x_tmp < BOARD_SIZE && y_tmp > 0; x_tmp++,y_tmp--){
+					if(board_for_judge[x_tmp][y_tmp] == chessman) info->chessmen_of_each_direction[i][j][6] += 1;
+					else break;
+				 }
+		 // -x|-y direction(left|up) 
+				 for(x_tmp = i, y_tmp = j; x_tmp >= 0 && y_tmp >= 0; x_tmp--,y_tmp--){
+					if(board_for_judge[x_tmp][y_tmp] == chessman) info->chessmen_of_each_direction[i][j][7] += 1;
+					else break;
+				 }
+		 */
+		 }
+		 else{
+		 continue;
+		 }
+	 }
+	}
+
+}
+
+Chessmen_info* JudgeWin::scan_analysis_chessmen(char chessman)
+{
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8] = { 0 };
    Chessmen_info* info = new Chessmen_info();
 
-   for(int i = 0; i < BOARD_SIZE; i++){
-	for(int j = 0; j < BOARD_SIZE; j++){
-	    if(board_for_judge[i][j] == chessman){
-		// -x direction(up)
-		int k = 0;
-		int p = 0;
-		int q = 0;
-		int r = 0;
-		for(k = i; k >= 0; k--){
-		   if(board_for_judge[k][j] == chessman) info->chessmen_of_each_direction[i][j][0] += 1;
-		   else break;
-		}
-
-		switch(info->chessmen_of_each_direction[i][j][0]){
-		   case 5:{
-			this->analysis_ilives(info,IHAS_WON,i,j,0);
-		   }
-		   break;
-		   case 4:{
-			this->analysis_ilives(info,ILIVE4,i,j,0);
-		   }
-		   break;
-		   case 3:{
-			p = k - 1;
-			if(p >= 0 && board_for_judge[p][j] == chessman){
-				this->analysis_ilives(info,ILIVE4HEAP,i,j,0);
-			}
-
-			this->analysis_ilives(info,ILIVE3,i,j,0);
-		   }
-		   break;
-		   case 2:{
-			p = k -1;
-			q = k -2;
-			if(p >= 0 && board_for_judge[p][j] == chessman){
-			   if(q >= 0 && board_for_judge[q][j] == chessman){
-				this->analysis_ilives(info,ILIVE4HEAP,i,j,0);
-			   }
-			   else{
-				this->analysis_ilives(info,ISLEEP3,i,j,0);
-			   }
-			}
-			this->analysis_ilives(info,ILIVE2,i,j,0);
-		   }
-		   break;
-		   case 1:{
-			p = k -1;
-			q = k -2;
-			r = k -3;	
-		   }
-		   break;
-		   default:break;
-		}
-
-		// +y direction(right)
-                for(k = j; k < BOARD_SIZE; k++){
-                   if(board_for_judge[i][k] == chessman) chessmen_of_each_direction[i][j][1] += 1;
-                   else break;
-                }
-		// +x direction(down)
-                for(k = i; k < BOARD_SIZE; k++){
-                   if(board_for_judge[k][j] == chessman) chessmen_of_each_direction[i][j][2] += 1;
-                   else break;
-                }
-		// -y direction(left)
-                for(k = j; k >= 0; k--){
-                   if(board_for_judge[i][j] == chessman) chessmen_of_each_direction[i][j][3] += 1;
-                   else break;
-                }
-		// -x|+y direction(up|right)
-                for(x_tmp = i, y_tmp = j; x_tmp >= 0 && y_tmp < BOARD_SIZE; x_tmp--,y_tmp++){
-                   if(board_for_judge[x_tmp][y_tmp] == chessman) chessmen_of_each_direction[i][j][4] += 1;
-                   else break;
-                }
-		// +x|+y direction(right|down)
-                for(x_tmp = i, y_tmp = j; x_tmp < BOARD_SIZE && y_tmp < BOARD_SIZE; x_tmp++,y_tmp++){
-                   if(board_for_judge[x_tmp][y_tmp] == chessman) chessmen_of_each_direction[i][j][5] += 1;
-                   else break;
-                }
-		// -y|+x direction(left|down)
-                for(x_tmp = i, y_tmp = j; x_tmp < BOARD_SIZE && y_tmp > 0; x_tmp++,y_tmp--){
-                   if(board_for_judge[x_tmp][y_tmp] == chessman) chessmen_of_each_direction[i][j][6] += 1;
-                   else break;
-                }
-		// -x|-y direction(left|up) 
-                for(x_tmp = i, y_tmp = j; x_tmp >= 0 && y_tmp >= 0; x_tmp--,y_tmp--){
-                   if(board_for_judge[x_tmp][y_tmp] == chessman) chessmen_of_each_direction[i][j][7] += 1;
-                   else break;
-                }
-	    }
-	    else{
-		continue;
-	    }
-	}
-   }
+   this->rotate(ROTATE0);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE0);
+   this->rotate(ROTATE90);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE90);
+   this->rotate(ROTATE180);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE180);
+   this->rotate(ROTATE270);
+   this->analysis_for_each_direction(chessman,this->each_direction_board_for_judge,info,ROTATE270);
+   
 return info;
 }
 
