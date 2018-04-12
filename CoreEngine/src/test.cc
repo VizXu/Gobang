@@ -226,9 +226,23 @@ void test_mode7()
 	Chessboard chessboard;
 
 	JudgeWin* judge = new JudgeWin;
+
+	Chessmen_info* info;
 	
 	rand_chessboard(chessboard);
+
+	judge->copy_chessboard(chessboard);
+
+	info = judge->scan_analysis_chessmen('&');
+
+	info->dumpiLivesInfo();
+
+//	judge->dumpIndex(ROTATE270);
+	
 	display_chessboard(chessboard);
+
+	delete info;
+	delete judge;
 return;
 }
 
@@ -248,7 +262,7 @@ int test(int argc, char* args[])
 {
 
    char result;
-   void (*fun)() = test_mode4;
+   void (*fun)() = test_mode7;
    int mode = 1;
 
    for(;;){

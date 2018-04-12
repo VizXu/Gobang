@@ -1,6 +1,7 @@
 #ifndef _JUDGESITUATION_
 #define _JUDGESITUATION_
 #include "chessboard.h"
+#include "chessboardinfo.h"
 
 #define TOTALPOSSIZE BOARD_SIZE*BOARD_SIZE
 
@@ -146,10 +147,13 @@ private:
    int y_pos;
    int index;
    int direction;
+   int flag;
 public:
-   Info(int _x = 0, int _y = 0, int _d = 0):x_pos(_x),y_pos(_y),direction(_d){}
+   Info(int _x = -1, int _y = -1, int _d = -1,int _f = 0):x_pos(_x),y_pos(_y),direction(_d),flag(_f){}
    ~Info(){}
 public:
+   void set_flag(int f);
+   int get_flag() const;
    int get_xpos() const;
    int get_ypos() const;
    int get_direction() const;
@@ -165,6 +169,7 @@ public:
 class Chessmen_info
 {
 private:
+   PosInfo getiHasWonInfo(int which) const;
 public:
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8];
    Info*   ihas_won[TOTALPOSSIZE];
@@ -184,6 +189,8 @@ public:
 public:
    Chessmen_info();
    ~Chessmen_info();
+public:
+	void dumpiLivesInfo() const;
 };
 
 class JudgeWin
@@ -212,9 +219,11 @@ private:
    bool won_the_game(char) const;
    void analysis_for_each_direction(char chessman,s8 temp[][BOARD_SIZE],Chessmen_info* info,int rotate);
    void analysis_ilives(Chessmen_info*, int, int, int);
+   char getOpesiteChessType(char c) const;
 public:
    Chessmen_info* scan_analysis_chessmen(char);
-
+public:
+   void dumpIndex(int);
 };
 
 class JudgeSituation

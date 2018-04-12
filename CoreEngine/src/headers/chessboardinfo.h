@@ -3,6 +3,23 @@
 
 #include "chessboard.h"
 
+class PosInfo
+{
+private:
+	int xpos;
+	int ypos;
+	int direction;
+	int flag;
+public:
+	explicit PosInfo(int x = -1, int y = -1,int dir = -1,int f = 0):xpos(x),ypos(y),direction(dir),flag(f){}
+	~PosInfo(){}
+public:
+	int getxPos() const;
+	int getyPos() const;
+	int getDirection() const;
+	int getFlag() const;
+};
+
 class chessboard_info
 {
 public:

@@ -9,20 +9,6 @@
 #include "chessboardinfo.h"
 
 class chessboard_info;
-/*class chessboard_info
-{
-public:
-   s8 info[BOARD_SIZE][BOARD_SIZE];
-public:
-   s8 get_chess_info(int i,int j){
-     return this->info[i][j];
-   }
-   void set_chess_info(int i,int j,s8 c){
-     this->info[i][j] = c;
-   }
-};
-*/
-//typedef s8 _chessboard_info[BOARD_SIZE][BOARD_SIZE];
 
 class Chessboard
 {
@@ -37,12 +23,10 @@ public:
       }
     }
     ~Chessboard(){}
-    //Chessboard(const Chessboard&) = delete;
     Chessboard& operator=(const Chessboard&) = delete;
     Chessboard& operator()(const Chessboard&) = delete;
 public:
     int store_chessboard_info(const std::string&,chessboard_info&);
-    //chessboard_info get_chessboard();
 private:
     void get_chessboard(chessboard_info&);
 private:
