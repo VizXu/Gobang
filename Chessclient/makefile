@@ -17,3 +17,6 @@ run.o : run.cc
 clean:
 	rm ./*.o 
 	rm ChessClient
+
+install:
+	cp ./ChessClient /usr/bin

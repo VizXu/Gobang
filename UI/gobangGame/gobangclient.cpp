@@ -56,6 +56,8 @@ void gobangClient::handleRecv(const QString& cmd)
 //            qDebug()<<"line "<<i<<" = "<<eachLine.toStdString().c_str();
             this->boardInfo.push_back(eachLine);
         }
+        QMessageBox::information(NULL, "Init the Game!", "Game Start!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        return;
 //        qDebug()<<"action = "<<action.toStdString().c_str();
 //        qDebug()<<commentLine.toStdString().c_str();
     }
