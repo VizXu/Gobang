@@ -10,15 +10,11 @@ class find_out;
 
 void AI_core::copy_board(const Chessboard& board)
 {
-//   if(this->is_copied_already) return;
-//   else{
-       for(int i = 0;i < BOARD_SIZE; i++){
-         for(int j = 0; j < BOARD_SIZE; j++){
-            this->core_board[i][j]= board.get_chess(i,j);
-     	 }
-      }
-//     this->is_copied_already = true;
-//   }
+   for(int i = 0;i < BOARD_SIZE; i++){
+     for(int j = 0; j < BOARD_SIZE; j++){
+        this->core_board[i][j]= board.get_chess(i,j);
+ 	 }
+  }
 }
 
 void AI_core::store_chess_info()

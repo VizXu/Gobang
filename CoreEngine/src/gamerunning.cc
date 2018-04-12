@@ -61,10 +61,11 @@ int handle_set(struct client_info& info, struct game_info& game)
 	}
 */
 	Chessboard board = pattern->getChessboard();
-        game.status = gameStatus.status;
-        game.step = pattern->getGameStep();
-        game.size = BOARD_SIZE;//info.info.size;
-        transfer(board,game);
+	
+    game.status = gameStatus.status;
+    game.step = pattern->getGameStep();
+    game.size = BOARD_SIZE;//info.info.size;
+    transfer(board,game);
 return 0;
 }
 

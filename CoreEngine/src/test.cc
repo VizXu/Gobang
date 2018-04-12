@@ -9,6 +9,7 @@
 #include "human.h"
 #include "testwinner.h"
 #include "storechessmanual.h"
+#include "judgesituation.h"
 
 #define MODE_2
 #if defined(MODE_2)
@@ -220,6 +221,17 @@ void test_mode6()
 return;
 }
 
+void test_mode7()
+{
+	Chessboard chessboard;
+
+	JudgeWin* judge = new JudgeWin;
+	
+	rand_chessboard(chessboard);
+	display_chessboard(chessboard);
+return;
+}
+
 void test_mode_for_Qt()
 {
   Chessboard chessboard;
@@ -236,41 +248,37 @@ int test(int argc, char* args[])
 {
 
    char result;
-   void (*fun)() = test_mode6;
+   void (*fun)() = test_mode4;
    int mode = 1;
 
    for(;;){
-	result = getopt(argc,args,"m:h");
-	if(-1 == result){
-		 break;
-	}
-	
-	switch(result){
-	   case 'm': 
-		if(!isdigit(atoi(optarg))){
-		   mode = atoi(optarg);
-		   printf("mode = %d\n",mode);
-		   switch(mode){
-			case 1: fun = test_mode1; break;
-			case 2: fun = test_mode2; break;
-			case 3: fun = test_mode3; break;
-			case 4: fun = test_mode4; break;
-			case 5: fun = test_mode5; break;
-			case 6: fun = test_mode6; break;
-			case 7: fun = test_mode_for_Qt; break;
-			default: fun = test_mode6; break;
-		   }
-
-		} break; 
-	   case 'h': printf("usage:goband -m [number]\n"); break;
-	   default:  printf("error...\n");break;
-	}
+		result = getopt(argc,args,"m:h");
+		if(-1 == result){
+			 break;
+		}
+		
+		switch(result){
+		   case 'm': 
+				if(!isdigit(atoi(optarg))){
+				   mode = atoi(optarg);
+				   printf("mode = %d\n",mode);
+				   switch(mode){
+						case 1: fun = test_mode1; break;
+						case 2: fun = test_mode2; break;
+						case 3: fun = test_mode3; break;
+						case 4: fun = test_mode4; break;
+						case 5: fun = test_mode5; break;
+						case 6: fun = test_mode6; break;
+						case 7: fun = test_mode_for_Qt; break;
+						default: fun = test_mode6; break;
+				   }
+				}break; 
+		   case 'h': printf("usage:gobang -m [number]\n"); break;
+		   default:  printf("error...\n");break;
+		}
    }
-   //Chessboard chessboard;
-   //AI_core ai_core;
-  fun();
-  #if defined(MODE_2)
-  // test_mode6();
-  #endif//mode2
+
+  	fun();
+
 return 0;
 }

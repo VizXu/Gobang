@@ -6,7 +6,7 @@ u32 Chessboard::scan_board() const
    for(int i = 0;i < BOARD_SIZE;i++){
      for(int j = 0; j < BOARD_SIZE; j++){
        if('+' == board[i][j]) 
-	 empty_site++;
+	   empty_site++;
        else continue;
      }
    }
@@ -28,9 +28,11 @@ bool Chessboard::is_board_empty() const
 
 bool Chessboard::is_site_empty(u32 x_pos,u32 y_pos) const
 {
-   if(x_pos > BOARD_SIZE || y_pos > BOARD_SIZE) return false;
-   if(this->board[x_pos][y_pos] == '+')return true;
-   else return false;
+   if(x_pos > BOARD_SIZE || y_pos > BOARD_SIZE || x_pos < 0 || y_pos < 0) return false;
+   if(this->board[x_pos][y_pos] == '+')
+   		return true;
+   else 
+   		return false;
 }
 
 bool Chessboard::set_chess(u32 x_pos,u32 y_pos,s8 chess_type)

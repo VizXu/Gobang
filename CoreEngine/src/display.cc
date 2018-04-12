@@ -5,10 +5,10 @@
 void display_chessboard(const Chessboard& board)
 {
   int s = 0;
-  for(int i = 0;i<BOARD_SIZE; i++){
-    for(int j = 0;j<BOARD_SIZE; j++){
+  for(int i = 0; i < BOARD_SIZE; i++){
+    for(int j = 0;j < BOARD_SIZE; j++){
       if(i == 0 && j == 0) {
-         for(;s<BOARD_SIZE;s++)
+         for(;s < BOARD_SIZE; s++)
          std::cout<<"   "<<s;
          std::cout<<std::endl;
       }

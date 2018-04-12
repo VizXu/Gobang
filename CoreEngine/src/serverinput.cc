@@ -2,19 +2,23 @@
 #include<arpa/inet.h>
 #include<netinet/in.h>
 #include<sys/types.h>
+#include<getopt.h>
 #include<unistd.h>
 #include<cstring>
 #include<iostream>
 
 #include "chessboardpattern.h"
 
+#define DEBUGMODE 0
+
 #define MAX_SOCK 20
 
 extern int handle_process(int);
 extern void display_chessboard(const Chessboard&);
 
+extern int test(int argc, char* args[]);
 
-int main(int argc,char* args[])
+int serverDeamon()
 {
     int num = 0;
     int server_fd = 0;
@@ -70,6 +74,15 @@ int main(int argc,char* args[])
 	}*/
 	close(client_fd);
     }
-return 0;
+
+}
+
+int main(int argc,char* args[])
+{
+	#if DEBUGMODE
+		return test(argc,args);
+	#else
+		return serverDeamon();
+	#endif
 }
 

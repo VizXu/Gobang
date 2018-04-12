@@ -99,17 +99,17 @@ struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_in
 
     this->human->change_state();//start   
     if(!this->human->make_a_step_via_net(chessboard,xpos,ypos)){
-	gameStatus.status = -10;//INVALID_POS;
-//	return std::move(gameStatus);
+		gameStatus.status = INVALID_POS;
+        return std::move(gameStatus);
     }
     else{
-	gameStatus.status = STATUS_OK;
+		gameStatus.status = STATUS_OK;
     }
 
     tmp_position = this->human->get_present_position();
     if(this->test_winner(chessboard,tmp_position,'&')){
-	 gameStatus.status = CLIENT_WIN;
-         return std::move(gameStatus);
+	 	gameStatus.status = CLIENT_WIN;
+        return std::move(gameStatus);
     }
     this->human->change_state(); //stop
 
@@ -118,8 +118,8 @@ struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_in
 
     tmp_position = this->computer->get_present_position();
     if(this->test_winner(chessboard,tmp_position,'@')){
-	 gameStatus.status = COMPUTER_WIN;
-         return std::move(gameStatus);
+	 	gameStatus.status = COMPUTER_WIN;
+        return std::move(gameStatus);
     }
     this->computer->change_state(); //stop
     this->gameStep += 1;

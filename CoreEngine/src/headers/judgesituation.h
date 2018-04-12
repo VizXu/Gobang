@@ -2,6 +2,8 @@
 #define _JUDGESITUATION_
 #include "chessboard.h"
 
+#define TOTALPOSSIZE BOARD_SIZE*BOARD_SIZE
+
 #define ROTATE0   0
 #define ROTATE90  2
 #define ROTATE180 4
@@ -165,13 +167,13 @@ class Chessmen_info
 private:
 public:
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8];
-   Info*   ihas_won[BOARD_SIZE*BOARD_SIZE];
-   Info*   ilive4[BOARD_SIZE*BOARD_SIZE];
-   Info*   ilive4heap[BOARD_SIZE*BOARD_SIZE];
-   Info*   ilive3[BOARD_SIZE*BOARD_SIZE];
-   Info*   isleep3[BOARD_SIZE*BOARD_SIZE];
-   Info*   ilive2[BOARD_SIZE*BOARD_SIZE];
-   Info*   isleep2[BOARD_SIZE*BOARD_SIZE];
+   Info*   ihas_won[TOTALPOSSIZE];
+   Info*   ilive4[TOTALPOSSIZE];
+   Info*   ilive4heap[TOTALPOSSIZE];
+   Info*   ilive3[TOTALPOSSIZE];
+   Info*   isleep3[TOTALPOSSIZE];
+   Info*   ilive2[TOTALPOSSIZE];
+   Info*   isleep2[TOTALPOSSIZE];
    static int IHAS_WON;
    static int ILIVE4;
    static int ILIVE4HEAP;
@@ -208,9 +210,11 @@ private:
 
 private:
    bool won_the_game(char) const;
-   Chessmen_info* scan_analysis_chessmen(char);
    void analysis_for_each_direction(char chessman,s8 temp[][BOARD_SIZE],Chessmen_info* info,int rotate);
    void analysis_ilives(Chessmen_info*, int, int, int);
+public:
+   Chessmen_info* scan_analysis_chessmen(char);
+
 };
 
 class JudgeSituation
