@@ -20,7 +20,7 @@ void MainWindow::initLayout(QWidget *widget)
 
     pal.setBrush(QPalette::Window,
             QBrush(this->chessboard->scaled(
-                this->size(),
+                this->chessboard->size(),
                 Qt::IgnoreAspectRatio,
                 Qt::SmoothTransformation)));
 
@@ -42,16 +42,14 @@ void MainWindow::initLayout(QWidget *widget)
 QPoint MainWindow::filterSetPos(const QPoint &point)
 {
     int size = this->getChessboardSize() - 1;
-//    qDebug()<<"div x = "<<this->lengthEachStepX;
-//    qDebug()<<"div y = "<<this->lengthEachStepY;
+
     int xPos = point.x() - this->p1.x();
     int yPos = point.y() - this->p1.y();
     double xStep = (double)xPos/(double)this->lengthEachStepX;
     double yStep = (double)yPos/(double)this->lengthEachStepY;
-//    qDebug()<<"xujiwei--->x = "<<xStep<<", y = "<<yStep;
-//    qDebug()<<"interger x = "<<round(xStep)<<", y = "<<round(yStep);
+
     QPoint retPoint((int)round(xStep),(int)round(yStep));
-//    qDebug()<<"retPoint x = "<<retPoint.x()<<", y = "<<retPoint.y();
+
     if(retPoint.x() > size || retPoint.x() < 0 || retPoint.y() < 0 || retPoint.y() > size){
             return QPoint(-1,-1);
     }
@@ -79,7 +77,7 @@ void MainWindow::paintChessman(int x, int y, char chessman)
     int xPos = this->p1.x() + (x)*this->lengthEachStepX;
     int yPos = this->p1.y() + (y)*this->lengthEachStepY;
 
-    chessmanPaint->drawEllipse(QPoint(xPos,yPos),14,14);
+    chessmanPaint->drawEllipse(QPoint(xPos,yPos),12,12);
     delete chessmanPaint;
 }
 
@@ -117,9 +115,7 @@ void MainWindow::setChessboardSize(int _size)
 
 void MainWindow::changeEvent(QEvent *e)
 {
-    //qDebug()<<"change Event...";
-    //this->game->setPosition(this->lastPos.y(),this->lastPos.x());
-    //QStringList tmp = this->game->getChessboardInfo(false);
+
     qDebug()<<"window state -->"<<int(this->windowState());
     //QFlags flag = QFlags();
     if(this->windowState() == Qt::WindowNoState)
@@ -160,7 +156,7 @@ void MainWindow::flashChessboard(QStringList boardInfo)
 
 void MainWindow::startGame()
 {
-    this->setChessboardSize(10);
+    this->setChessboardSize(15);
     this->game->initGame(this->getChessboardSize(),1);
     this->hasStarted = true;
     this->flashChessboard(this->game->getChessboardInfo(true));
@@ -189,19 +185,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->label = new QLabel("Select level:");
     this->label->setAlignment(Qt::AlignRight);
     this->level = new QComboBox;
-    this->chessboard = new QPixmap;
-    if(!this->chessboard->load("./timg.jpg")){
-        qDebug()<<"load image error!";
-    }
+
     this->level->addItem(QString("1"));
     this->level->addItem(QString("2"));
     this->level->addItem(QString("3"));
-    this->p1 = QPoint(34,62);
-    this->p2 = QPoint(684,62);
-    this->p3 = QPoint(34,508);
-    this->p4 = QPoint(684,508);
+    this->p1 = QPoint(26,58);
+    this->p2 = QPoint(446,58);
+    this->p3 = QPoint(26,478);
+    this->p4 = QPoint(446,478);
     this->lengthEachStepX = (this->p2.x() - this->p1.x())/14;
-    this->lengthEachStepY = (this->p3.y() - this->p1.y())/13;
+    this->lengthEachStepY = (this->p3.y() - this->p1.y())/14;
     this->centerWidget = new QWidget;
     this->setCentralWidget(this->centerWidget);
     this->initLayout(this->centerWidget);
@@ -224,7 +217,16 @@ void MainWindow::initUI()
     this->desktopWindow = QApplication::desktop();
     this->client = new gobangClient;
     this->game = new gobang(client);
-    this->windowSize = QSize(700,520);
+
+    this->chessboard = new QPixmap;
+    if(!this->chessboard->load("./timg.jpg")){
+        QMessageBox::information(NULL,"error!","load image failed!",
+                                 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        return;
+    }
+
+    this->windowSize.setHeight(this->chessboard->size().height() + 50);
+    this->windowSize.setWidth(this->chessboard->size().width() + 14);
     this->setMaximumSize(this->windowSize);
     this->setMinimumSize(this->windowSize);
     this->position = QPoint((this->desktopWindow->width() - this->width())/2, (this->desktopWindow->height() - this->height())/3);
