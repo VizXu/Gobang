@@ -86,6 +86,66 @@ PosInfo Chessmen_info::getiHasWonInfo(int which) const
 return posInfo;
 }
 
+PosInfo Chessmen_info::getiLive4Info(int which) const
+{
+	int x    = this->ilive4[which]->get_xpos();
+	int y    = this->ilive4[which]->get_ypos();
+	int dir  = this->ilive4[which]->get_direction();
+	int flag = this->ilive4[which]->get_flag();
+	PosInfo posInfo(x,y,dir,flag);
+return posInfo;
+}
+
+PosInfo Chessmen_info::getiLive4HeapInfo(int which) const
+{
+	int x    = this->ilive4heap[which]->get_xpos();
+	int y    = this->ilive4heap[which]->get_ypos();
+	int dir  = this->ilive4heap[which]->get_direction();
+	int flag = this->ilive4heap[which]->get_flag();
+	PosInfo posInfo(x,y,dir,flag);
+return posInfo;
+}
+
+PosInfo Chessmen_info::getiLive3Info(int which) const
+{
+	int x    = this->ilive3[which]->get_xpos();
+	int y    = this->ilive3[which]->get_ypos();
+	int dir  = this->ilive3[which]->get_direction();
+	int flag = this->ilive3[which]->get_flag();
+	PosInfo posInfo(x,y,dir,flag);
+return posInfo;
+}
+
+PosInfo Chessmen_info::getiSleep3Info(int which) const
+{
+	int x    = this->isleep3[which]->get_xpos();
+	int y    = this->isleep3[which]->get_ypos();
+	int dir  = this->isleep3[which]->get_direction();
+	int flag = this->isleep3[which]->get_flag();
+	PosInfo posInfo(x,y,dir,flag);
+return posInfo;
+}
+
+PosInfo Chessmen_info::getiLive2Info(int which) const
+{
+	int x    = this->ilive2[which]->get_xpos();
+	int y    = this->ilive2[which]->get_ypos();
+	int dir  = this->ilive2[which]->get_direction();
+	int flag = this->ilive2[which]->get_flag();
+	PosInfo posInfo(x,y,dir,flag);
+return posInfo;
+}
+
+PosInfo Chessmen_info::getiSleep2Info(int which) const
+{
+	int x    = this->isleep2[which]->get_xpos();
+	int y    = this->isleep2[which]->get_ypos();
+	int dir  = this->isleep2[which]->get_direction();
+	int flag = this->isleep2[which]->get_flag();
+	PosInfo posInfo(x,y,dir,flag);
+return posInfo;
+}
+
 Chessmen_info::Chessmen_info()
 {
    memset(chessmen_of_each_direction,0,sizeof(chessmen_of_each_direction));
@@ -114,10 +174,36 @@ Chessmen_info::~Chessmen_info()
 }
 void Chessmen_info::dumpiLivesInfo() const
 {
+	PosInfo posInfo;
+
 	for(int i = 0; i < TOTALPOSSIZE; i++){
-		PosInfo posInfo = this->getiHasWonInfo(i);
+		posInfo = this->getiHasWonInfo(i);
 		if(1 == posInfo.getFlag()){
 			printf("ihas_won: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+		}
+		posInfo = this->getiLive4Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive4: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+		}
+		posInfo = this->getiLive4HeapInfo(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive4heap: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+		}
+		posInfo = this->getiLive3Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive3: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+		}
+		posInfo = this->getiSleep3Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("isleep3: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+		}
+		posInfo = this->getiLive2Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive2: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+		}
+		posInfo = this->getiSleep2Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("isleep2: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
 		}
 	}
 };
@@ -263,6 +349,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 	int y_tmp;
 	int index = -1;
 	int k = 0;
+	int l = 0;
 	char oChessman = this->getOpesiteChessType(chessman);
 	char emptyTypeChessman = '+';
 
@@ -462,6 +549,210 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 								 }
 								 else{
 									 this->analysis_ilives(info,ILIVE2,index,rotate);
+								 }
+							 }
+							 else{
+							 	
+							 }
+						 }
+					}break;
+					default:break;
+				 }
+			 }
+			 else{ continue;}
+			 
+			 if(temp[i][j] == chessman){
+				 // -x +y direction(up|right)
+				 for(k = i, l = j; k >= 0, j < BOARD_SIZE; k--, l++){
+					if(temp[k][l] == chessman) info->chessmen_of_each_direction[i][j][rotate + 1] += 1;
+					else break;
+				 }
+
+				 switch(info->chessmen_of_each_direction[i][j][rotate + 1]){
+					case 5:{
+					 	this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+					}break;
+					
+					case 4:{
+						 if(((k + 5 < BOARD_SIZE && l - 5 >= 0)&& temp[k + 5][l - 5] == chessman)){
+							this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+						 }
+						 else{
+							 if(((k >= 0 && l < BOARD_SIZE && temp[k][l] == oChessman) || ((k < 0) || l >= BOARD_SIZE))){
+									if((k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == oChessman) || ((k + 5 >= BOARD_SIZE) || l -5 < 0)){
+						 	 		//no use lives;
+									}
+									else{
+										this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+									}
+							 }
+							 else{
+									if(k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == oChessman){
+										this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+									}
+									else{
+										this->analysis_ilives(info,ILIVE4,index,rotate + 1);
+									}
+							}
+						 }
+					}break;
+					
+					case 3:{
+						 if((k >= 0 && l < BOARD_SIZE && temp[k][l] == oChessman) || ((k < 0) || l >= BOARD_SIZE)){
+							 if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == chessman)){
+							 	 if((k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == chessman)){
+									 this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+								 }
+								 else{
+									 this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+								 }
+							 }
+							 else if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == oChessman) || ((k + 4 >= BOARD_SIZE) || l - 4 < 0 )){
+								//nothing important
+							 }
+							 else{
+								 this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+							 }
+
+						 }
+						 else{
+							 if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == chessman)){
+								if((k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == chessman)){
+									this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+								}
+								else if((k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == oChessman) || ((k + 5 >= BOARD_SIZE) || l - 5 < 0)){
+									this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+								}
+								else{
+									this->analysis_ilives(info,ILIVE4,index,rotate + 1);
+								}
+							 }
+							 else if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == oChessman) || ((k + 4 >= BOARD_SIZE) || l - 4 < 0)){
+								 this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+							 }
+							 else{
+								 this->analysis_ilives(info,ILIVE3,index,rotate + 1);
+							 }
+						 }
+					}break;
+					
+					case 2:{
+						if((k >= 0  && l < BOARD_SIZE && temp[k][l] == oChessman) || ((k < 0) || l >= BOARD_SIZE)){
+							if(k + 3 < BOARD_SIZE && l - 3 >= 0 && temp[k + 3][l - 3] == chessman){
+								if(k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == chessman){
+									if(k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == chessman){
+										this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+									}
+									else if((k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == oChessman) || (k + 5 >= BOARD_SIZE || l - 5 < 0)){
+
+									}
+									else{
+										this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+									}
+								}
+								else if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == oChessman) || (k + 4 >= BOARD_SIZE || l - 4 < 0)){
+
+								}
+								else{
+									this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+								}
+							}
+							else if((k + 3 < BOARD_SIZE && l - 3 >= 0 && temp[k + 3][l - 3] == oChessman) || (k + 3 >= BOARD_SIZE || l - 3 < 0)){
+
+							}
+							else{
+								this->analysis_ilives(info,ISLEEP2,index,rotate + 1);
+							}
+						 }
+						 else{
+							 if(k + 3 < BOARD_SIZE && l - 3 > 0 && temp[k + 3][l - 3] == chessman){
+								 if(k + 4 < BOARD_SIZE && l - 4 > 0 && temp[k + 4][l - 4] == chessman){
+									 if(k + 5 < BOARD_SIZE && l - 5 > 0 && temp[k + 5][l - 5] == chessman){
+										 this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+									 }
+									 else if((k + 5 < BOARD_SIZE && l - 5 > 0 && temp[k + 5][l - 5] == oChessman) || ((k + 5 >= BOARD_SIZE) || l - 5 < 0)){
+							 			 this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+									 }
+									 else{
+										 this->analysis_ilives(info,ILIVE4,index,rotate + 1);
+									 }
+								 }
+								 else if((k + 4 < BOARD_SIZE && l - 4 > 0 && temp[k + 4][1 - 4] == oChessman) || ((k + 4 >= BOARD_SIZE) || l - 4 < 0)){
+							 			 this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+								 }
+								 else{
+									 this->analysis_ilives(info,ILIVE3,index,rotate + 1);
+								 }
+							 }
+							 else if((k + 3 < BOARD_SIZE  && l - 3 > 0 && temp[k + 3][l - 3] == oChessman) || ((k + 3 >= BOARD_SIZE) || l - 3 <  0)){
+									 this->analysis_ilives(info,ISLEEP2,index,rotate + 1);				 
+							 }
+							 else{
+								 this->analysis_ilives(info,ILIVE2,index,rotate + 1);
+							 }
+						 }
+					}break;
+					
+					case 1:{
+						if((k >= 0  && l < BOARD_SIZE && temp[k][l] == oChessman) || ((k < 0) || l >= BOARD_SIZE)){
+							if(k + 2 < BOARD_SIZE && l - 2 >= 0 && temp[k + 2][l - 2] == chessman){
+								if(k + 3 < BOARD_SIZE && l - 3 >= 0 && temp[k + 3][l - 3] == chessman){
+									if(k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == chessman){
+										if(k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == chessman){
+											this->analysis_ilives(info,IHAS_WON,index,rotate + 1);
+										}
+										else if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == oChessman) || ((k + 4 >= BOARD_SIZE) || l - 4 < 0)){
+
+										}
+										else{
+											this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+										}
+
+									}
+									else if((k + 3 < BOARD_SIZE && l - 3 >= 0 && temp[k + 3][l - 3] == oChessman) || ((k + 3 >= BOARD_SIZE)|| l - 3 < 0)){
+
+									}
+									else{
+										this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+									}
+								}
+								else if((k + 2 < BOARD_SIZE && l - 2 >= 0 && temp[k + 2][l - 2] == oChessman) || ((k + 2 >= BOARD_SIZE)|| l - 2 < 0)){
+
+								}
+								else{
+									this->analysis_ilives(info,ISLEEP2,index,rotate + 1);
+								}
+							}
+							else{
+
+							}
+						 }
+						 else{
+							 if(k + 2 < BOARD_SIZE && l - 2 >= 0 && temp[k + 2][l - 2] == chessman){
+								 if(k + 3 < BOARD_SIZE && l - 3 >= 0 && temp[k + 3][l - 3] == chessman){
+									 if(k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == chessman){
+									 	 if(k + 5 < BOARD_SIZE && l - 5 >= 0 && temp[k + 5][l - 5] == chessman){
+											 this->analysis_ilives(info,ILIVE4HEAP,index,rotate + 1);
+										 }
+										 else if((k + 4 < BOARD_SIZE && l - 4 >= 0 && temp[k + 4][l - 4] == oChessman) || ((k + 4 >= BOARD_SIZE) || l - 4 < 0)){
+											 this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+										 }
+										 else{
+											 this->analysis_ilives(info,ILIVE3,index,rotate + 1);
+										 }
+									 }
+									 else if((k + 3 < BOARD_SIZE && l - 3 >= 0 && temp[k + 3][l - 3] == oChessman) || ((k + 3 >= BOARD_SIZE) || l - 3 < 0)){
+							 			 this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
+									 }
+									 else{
+										 this->analysis_ilives(info,ILIVE3,index,rotate + 1);
+									 }
+								 }
+								 else if((k + 2 < BOARD_SIZE  && l - 2 >= 0 && temp[k + 2][l - 2] == oChessman) || ((k + 2 >= BOARD_SIZE)|| l - 2 < 0)){
+							 			 this->analysis_ilives(info,ISLEEP2,index,rotate + 1);
+								 }
+								 else{
+									 this->analysis_ilives(info,ILIVE2,index,rotate + 1);
 								 }
 							 }
 							 else{

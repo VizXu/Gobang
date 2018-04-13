@@ -170,6 +170,13 @@ class Chessmen_info
 {
 private:
    PosInfo getiHasWonInfo(int which) const;
+   PosInfo getiLive4Info(int which) const;
+   PosInfo getiLive4HeapInfo(int which) const;
+   PosInfo getiLive3Info(int which) const;
+   PosInfo getiSleep3Info(int which) const;
+   PosInfo getiLive2Info(int which) const;
+   PosInfo getiSleep2Info(int which) const;
+				  
 public:
    int chessmen_of_each_direction[BOARD_SIZE][BOARD_SIZE][8];
    Info*   ihas_won[TOTALPOSSIZE];

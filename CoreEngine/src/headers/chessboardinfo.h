@@ -11,7 +11,17 @@ private:
 	int direction;
 	int flag;
 public:
-	explicit PosInfo(int x = -1, int y = -1,int dir = -1,int f = 0):xpos(x),ypos(y),direction(dir),flag(f){}
+	PosInfo(int x = -1, int y = -1,int dir = -1,int f = 0):xpos(x),ypos(y),direction(dir),flag(f){}
+	/*
+	PosInfo operator=(const PosInfo& info){
+		PosInfo tmp;
+		tmp.xpos = info.xpos;
+		tmp.ypos = info.ypos;
+		tmp.direction = info.direction;
+		tmp.flag = info.flag;
+		return tmp;
+	}
+	*/
 	~PosInfo(){}
 public:
 	int getxPos() const;
