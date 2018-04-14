@@ -58,7 +58,7 @@ The server codes is in GobangGame/CoreEngine/src/ and client code is in GobangGa
 ![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/4.png)
 
 	III. start the game, first select level to be 1 and push the "Start game" button
-![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/5.png)
-![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/6.png)
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/7.png)
+![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/8.png)
 
 
