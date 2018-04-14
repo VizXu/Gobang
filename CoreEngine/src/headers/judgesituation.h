@@ -227,6 +227,7 @@ private:
    void analysis_for_each_direction(char chessman,s8 temp[][BOARD_SIZE],Chessmen_info* info,int rotate);
    void analysis_ilives(Chessmen_info*, int, int, int);
    char getOpesiteChessType(char c) const;
+   char getEmptyChessType() const;
 public:
    Chessmen_info* scan_analysis_chessmen(char);
 public:

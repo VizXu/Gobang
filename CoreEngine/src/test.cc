@@ -40,10 +40,27 @@ void rand_chessboard(Chessboard& board)
    srand(time(NULL));
    for(u32 i = 0; i< BOARD_SIZE; i++){
      for(u32 j = 0; j < BOARD_SIZE; j++){
-	board.set_chess(i,j,rand_type());
+		board.set_chess(i,j,rand_type());
      }
    }
 return;
+}
+
+void specific_chessboard(Chessboard& board)
+{
+	int size = 5;
+	int y = 2;
+	int x = 0;
+	int i = 0;
+	for(i = 2; i < 2 + size - 3; i++){
+		board.set_chess(y,i,'&');
+	}
+	//board.set_chess(y,i,'@');
+	board.set_chess(y,i + 1,'&');
+	board.set_chess(y,i + 2,'&');
+//	for(int i = 2; i < 2 + size; i++){
+//		board.set_chess(y + 3,i,'&');
+//	}
 }
 //end
 
@@ -229,7 +246,8 @@ void test_mode7()
 
 	Chessmen_info* info;
 	
-	rand_chessboard(chessboard);
+	//rand_chessboard(chessboard);
+	specific_chessboard(chessboard);
 
 	judge->copy_chessboard(chessboard);
 
