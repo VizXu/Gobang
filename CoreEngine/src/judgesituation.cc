@@ -451,9 +451,31 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 										this->analysis_ilives(info,ILIVE4,index,rotate);
 									}
 								 }
+								 else if((k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman) || (k + 4 >= BOARD_SIZE)){
+									 this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+								 }
 								 else{
 									 this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
-									 //printf("xujiwei ----> ilive4heap, 1\n");
+								 }
+							 }
+							 else if(k - 1 >= 0 && temp[k - 1][j] == oChessman || k -1 < 0){
+								 if((k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman)){
+									if((k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman)){
+										this->analysis_ilives(info,IHAS_WON,index,rotate);
+										//if(rotate == 2) printf("xujiwei...4, x = %d, y = %d\n",i,j);
+									}
+									else if((k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman) || (k + 5 >= BOARD_SIZE)){
+										this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+									}
+									else{
+										this->analysis_ilives(info,ILIVE4,index,rotate);
+									}
+								 }
+								 else if((k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman) || (k + 4 >= BOARD_SIZE)){
+								 	
+								 }
+								 else{
+									 this->analysis_ilives(info,ILIVE4,index,rotate);
 								 }
 							 }
 							 else{
@@ -480,7 +502,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 						 }
 					}break;
 					
-					case 2:{ //need more analysis down 2018.4.14
+					case 2:{ 
 						if((k >= 0 && temp[k][j] == oChessman) || (k < 0)){
 							if(k + 3 < BOARD_SIZE && temp[k + 3][j] == chessman){
 								if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
@@ -499,43 +521,169 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 
 								}
 								else{
-									this->analysis_ilives(info,ISLEEP3,index,rotate);
+									if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
+										if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+											this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+										}
+										else if(k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman || k + 5 >= BOARD_SIZE){
+
+										}
+										else{
+											this->analysis_ilives(info,ISLEEP3,index,rotate);
+										}
+									}
+									else if(k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman || k + 4 >= BOARD_SIZE){
+
+									}
+									else{
+										if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+											this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+										}
+										else if(k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman || k + 5 >= BOARD_SIZE){
+
+										}
+										else{
+											this->analysis_ilives(info,ISLEEP3,index,rotate);
+										}
+
+									}
 								}
 							}
 							else if((k + 3 < BOARD_SIZE && temp[k + 3][j] == oChessman) || (k + 3 >= BOARD_SIZE)){
 
 							}
 							else{
-								this->analysis_ilives(info,ISLEEP2,index,rotate);
+								if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
+									if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+										this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+									}
+									else if(k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman || k + 5 >= BOARD_SIZE){
+
+									}
+									else{
+										this->analysis_ilives(info,ISLEEP3,index,rotate);
+									}
+
+								}
+								else if(k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman || k + 4 >= BOARD_SIZE){
+
+								}
+								else{
+									this->analysis_ilives(info,ILIVE2,index,rotate);
+								}
 							}
 						 }
-						 else{
-							 if(k + 3 < BOARD_SIZE && temp[k + 3][j] == chessman){
-								 if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
-									 if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
-										 this->analysis_ilives(info,IHAS_WON,index,rotate);
-										 //if(rotate == 2) printf("xujiwei...6, x = %d, y = %d\n",i,j);
-									 }
-									 else if((k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman) || (k + 5 >= BOARD_SIZE)){
-							 			 this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
-									 }
-									 else{
-										 this->analysis_ilives(info,ILIVE4,index,rotate);
-									 }
-								 }
-								 else if((k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman) || (k + 4 >= BOARD_SIZE)){
-							 			 this->analysis_ilives(info,ISLEEP3,index,rotate);
-								 }
-								 else{
-									 this->analysis_ilives(info,ILIVE3,index,rotate);
-	 								 printf("xujiwei ----> ilive 3, 2\n");
-								 }
+						 else{ 
+						 	 if(k - 1 >= 0 && temp[k - 1][j] == chessman){
+							 	if(k - 2 >= 0 && temp[k - 2][j] == chessman){
+									this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+								}
+								else if(k -2 >= 0 && temp[k - 2][j] == oChessman || k -2 < 0){
+									if(k + 3 < BOARD_SIZE && temp[k + 3][j] == chessman){
+										if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
+											if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+												this->analysis_ilives(info,IHAS_WON,index,rotate);
+												//if(rotate == 2) printf("xujiwei...6, x = %d, y = %d\n",i,j);
+											}
+											else if((k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman) || (k + 5 >= BOARD_SIZE)){
+												this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+											}
+											else{
+												this->analysis_ilives(info,ILIVE4,index,rotate);
+											}
+										}
+										else if(k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman || k + 4 >= BOARD_SIZE){
+											this->analysis_ilives(info,ISLEEP3,index,rotate);
+										}
+										else{
+											this->analysis_ilives(info,ILIVE3,index,rotate);
+										}
+									}
+									else if(k + 3 < BOARD_SIZE && temp[k + 3][j] == oChessman || k + 3 >= BOARD_SIZE){
+
+									}
+									else{
+										if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
+											if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+												this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+											}
+											else if((k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman) || (k + 5 >= BOARD_SIZE)){
+												this->analysis_ilives(info,ISLEEP3,index,rotate);
+											}
+											else{
+												this->analysis_ilives(info,ILIVE3,index,rotate);
+											}
+
+										}
+										else if((k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman) || (k + 4 >= BOARD_SIZE)){
+											
+										}
+										else{
+											this->analysis_ilives(info,ILIVE2,index,rotate);
+										}
+									}
+								}
+								else{
+									if(k + 3 < BOARD_SIZE && temp[k + 3][j] == chessman){
+										if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
+											if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+												this->analysis_ilives(info,IHAS_WON,index,rotate);
+												//if(rotate == 2) printf("xujiwei...6, x = %d, y = %d\n",i,j);
+											}
+											else if((k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman) || (k + 5 >= BOARD_SIZE)){
+												this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+											}
+											else{
+												this->analysis_ilives(info,ILIVE4,index,rotate);
+											}
+										}
+										else if(k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman || k + 4 >= BOARD_SIZE){
+											this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+										}
+										else{
+											this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+										}
+									}
+									else if(k + 3 < BOARD_SIZE && temp[k + 3][j] == oChessman || k + 3 >= BOARD_SIZE){
+										this->analysis_ilives(info,ISLEEP3,index,rotate);
+									}
+									else{
+										this->analysis_ilives(info,ILIVE3,index,rotate);
+									}
+								}
+
 							 }
-							 else if((k + 3 < BOARD_SIZE && temp[k + 3][j] == oChessman) || (k + 3 >= BOARD_SIZE)){
-									 this->analysis_ilives(info,ISLEEP2,index,rotate);				 
+							 else if(k - 1 >= 0 && temp[k - 1][j] == oChessman || k -1 < 0){//need more analysis down 2018.4.15
+
 							 }
 							 else{
-								 this->analysis_ilives(info,ILIVE2,index,rotate);
+								 if(k + 3 < BOARD_SIZE && temp[k + 3][j] == chessman){
+									 if(k + 4 < BOARD_SIZE && temp[k + 4][j] == chessman){
+										 if(k + 5 < BOARD_SIZE && temp[k + 5][j] == chessman){
+											 this->analysis_ilives(info,IHAS_WON,index,rotate);
+											 //if(rotate == 2) printf("xujiwei...6, x = %d, y = %d\n",i,j);
+										 }
+										 else if((k + 5 < BOARD_SIZE && temp[k + 5][j] == oChessman) || (k + 5 >= BOARD_SIZE)){
+											 this->analysis_ilives(info,ILIVE4HEAP,index,rotate);
+										 }
+										 else{
+											 this->analysis_ilives(info,ILIVE4,index,rotate);
+										 }
+									 }
+									 else if((k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman) || (k + 4 >= BOARD_SIZE)){
+											 this->analysis_ilives(info,ISLEEP3,index,rotate);
+									 }
+									 else{
+										 this->analysis_ilives(info,ILIVE3,index,rotate);
+										 printf("xujiwei ----> ilive 3, 2\n");
+									 }
+								 }
+								 else if((k + 3 < BOARD_SIZE && temp[k + 3][j] == oChessman) || (k + 3 >= BOARD_SIZE)){
+										 this->analysis_ilives(info,ISLEEP2,index,rotate);				 
+								 }
+								 else{
+									 this->analysis_ilives(info,ILIVE2,index,rotate);
+								 }
 							 }
 						 }
 					}break;
