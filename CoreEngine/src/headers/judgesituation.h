@@ -120,7 +120,7 @@ const int ILIVE2 = 5;
 const int ISLEEP2 = 6;
 
 /**********************
-@ILIVE2 can become ISLEEP3
+@ISLEEP2 can become ISLEEP3
 
     | | | | |
   --@-&-&------
