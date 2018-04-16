@@ -23,7 +23,7 @@ The server codes is in GobangGame/CoreEngine/src/ and client code is in GobangGa
 
 - upload the arch image
 
-![arch image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/arch.png)
+![arch image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/gobang.png)
 
 - update module of chess manual reservation
 
