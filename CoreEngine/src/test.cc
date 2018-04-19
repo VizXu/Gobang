@@ -52,8 +52,8 @@ void specific_chessboard(Chessboard& board)
 	int y = 2;
 	int x = 0;
 	int i = 0;
-	for(i = 2; i < 2 + size - 3; i++){
-		//board.set_chess(y,i,'&');
+	for(i = 2; i < 2 + size; i++){
+		board.set_chess(7 - i, 7 - i,'&');
 	}
 
 	#if 0
@@ -71,12 +71,12 @@ void specific_chessboard(Chessboard& board)
 	//board.set_chess(i,y,'&');
 	//board.set_chess(i + 1,y,'&');
 	//board.set_chess(i + 2,y,'@');
-	board.set_chess(i + 3,y,'&');
-	board.set_chess(i + 4,y,'@');
-	board.set_chess(i + 5,y,'&');
+	//board.set_chess(i + 3,y,'&');
+	//board.set_chess(i + 4,y,'@');
+	//board.set_chess(i + 5,y,'&');
 
-	board.set_chess(i + 4,y - 1,'&');
-	board.set_chess(i + 4,y + 1,'&');
+	//board.set_chess(i + 4,y - 1,'&');
+	//board.set_chess(i + 4,y + 1,'&');
 	//board.set_chess(i + 4,y + 2,'&');
 
 	#endif
