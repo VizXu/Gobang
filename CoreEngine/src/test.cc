@@ -55,13 +55,31 @@ void specific_chessboard(Chessboard& board)
 	for(i = 2; i < 2 + size - 3; i++){
 		//board.set_chess(y,i,'&');
 	}
+
+	#if 0
 	//board.set_chess(y,i,'@');
-	board.set_chess(y,i - 1, '@');
-	board.set_chess(y,i + 1,'&');
+	//board.set_chess(y,i - 1, '@');
+	//board.set_chess(y,i,'&');
+	board.set_chess(y,i + 1,'@');
 	board.set_chess(y,i + 2,'&');
 	board.set_chess(y,i + 3,'&');
 	board.set_chess(y,i + 4,'&');
 	board.set_chess(y,i + 5,'@');
+	#else
+	//board.set_chess(i,y,'@');
+	//board.set_chess(i - 1,y, '@');
+	//board.set_chess(i,y,'&');
+	//board.set_chess(i + 1,y,'&');
+	//board.set_chess(i + 2,y,'@');
+	board.set_chess(i + 3,y,'&');
+	board.set_chess(i + 4,y,'@');
+	board.set_chess(i + 5,y,'&');
+
+	board.set_chess(i + 4,y - 1,'&');
+	board.set_chess(i + 4,y + 1,'&');
+	//board.set_chess(i + 4,y + 2,'&');
+
+	#endif
 //	for(int i = 2; i < 2 + size; i++){
 //		board.set_chess(y + 3,i,'&');
 //	}
