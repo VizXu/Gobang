@@ -52,19 +52,19 @@ void specific_chessboard(Chessboard& board)
 	int y = 2;
 	int x = 0;
 	int i = 0;
-	for(i = 2; i < 2 + size; i++){
-		board.set_chess(7 - i, 7 - i,'&');
-	}
+//	for(i = 2; i < 2 + size; i++){
+//		board.set_chess(7 - i, 7 - i,'&');
+//	}
 
-	#if 0
+	#if 1
 	//board.set_chess(y,i,'@');
 	//board.set_chess(y,i - 1, '@');
 	//board.set_chess(y,i,'&');
 	board.set_chess(y,i + 1,'@');
-	board.set_chess(y,i + 2,'&');
-	board.set_chess(y,i + 3,'&');
-	board.set_chess(y,i + 4,'&');
-	board.set_chess(y,i + 5,'@');
+	board.set_chess(y + 1,i + 2,'&');
+	board.set_chess(y + 2,i + 3,'&');
+	board.set_chess(y + 3,i + 4,'&');
+	//board.set_chess(y,i + 5,'@');
 	#else
 	//board.set_chess(i,y,'@');
 	//board.set_chess(i - 1,y, '@');
@@ -175,7 +175,12 @@ void test_mode4()
 {
   StoreChessManual* s = StoreChessManual::get_chess_manual();
   
+  JudgeWin* judge = new JudgeWin;
+
+  Chessmen_info* info;
+
   Chessboard chessboard;
+
   Computer computer("computer");
   Human human("xujiwei");
   Testwinner test_winner;
@@ -205,6 +210,12 @@ void test_mode4()
      return; 
     }
   human.change_state(); //stop
+
+  judge->copy_chessboard(chessboard);
+
+  info = judge->scan_analysis_chessmen('&');
+
+  info->dumpiLivesInfo();
 
   DEBUG_LOG("\n----------------------------\n"); 
   computer.change_state();//start

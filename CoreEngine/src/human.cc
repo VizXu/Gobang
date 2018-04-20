@@ -1,5 +1,7 @@
 #include "human.h"
 #include<iostream>
+#include<string>
+#include<cstdlib>
 
 Human::Human(string s):Player("null"),human_name(s),human_chess_type('&')
 {
@@ -54,14 +56,24 @@ void Human::input_position()
     int x = 0;
     int y = 0;
     
+    std::string xpos;
+    std::string ypos;
+
     enter_again:
     std::cout<<"Please input the position you chose,for example(3 3):\n";
-    char ch_x = std::cin.get();
-    while(std::cin.get() != '\n')continue; // make the cin stream empty;
-    char ch_y = std::cin.get();
-    while(std::cin.get() != '\n')continue; // make the cin stream empty;
-    x = int(ch_x - '0');
-    y = int(ch_y - '0');
+    //char ch_x = std::cin.get();
+    //while(std::cin.get() != '\n')continue; // make the cin stream empty;
+    //char ch_y = std::cin.get();
+    //while(std::cin.get() != '\n')continue; // make the cin stream empty;
+    //x = int(ch_x - '0');
+    //y = int(ch_y - '0');
+
+    std::cin>>xpos;
+    std::cin>>ypos;
+
+    x = atoi(xpos.c_str());
+    y = atoi(ypos.c_str());
+
     if( (x < 0 || x > BOARD_SIZE) || (y < 0 || y > BOARD_SIZE)){
        std::cout<<" enter is illegal, please enter agian!"<<std::endl;
        goto enter_again;

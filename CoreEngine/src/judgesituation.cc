@@ -485,8 +485,9 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 										 this->analysis_ilives(info,ILIVE3,index,rotate);
 									 }
 									 else{
+										 printf("xujiwei--->ilive3,14\n");
 										 this->analysis_ilives(info,ILIVE3,index,rotate);
-										 printf("xujiwei...live3,3, x = %d, y = %d\n",i,j);
+										 //printf("xujiwei...live3,3, x = %d, y = %d\n",i,j);
 									 }
 								 }
 							 }
@@ -509,6 +510,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 									 printf("xujiwei...isleep3, 2, x = %d, y = %d\n",i,j);
 								 }
 								 else{
+									 printf("xujiwei--->ilive3,13\n");
 									 this->analysis_ilives(info,ILIVE3,index,rotate);
 								 }
 							 }
@@ -614,6 +616,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 											printf("xujiwei...isleep3, 6, x = %d, y = %d\n",i,j);
 										}
 										else{
+											printf("xujiwei--->ilive3,12\n");
 											this->analysis_ilives(info,ILIVE3,index,rotate);
 										}
 									}
@@ -630,6 +633,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 												printf("xujiwei...isleep3, 7, x = %d, y = %d\n",i,j);
 											}
 											else{
+												printf("xujiwei--->ilive3,11\n");
 												this->analysis_ilives(info,ILIVE3,index,rotate);
 											}
 
@@ -669,6 +673,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 										printf("xujiwei...isleep3, 8, x = %d, y = %d\n",i,j);
 									}
 									else{
+										printf("xujiwei--->ilive3,10\n");
 										this->analysis_ilives(info,ILIVE3,index,rotate);
 									}
 								}
@@ -692,6 +697,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 									 else if((k + 4 < BOARD_SIZE && temp[k + 4][j] == oChessman) || (k + 4 >= BOARD_SIZE)){
 									 }
 									 else{
+										 printf("xujiwei--->ilive3,9\n");
 										 this->analysis_ilives(info,ILIVE3,index,rotate);
 									 }
 								 }
@@ -740,6 +746,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 											 printf("xujiwei...isleep3, 10, x = %d, y = %d\n",i,j);
 									 }
 									 else{
+										printf("xujiwei--->ilive3,8\n");
 										 this->analysis_ilives(info,ILIVE3,index,rotate);
 									 }
 								 }
@@ -784,7 +791,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 
 									}
 									else{
-										this->analysis_ilives(info,ILIVE3,index,rotate);
+										this->analysis_ilives(info,ISLEEP3,index,rotate);
 									}
 								}
 								else if((k + 3 < BOARD_SIZE && temp[k + 3][j] == oChessman) || (k + 3 >= BOARD_SIZE)){
@@ -951,6 +958,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 											this->analysis_ilives(info,ISLEEP3,index,rotate);
 										}
 										else{
+											printf("xujiwei--->ilive3,6\n");
 											this->analysis_ilives(info,ILIVE3,index,rotate);
 										}
 
@@ -981,6 +989,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 
 										}
 										else{
+											printf("xujiwei--->ilive3,5\n");
 											this->analysis_ilives(info,ILIVE3,index,rotate);
 										}
 									}
@@ -993,6 +1002,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 												this->analysis_ilives(info,ISLEEP3,index,rotate);
 											}
 											else{
+												printf("xujiwei--->ilive3,4\n");
 												this->analysis_ilives(info,ILIVE3,index,rotate);
 											}
 										}
@@ -1000,6 +1010,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 
 										}
 										else{
+											printf("xujiwei--->ilive3,3\n");
 											this->analysis_ilives(info,ILIVE3,index,rotate);
 										}
 									}
@@ -1012,6 +1023,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 												this->analysis_ilives(info,ISLEEP3,index,rotate);
 											}
 											else{
+												printf("xujiwei--->ilive3,2\n");
 												this->analysis_ilives(info,ILIVE3,index,rotate);
 											}
 										}
@@ -1036,6 +1048,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 												this->analysis_ilives(info,ISLEEP3,index,rotate);
 											}
 											else{
+												printf("xujiwei--->ilive3,1\n");
 												this->analysis_ilives(info,ILIVE3,index,rotate);
 											}
 										}
@@ -1700,7 +1713,7 @@ void JudgeWin::analysis_for_each_direction(char chessman, s8 temp[][BOARD_SIZE],
 
 									}
 									else{
-										this->analysis_ilives(info,ILIVE3,index,rotate + 1);
+										this->analysis_ilives(info,ISLEEP3,index,rotate + 1);
 									}
 								}
 								else if((k + 3 < BOARD_SIZE  && l - 3 >= 0 && temp[k + 3][l - 3] == oChessman) || (k + 3 >= BOARD_SIZE) || l - 3 < 0){
