@@ -313,7 +313,7 @@ int test(int argc, char* args[])
 {
 
    char result;
-   void (*fun)() = test_mode7;
+   void (*fun)() = test_mode4;
    int mode = 1;
 
    for(;;){

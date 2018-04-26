@@ -846,3 +846,12 @@ bool AI_core::is_empty_site(const board_position& pos)
      return false; 
    }
 }
+
+s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstype)
+{
+   s32 score = 0;
+   this->judgewin_ai->copy_chessboard(chessboard);
+   Chessmen_info* info = new Chessmen_info;
+   info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
+return score;
+}

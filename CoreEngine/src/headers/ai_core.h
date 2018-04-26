@@ -134,6 +134,8 @@ private:
    void release_empty_position_score_results();
    void store_empty_position_score(const board_position,const human_computer_score);
    void analysize_empty_position_score();
+private:
+   s32 current_chessboard_score(const Chessboard& chessboard,char chesstype);
 };
 #endif//ai_core.h
 
