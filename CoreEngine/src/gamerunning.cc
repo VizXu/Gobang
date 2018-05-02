@@ -16,7 +16,7 @@ void transfer(const Chessboard& board, struct game_info& info)
    int k = 0;
    for(int i = 0; i < BOARD_SIZE; i++){
       for(int j = 0; j < BOARD_SIZE; j++){
-	 info.chessinfo[k++] = board.get_chess(i,j);
+	 	info.chessinfo[k++] = board.get_chess(i,j);
       }
    }
 }

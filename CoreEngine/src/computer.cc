@@ -50,7 +50,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
       ai_analysis(chessboard,lvr);
       if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,the_type)){
          this->last_position = this->present_position;
-	 this->present_position = this->suggest_position;
+	 	 this->present_position = this->suggest_position;
       }
 //    }
     else{
@@ -65,7 +65,7 @@ void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
    switch(level)
    {
      case 1:ai->analyze_level1('&');break;
-     case 2:ai->analyze_level2('@');break;
+     case 2:ai->analyze_level2(chessboard, '@');break;
      case 3:ai->analyze_level1('@');break;
      default:break;
    }

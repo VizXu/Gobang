@@ -114,7 +114,7 @@ private:
    void greedy_analysis_empty_position_score(const COPY_BOARD&);
 public:
    void analyze_level1(s8);
-   void analyze_level2(s8);
+   void analyze_level2(const Chessboard&, s8);
    void analyze_level3(s8);
 private:
    u32 the_position_score_fun1(const COPY_BOARD&,board_position,s8);
