@@ -211,6 +211,45 @@ void Chessmen_info::dumpiLivesInfo() const
 int Chessmen_info::getiLivesScore() const
 {
 	int score = 0;
+	PosInfo posInfo;
+
+	for(int i = 0; i < TOTALPOSSIZE; i++){
+		posInfo = this->getiHasWonInfo(i);
+		if(1 == posInfo.getFlag()){
+			printf("ihas_won: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 1000000000;
+		}
+		posInfo = this->getiLive4Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive4: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 10000000;
+		}
+		posInfo = this->getiLive4HeapInfo(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive4heap: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 100000;
+		}
+		posInfo = this->getiLive3Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive3: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 1000;
+		}
+		posInfo = this->getiSleep3Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("isleep3: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 100;
+		}
+		posInfo = this->getiLive2Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("ilive2: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 10;
+		}
+		posInfo = this->getiSleep2Info(i);
+		if(1 == posInfo.getFlag()){
+			printf("isleep2: x = %d, y = %d, direction = %d\n",posInfo.getxPos(),posInfo.getyPos(),posInfo.getDirection());
+			score += 1;
+		}
+	}
 
 return score;
 }
