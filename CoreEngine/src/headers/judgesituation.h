@@ -198,6 +198,7 @@ public:
    ~Chessmen_info();
 public:
 	void dumpiLivesInfo() const;
+	int getiLivesScore() const;
 };
 
 class JudgeWin

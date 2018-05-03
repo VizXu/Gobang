@@ -99,7 +99,7 @@ private:
    void store_analysis_result(const analysis_result&);
    analysis_result get_present_result();
 private:
-   analysis_result greedy_analysis();
+   analysis_result greedy_analysis(const Chessboard& chessboard,char chesstype);
 private:
    s8 board_for_analysis[BOARD_SIZE][BOARD_SIZE];
    board_position position_suggest_of_greedy_analysis;

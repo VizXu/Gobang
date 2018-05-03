@@ -256,15 +256,23 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int 
 
 }
 
-analysis_result AI_core::greedy_analysis()
+analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chesstype)
 {
- // this->store_chess_info();
-  COPY_BOARD chess_board_for_analysis;
-  this->copy_position(chess_board_for_analysis); // this->core_board  ---> chess_board_for_analysis
-	
-  board_position suggest_pos;
+  int score = 0;
+  Chessboard board_temp = chessboard;
 
-  this->chessboard_greedy_analysis(chess_board_for_analysis,suggest_pos,0);
+  score = this->current_chessboard_score(chessboard,chesstype);
+
+  analysis_result result;
+  result.direction = 0;
+  result.max_length = 0;
+ // this->store_chess_info();
+ //COPY_BOARD chess_board_for_analysis;
+ //this->copy_position(chess_board_for_analysis); // this->core_board  ---> chess_board_for_analysis
+	
+ //board_position suggest_pos;
+
+ //this->chessboard_greedy_analysis(chess_board_for_analysis,suggest_pos,0);
 
 /*   s8 human_chess_type = this->get_human_chess_type();
    s8 computer_chess_type = this->get_computer_chess_type();
@@ -277,6 +285,7 @@ analysis_result AI_core::greedy_analysis()
    DEBUG_LOG("human_result position x= %d, y= %d\n",human_result.position.x_pos,human_result.position.y_pos);
    DEBUG_LOG("computer_result position x= %d, y= %d\n",computer_result.position.x_pos,computer_result.position.y_pos);
 */
+return result;
 }
 
 bool AI_core::is_winner(const board_position& position,s8 chess_type)
@@ -856,5 +865,6 @@ s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstyp
    Chessmen_info* info = new Chessmen_info;
    this->judgewin_ai->copy_chessboard(chessboard);
    info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
+   score = info->getiLivesScore();
 return score;
 }

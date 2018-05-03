@@ -208,6 +208,13 @@ void Chessmen_info::dumpiLivesInfo() const
 	}
 };
 
+int Chessmen_info::getiLivesScore() const
+{
+	int score = 0;
+
+return score;
+}
+
 JudgeWin::JudgeWin()
 {
   this->be_won = false;
