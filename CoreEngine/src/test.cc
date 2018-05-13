@@ -264,9 +264,14 @@ void test_mode6()
 
   Chessboard chessboard;
   rand_chessboard(chessboard);
-  
-  ai_core->copy_board(chessboard);
-  ai_core->analyze_level2(chessboard, '@');
+
+  try{
+  		ai_core->copy_board(chessboard);
+  		ai_core->analyze_level2(chessboard, '@');
+  }
+  catch(std::exception e){
+	std::cout<<"something wrong..."<<e.what()<<std::endl;
+  }
   display_chessboard(chessboard);
 return;
 }
@@ -313,7 +318,7 @@ int test(int argc, char* args[])
 {
 
    char result;
-   void (*fun)() = test_mode4;
+   void (*fun)() = test_mode6;
    int mode = 1;
 
    for(;;){

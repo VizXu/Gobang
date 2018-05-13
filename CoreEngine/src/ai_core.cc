@@ -136,8 +136,14 @@ void AI_core::analyze_level2(const Chessboard& chessboard, s8 chesstype)
 {
    analysis_result human_result;
    analysis_result computer_result;
+   
+   destroy_present_chess_info();
+   store_chess_info();
+   
    human_result    = this->greedy_analysis(chessboard,this->get_human_chess_type());
-   computer_result = this->greedy_analysis(chessboard,this->get_computer_chess_type());
+   //computer_result = this->greedy_analysis(chessboard,this->get_computer_chess_type());
+
+   DEBUG_LOG("human_result x = %d, y = %d\n",human_result.position.x_pos,human_result.position.y_pos);
 }
 
 void AI_core::analyze_level3(s8 chesstype)
@@ -215,7 +221,7 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int 
     else{
 	//analysis the board
 	this->copy_chess_for_analysis(tmp_board);
-    	this->flush_chessboard_for_analysis(); // chessboard is stored at stl greedy_analysis list<board_position> empty, human, computer
+    this->flush_chessboard_for_analysis(); // chessboard is stored at stl greedy_analysis list<board_position> empty, human, computer
 	this->greedy_analysis_empty_position_score(tmp_board);
 	
 	tmp_position.x_pos =  this->empty_position_score_results[0].x_pos;
@@ -231,6 +237,8 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int 
 analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chesstype)
 {
   Chessboard board_for_greedy_analysis = chessboard;
+
+  DEBUG_LOG("enter greedy_analysis function!\n");
   
   u32 size = this->empty_type.size();
   this->l_ptr = empty_type.begin();
@@ -238,8 +246,7 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
   int score = 0;
   int scoreMax = 0;
 
-  destroy_present_chess_info();
-  store_chess_info();
+  DEBUG_LOG("empty size = %d\n",size);
 
  //start analysis
   
@@ -261,6 +268,8 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 		 throw std::exception(std::logic_error("set chess error"));
 	  }
       score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
+
+	  DEBUG_LOG("this->current_chessboard_score = %d\n",score);
 
 	  if(scoreMax < score){
 	  		scoreMax = score;
