@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <list>
 #include <vector>
+#include <exception>
 
 #include "boardposition.h"
 #include "judgesituation.h"
