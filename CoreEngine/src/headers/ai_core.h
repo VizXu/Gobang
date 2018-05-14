@@ -100,6 +100,7 @@ private:
    void store_analysis_result(const analysis_result&);
    analysis_result get_present_result();
 private:
+   analysis_result get_max_score_position(const Chessboard& chessboard,char chesstype);
    analysis_result greedy_analysis(const Chessboard& chessboard,char chesstype);
 private:
    s8 board_for_analysis[BOARD_SIZE][BOARD_SIZE];

@@ -13,6 +13,17 @@ u32 Chessboard::scan_board() const
 return empty_site;
 }
 
+u32 Chessboard::get_size_of_type(s8 type) const
+{
+	u32 size = 0;
+	for(int i = 0;i < BOARD_SIZE;i++){
+		for(int j = 0; j < BOARD_SIZE; j++){
+			if(type == board[i][j]) size++;
+			else continue;
+		}
+	}
+return size;
+}
 
 bool Chessboard::has_empty_site() const 
 {

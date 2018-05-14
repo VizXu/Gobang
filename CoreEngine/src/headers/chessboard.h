@@ -23,6 +23,7 @@ public:
       }
     }
     ~Chessboard(){}
+	//Chessboard& Chessboard(const Chessboard& chessboard);
     Chessboard& operator=(const Chessboard&) = delete;
     Chessboard& operator()(const Chessboard&) = delete;
 public:
@@ -41,6 +42,7 @@ public:
     s8   get_chess(u32,u32) const;
 public:
     bool has_empty_site() const;
+	u32 get_size_of_type(s8 type) const;
     void init(int);
 };
 #endif//chessboard.h
