@@ -263,8 +263,8 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 
    for(int i = 0; i < size && l_ptr != empty_type.end(); i++, l_ptr++){
       guess_pos = *l_ptr;   
-	  if(!board_for_greedy_analysis.set_chess(guess_pos.x_pos,guess_pos.y_pos, chesstype)){
-		 DEBUG_LOG("set chess error! x = %d, y = %d, type = %c\n",guess_pos.x_pos,guess_pos.y_pos, chesstype);
+	  if(!board_for_greedy_analysis.set_chess_for_analysis(guess_pos.x_pos,guess_pos.y_pos, chesstype)){
+		 DEBUG_LOG("1 --> set chess error! x = %d, y = %d, type = %c\n",guess_pos.x_pos,guess_pos.y_pos, chesstype);
 		 throw std::exception(std::logic_error("set chess error"));
 	  }
       score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
@@ -277,8 +277,8 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 			rslt.position.y_pos = guess_pos.y_pos;
 	  }
 	  
-	  if(!board_for_greedy_analysis.set_chess(guess_pos.x_pos,guess_pos.y_pos, '+')){
-		 DEBUG_LOG("set chess error! x = %d, y = %d, type = %c\n",guess_pos.x_pos,guess_pos.y_pos, chesstype);
+	  if(!board_for_greedy_analysis.set_chess_for_analysis(guess_pos.x_pos,guess_pos.y_pos, '+')){
+		 DEBUG_LOG("2 --> set chess error! x = %d, y = %d, type = %c\n",guess_pos.x_pos,guess_pos.y_pos, chesstype);
 		 throw std::exception(std::logic_error("set chess error"));
 	  }
    }

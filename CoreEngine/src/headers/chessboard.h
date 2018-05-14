@@ -34,8 +34,10 @@ private:
     bool is_board_empty() const;
 private:
     bool is_site_empty(u32,u32) const;
+	bool is_site_inboard(u32,u32) const;
 public:
     bool set_chess(u32,u32,s8);
+	bool set_chess_for_analysis(u32,u32,s8);
     s8   get_chess(u32,u32) const;
 public:
     bool has_empty_site() const;

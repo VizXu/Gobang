@@ -35,6 +35,15 @@ bool Chessboard::is_site_empty(u32 x_pos,u32 y_pos) const
    		return false;
 }
 
+bool Chessboard::is_site_inboard(u32 x_pos,u32 y_pos) const
+{
+   if(x_pos > BOARD_SIZE || y_pos > BOARD_SIZE || x_pos < 0 || y_pos < 0) 
+   		return false;
+   else 
+   		return true;
+}
+
+
 bool Chessboard::set_chess(u32 x_pos,u32 y_pos,s8 chess_type)
 {
   if(is_site_empty(x_pos,y_pos)){
@@ -43,6 +52,16 @@ bool Chessboard::set_chess(u32 x_pos,u32 y_pos,s8 chess_type)
   }
 return false;
 }
+
+bool Chessboard::set_chess_for_analysis(u32 x_pos,u32 y_pos,s8 chess_type)
+{
+  if(is_site_inboard(x_pos,y_pos)){
+    this->board[x_pos][y_pos] = chess_type;
+    return true;
+  }
+return false;
+}
+
 
 s8  Chessboard::get_chess(u32 x_pos,u32 y_pos) const
 {
