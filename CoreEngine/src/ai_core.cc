@@ -134,18 +134,16 @@ void AI_core::analyze_level1(s8 chesstype)
 
 void AI_core::analyze_level2(const Chessboard& chessboard, s8 chesstype)
 {
-   analysis_result human_result;
-   analysis_result computer_result;
+
+   analysis_result result;
 
    DEBUG_LOG("chessboard empty size = %d\n",chessboard.get_size_of_type('+'));
    
    destroy_present_chess_info();
    store_chess_info();
    
-   human_result    = this->greedy_analysis(chessboard,this->get_human_chess_type());
-   //computer_result = this->greedy_analysis(chessboard,this->get_computer_chess_type());
+   result    = this->greedy_analysis(chessboard,chesstype);
 
-   DEBUG_LOG("human_result x = %d, y = %d\n",human_result.position.x_pos,human_result.position.y_pos);
 }
 
 void AI_core::analyze_level3(s8 chesstype)
@@ -238,6 +236,15 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int 
 
 analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chesstype)
 {
+	analysis_result human_result;
+	analysis_result computer_result;
+
+	human_result    = this->get_max_score_position(chessboard,this->get_human_chess_type());
+    computer_result = this->get_max_score_position(chessboard,this->get_computer_chess_type());
+
+	DEBUG_LOG("human_result x = %d, y = %d\n",human_result.position.x_pos,human_result.position.y_pos);
+	DEBUG_LOG("computer_result x = %d, y = %d\n",computer_result.position.x_pos,computer_result.position.y_pos);
+
 	return this->get_max_score_position(chessboard, chesstype);
 }
 

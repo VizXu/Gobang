@@ -175,9 +175,9 @@ void test_mode4()
 {
   StoreChessManual* s = StoreChessManual::get_chess_manual();
   
-  JudgeWin* judge = new JudgeWin;
+//  JudgeWin* judge = new JudgeWin;
 
-  Chessmen_info* info;
+//  Chessmen_info* info;
 
   Chessboard chessboard;
 
@@ -211,11 +211,11 @@ void test_mode4()
     }
   human.change_state(); //stop
 
-  judge->copy_chessboard(chessboard);
+//  judge->copy_chessboard(chessboard);
 
-  info = judge->scan_analysis_chessmen('&');
+//  info = judge->scan_analysis_chessmen('&');
 
-  info->dumpiLivesInfo();
+//  info->dumpiLivesInfo();
 
   DEBUG_LOG("\n----------------------------\n"); 
   computer.change_state();//start
@@ -318,7 +318,7 @@ int test(int argc, char* args[])
 {
 
    char result;
-   void (*fun)() = test_mode6;
+   void (*fun)() = test_mode4;
    int mode = 1;
 
    for(;;){

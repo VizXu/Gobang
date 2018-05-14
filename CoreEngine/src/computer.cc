@@ -69,6 +69,11 @@ void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
      case 3:ai->analyze_level1('@');break;
      default:break;
    }
+
+   //for test
+   //ai->analyze_level2(chessboard, '@');
+   //end
+   
    this->suggest_position = ai->get_suggest_position();
    this->present_position = this->suggest_position;
 }
