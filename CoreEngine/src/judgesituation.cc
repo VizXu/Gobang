@@ -259,12 +259,12 @@ JudgeWin::JudgeWin()
   this->be_won = false;
   this->winner = '+';
   for(int i = 0;i < BOARD_SIZE; i++){
-      for(int j = 0; j < BOARD_SIZE; j++){
-            this->board_for_judge[i][j]= '+';
-	 for(int k = 0 ; k < 8; k++){
-	    this->judge_panel[i][j][k] = 0;
+	  for(int j = 0; j < BOARD_SIZE; j++){
+	     this->board_for_judge[i][j]= '+';
+		 for(int k = 0 ; k < 8; k++){
+		    	this->judge_panel[i][j][k] = 0;
+		 }
 	 }
-      }
   }
 }
 

@@ -37,21 +37,16 @@ s8 Computer::get_computer_chess_type()
 
 bool Computer::make_a_step(Chessboard& chessboard)
 {
-   s8 the_type = get_computer_chess_type();
-//   DEBUG_LOG("make_a_step,type = %c\n",the_type);
+     s8 the_type = get_computer_chess_type();
+
 //   if(this->move_state  == start){
-      u32 lvr = this->level;
+	      u32 the_level = this->level;
 
-//      DEBUG_LOG("level = %d\n",lvr);
-//      DEBUG_LOG("\n-------------------------\n");
-//      display_chessboard(chessboard); 
-//      DEBUG_LOG("\n-------------------------\n");
-
-      ai_analysis(chessboard,lvr);
-      if(chessboard.set_chess(suggest_position.x_pos,suggest_position.y_pos,the_type)){
-         this->last_position = this->present_position;
-	 	 this->present_position = this->suggest_position;
-      }
+	      this->ai_analysis(chessboard,the_level);
+	      if(chessboard.set_chess(this->suggest_position.x_pos,this->suggest_position.y_pos,the_type)){
+	         this->last_position = this->present_position;
+		 	 this->present_position = this->suggest_position;
+	      }
 //    }
     else{
        return false;
@@ -60,13 +55,13 @@ bool Computer::make_a_step(Chessboard& chessboard)
 
 void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
 {
-   ai->copy_board(chessboard);
+   this->ai->copy_board(chessboard);
    
    switch(level)
    {
-     case 1:ai->analyze_level1('&');break;
-     case 2:ai->analyze_level2(chessboard, '@');break;
-     case 3:ai->analyze_level1('@');break;
+     case 1:this->ai->analyze_level1('&');break;
+     case 2:this->ai->analyze_level2(chessboard, '@');break;
+     case 3:this->ai->analyze_level1('@');break;
      default:break;
    }
 
@@ -74,7 +69,7 @@ void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
    //ai->analyze_level2(chessboard, '@');
    //end
    
-   this->suggest_position = ai->get_suggest_position();
+   this->suggest_position = this->ai->get_suggest_position();
    this->present_position = this->suggest_position;
 }
 

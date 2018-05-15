@@ -125,11 +125,7 @@ void AI_core::analyze_level1(s8 chesstype)
   #endif 
 
   this->store_analysis_result(rslt); // store the suggest position_info 
-  
-  #if defined(DEBUG_MODE) 
-  // this->position_suggest.x_pos = 1 ; this->position_suggest.y_pos = 6;
-  //DEBUG_LOG("x_pos = %d,y_pos = %d\n",this->position_suggest.x_pos,this->position_suggest.y_pos);
-  #endif // debug_mode
+
 }
 
 void AI_core::analyze_level2(const Chessboard& chessboard, s8 chesstype)
@@ -220,16 +216,16 @@ int AI_core::chessboard_greedy_analysis(COPY_BOARD board,board_position pos,int 
     }
     else{
 	//analysis the board
-	this->copy_chess_for_analysis(tmp_board);
-    this->flush_chessboard_for_analysis(); // chessboard is stored at stl greedy_analysis list<board_position> empty, human, computer
-	this->greedy_analysis_empty_position_score(tmp_board);
-	
-	tmp_position.x_pos =  this->empty_position_score_results[0].x_pos;
-	tmp_position.y_pos =  this->empty_position_score_results[0].y_pos;
+		this->copy_chess_for_analysis(tmp_board);
+	    this->flush_chessboard_for_analysis(); // chessboard is stored at stl greedy_analysis list<board_position> empty, human, computer
+		this->greedy_analysis_empty_position_score(tmp_board);
+		
+		tmp_position.x_pos =  this->empty_position_score_results[0].x_pos;
+		tmp_position.y_pos =  this->empty_position_score_results[0].y_pos;
 
-	tmp_board[tmp_position.x_pos][tmp_position.y_pos] = '&';
+		tmp_board[tmp_position.x_pos][tmp_position.y_pos] = '&';
 
-	this->chessboard_greedy_analysis(tmp_board,tmp_position,++flag);
+		this->chessboard_greedy_analysis(tmp_board,tmp_position,++flag);
     }
 
 }
@@ -623,32 +619,15 @@ return h_c_s;
 u32 AI_core::the_position_score_fun1(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
     if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
-    
-    //debug chessboard;
-/*    for(int i =0;i<BOARD_SIZE;i++){
-      for(int j=0;j<BOARD_SIZE;j++){
-        DEBUG_LOG("%c ",chessboard[i][j]);
-      }
-      DEBUG_LOG("\n");
-    }
-*********/
-   //end
+
     int _x = pos.x_pos - 1;
     int _y = pos.y_pos;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _x >= 0 ; _x--){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -660,23 +639,15 @@ return score;
 u32 AI_core::the_position_score_fun2(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
     
     int _x = pos.x_pos + 1;
     int _y = pos.y_pos;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _x < BOARD_SIZE ; _x++){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d, type[_x,_y] = %c\n",_x, chessboard[_x][_y]);
          ++score;
          continue;
        }
@@ -688,23 +659,15 @@ return score;
 u32 AI_core::the_position_score_fun3(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-  //  COPY_BOARD tmp_board;
-  // copy_position(tmp_board);
     
     int _x = pos.x_pos;
     int _y = pos.y_pos - 1;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _y >= 0 ; _y--){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -716,23 +679,15 @@ return score;
 u32 AI_core::the_position_score_fun4(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
     
     int _x = pos.x_pos;
     int _y = pos.y_pos + 1;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _y < BOARD_SIZE ; _y++){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -744,23 +699,15 @@ return score;
 u32 AI_core::the_position_score_fun5(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
     
     int _x = pos.x_pos - 1;
     int _y = pos.y_pos - 1;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _x >= 0, _y>=0 ; _x--, _y--){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -772,23 +719,15 @@ return score;
 u32 AI_core::the_position_score_fun6(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
     
     int _x = pos.x_pos - 1;
     int _y = pos.y_pos + 1;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _x >= 0, _y<BOARD_SIZE ; _x--, _y++){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -800,23 +739,15 @@ return score;
 u32 AI_core::the_position_score_fun7(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
     
     int _x = pos.x_pos + 1;
     int _y = pos.y_pos - 1;
 
     s8 type = chess_type;
 
-    DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _x < BOARD_SIZE, _y > 0 ; _x++,_y--){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -828,23 +759,15 @@ return score;
 u32 AI_core::the_position_score_fun8(const COPY_BOARD& chessboard,board_position pos,s8 chess_type)
 {
  if( !this->is_safe(pos) || !this->is_empty_site(pos)) throw "pos site error!";
-   // COPY_BOARD tmp_board;
-   // copy_position(tmp_board);
     
     int _x = pos.x_pos + 1;
     int _y = pos.y_pos + 1;
 
     s8 type = chess_type;
 
-  //  DEBUG_LOG("type = %c \n",chessboard[0][0]);
-
     u32 score = 0;
     for(; _x < BOARD_SIZE, _y<BOARD_SIZE ; _x++, _y++){
-       //
-       DEBUG_LOG("for ---- _x = %d\n",_x);
-
        if(chessboard[_x][_y] == type) {
-         DEBUG_LOG("_x = %d\n",_x);
          ++score;
          continue;
        }
@@ -855,18 +778,14 @@ return score;
 
 bool AI_core::is_safe(const board_position& pos)
 {
-   //DEBUG_LOG("xujiwei----is_safe_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
     if(pos.x_pos < 0 || pos.x_pos >= BOARD_SIZE || pos.y_pos < 0 || pos.y_pos >= BOARD_SIZE) return false;
 return true;
 }
 
 bool AI_core::is_empty_site(const board_position& pos)
 {
-   //DEBUG_LOG("xujiwei----is_empty_site,pos.x_pos = %d, pos.y_pos = %d \n",pos.x_pos,pos.y_pos);
-
    this->l_ptr = std::find_if(empty_type.begin(),empty_type.end(),find_out(pos.x_pos,pos.y_pos));
    if(l_ptr != empty_type.end()){
-   //  DEBUG_LOG("xujiwei true!\n");
      return true; 
    }
    else { 
@@ -881,5 +800,6 @@ s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstyp
    this->judgewin_ai->copy_chessboard(chessboard);
    info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
    score = info->getiLivesScore();
+   delete info;
 return score;
 }
