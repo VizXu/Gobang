@@ -39,7 +39,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
 {
      s8 the_type = get_computer_chess_type();
 
-//   if(this->move_state  == start){
+   if(this->move_state  == start){
 	      u32 the_level = this->level;
 
 	      this->ai_analysis(chessboard,the_level);
@@ -47,7 +47,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
 	         this->last_position = this->present_position;
 		 	 this->present_position = this->suggest_position;
 	      }
-//    }
+    }
     else{
        return false;
     }
