@@ -16,6 +16,7 @@ typedef struct{
       board_position position;
       u32 direction;
       u32 max_length;
+	  int score;
 }analysis_result;
 
 typedef struct
@@ -33,6 +34,7 @@ typedef struct
 class AI_core
 {
 private:
+   int advertised_pos[BOARD_SIZE][BOARD_SIZE];
    bool is_copied_already;
    analysis_result alys_rlt;
    s8 human_chess_type;
@@ -51,26 +53,32 @@ private:
 private:
    JudgeWin* judgewin_ai;
 public:
-   AI_core(){
-     srand(time(NULL));
-     position_suggest.x_pos = BOARD_SIZE/2;
-     position_suggest.y_pos = BOARD_SIZE/2;
-     
-     this->judgewin_ai = new JudgeWin;
+	AI_core(){
+		srand(time(NULL));
+		position_suggest.x_pos = BOARD_SIZE/2;
+		position_suggest.y_pos = BOARD_SIZE/2;
 
-     this->alys_rlt.direction = 0;
-     this->alys_rlt.max_length = 0;
+		this->judgewin_ai = new JudgeWin;
 
-     this->human_chess_type = '&';
-     this->computer_chess_type = '@';
+		this->alys_rlt.direction = 0;
+		this->alys_rlt.max_length = 0;
 
-     for(int i = 0; i < BOARD_SIZE; i++){
-       for(int j = 0; j < BOARD_SIZE; j++){
-         core_board[i][j] = '+';
-       }
-     }
-     this->is_copied_already = false;
-   }      
+		this->human_chess_type = '&';
+		this->computer_chess_type = '@';
+
+		for(int i = 0; i < BOARD_SIZE; i++){
+			for(int j = 0; j < BOARD_SIZE; j++){
+				core_board[i][j] = '+';
+				for(int k = 0; k <= BOARD_SIZE/2; k++){
+					if(i == k || i == BOARD_SIZE - 1 - k) this->advertised_pos[i][j] = k + 1;
+				}
+	            for(int k = 0; k <= BOARD_SIZE/2; k++){
+	                    if(j == k || j == BOARD_SIZE - 1 - k) this->advertised_pos[i][j] += k;
+	            }
+			}
+		}
+		this->is_copied_already = false;
+	}      
    ~AI_core(){}
 public:
    AI_core(const AI_core&)= delete;
@@ -86,6 +94,7 @@ public:
 // for test mode
 public:
    u32 test_mode(int,board_position,s8);
+   void display_advertised_pos() const;
 // mode end
 private:
    bool is_safe(const board_position&);

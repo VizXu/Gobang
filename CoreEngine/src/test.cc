@@ -268,6 +268,7 @@ void test_mode6()
   try{
   		ai_core->copy_board(chessboard);
   		ai_core->analyze_level2(chessboard, '@');
+  		//ai_core->display_advertised_pos();
   }
   catch(std::exception e){
 	std::cout<<"something wrong..."<<e.what()<<std::endl;

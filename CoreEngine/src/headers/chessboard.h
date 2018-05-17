@@ -44,5 +44,6 @@ public:
     bool has_empty_site() const;
 	u32 get_size_of_type(s8 type) const;
     void init(int);
+	void display() const;
 };
 #endif//chessboard.h

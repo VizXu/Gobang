@@ -147,7 +147,6 @@ void AI_core::analyze_level3(s8 chesstype)
 
 }
 
-
 void AI_core::copy_chess_for_analysis(COPY_BOARD board)
 {
     for(int i = 0;i < BOARD_SIZE; i++){
@@ -236,12 +235,17 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 	analysis_result computer_result;
 
 	human_result    = this->get_max_score_position(chessboard,this->get_human_chess_type());
-    computer_result = this->get_max_score_position(chessboard,this->get_computer_chess_type());
+	
+    //computer_result = this->get_max_score_position(chessboard,this->get_computer_chess_type());
 
-	DEBUG_LOG("human_result x = %d, y = %d\n",human_result.position.x_pos,human_result.position.y_pos);
-	DEBUG_LOG("computer_result x = %d, y = %d\n",computer_result.position.x_pos,computer_result.position.y_pos);
+	//for test
+	chessboard.display();
 
-	return this->get_max_score_position(chessboard, chesstype);
+	DEBUG_LOG("human_result x = %d, y = %d,score = %d\n",human_result.position.x_pos,human_result.position.y_pos,human_result.score);
+	//DEBUG_LOG("computer_result x = %d, y = %d,score = %d\n",computer_result.position.x_pos,computer_result.position.y_pos,computer_result.score);
+
+	//return this->get_max_score_position(chessboard, chesstype);
+	return human_result;
 }
 
 analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,char chesstype)
@@ -268,19 +272,22 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 	  }(rslt);
 	
 	  board_position guess_pos;
+	  score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
 	
 	   for(int i = 0; i < size && l_ptr != empty_type.end(); i++, l_ptr++){
 		  guess_pos = *l_ptr;	
+		  
 		  if(!board_for_greedy_analysis.set_chess_for_analysis(guess_pos.x_pos,guess_pos.y_pos, chesstype)){
 			 DEBUG_LOG("1 --> set chess error! x = %d, y = %d, type = %c\n",guess_pos.x_pos,guess_pos.y_pos, chesstype);
 			 throw std::exception(std::logic_error("set chess error"));
 		  }
 		  score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
 		  //DEBUG_LOG("chessboard empty size = %d\n",board_for_greedy_analysis.get_size_of_type('+'));
+		  DEBUG_LOG("set chess! x = %d, y = %d, type = %c,score = %d\n",guess_pos.x_pos,guess_pos.y_pos, chesstype,score);
 	
 		  //DEBUG_LOG("this->current_chessboard_score = %d\n",score);
 	
-		  if(scoreMax < score){
+		  if(score >= scoreMax){
 				scoreMax = score;
 				rslt.position.x_pos = guess_pos.x_pos;
 				rslt.position.y_pos = guess_pos.y_pos;
@@ -294,6 +301,7 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 	
 	  rslt.direction = 0;
 	  rslt.max_length = 0;
+	  rslt.score = scoreMax;
 	
 	return rslt;
 }
@@ -802,4 +810,14 @@ s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstyp
    score = info->getiLivesScore();
    delete info;
 return score;
+}
+
+void  AI_core::display_advertised_pos() const
+{
+	for(int i = 0 ; i < BOARD_SIZE; i++){
+		for(int j = 0; j < BOARD_SIZE; j++){
+			printf("%4d ",this->advertised_pos[i][j]);
+		}
+		printf("\n\n");
+	}
 }

@@ -107,3 +107,15 @@ void Chessboard::get_chessboard(chessboard_info& info)
 return;
 }
 
+void Chessboard::display() const
+{
+	printf("\n----------chessboard----------\n");
+	for(int i = 0; i < BOARD_SIZE; i++){
+		for(int j = 0;j < BOARD_SIZE; j++){
+			printf("%2c ",this->board[i][j]);
+		}
+		printf("\n");
+	}
+	printf("----------chessboard----------\n");
+}
+
