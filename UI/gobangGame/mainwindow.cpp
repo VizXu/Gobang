@@ -58,7 +58,6 @@ QPoint MainWindow::filterSetPos(const QPoint &point)
 
 void MainWindow::paintChessman(int x, int y, char chessman)
 {
-    //QPainter chessmanPaint(this);
     QPainter* chessmanPaint = new QPainter(this);
     QColor chessmanColor1 = QColor(255,0,0,255);
     QColor chessmanColor2 = QColor(0,0,255,255);
@@ -88,7 +87,6 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
-//    QPainter tmpP(this);
     if (Qt ::LeftButton == e->button())
     {
         point1->setX(e->x());
@@ -115,56 +113,41 @@ void MainWindow::setChessboardSize(int _size)
 
 void MainWindow::changeEvent(QEvent *e)
 {
-
-    qDebug()<<"window state -->"<<int(this->windowState());
     //QFlags flag = QFlags();
     if(this->windowState() == Qt::WindowNoState)
     {
-        //qDebug()<<"maximized...";
-        //this->flashChessboard(this->game->getChessboardInfo(false));
-        //repaint();
+
     }
 }
 
 void MainWindow::flashChessboard(QStringList boardInfo)
 {
-    qDebug()<<"flash chessboard";
-    qDebug()<<"info size = "<<boardInfo.size();
     int k = 0;
     for(int i = 0; i < boardInfo.size(); i++){
         k = 0;
-//        qDebug()<<"flash line "<<i<<" = "<<boardInfo.at(i);
-        //printf("boardInfo.at(i).size() = %d\n",boardInfo.at(i).size());
         for(int j = 0; j < boardInfo.at(i).size(); j += 2){
             const char chessman = boardInfo.at(i).at(j).toAscii();
-            //qDebug()<<chessman<<"  ";
             printf("%c ",chessman);
             if(chessman != '+'){
-                //printf("xujiwei--->%d",chessman);
-                //printf("");
-                //printf("%c",chessman);
-                printf("set x = %d, y = %d\n",i,k);
                 this->paintChessman(k,i,chessman);
             }
             k++;
         }
         printf("\n");
     }
-     //   qDebug()<<"change event in paint Chessman";
-    //if()
 }
 
 void MainWindow::startGame()
 {
-    this->setChessboardSize(15);
-    this->game->initGame(this->getChessboardSize(),1);
+    int l = this->level->currentText().toInt();
+	this->setChessboardSize(15);
+    this->game->initGame(this->getChessboardSize(),l);
     this->hasStarted = true;
     this->flashChessboard(this->game->getChessboardInfo(true));
 }
 
 void MainWindow::makeStep(QPoint point)
 {
-//    qDebug()<<"make step----> x = "<<point.x()<<", y = "<<point.y();
     if(!this->hasStarted){
         return;
     }

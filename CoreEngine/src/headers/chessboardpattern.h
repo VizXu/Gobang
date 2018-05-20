@@ -32,9 +32,7 @@ private:
     void setCurrentGameStatus(struct game_status&);
     void setLevel(int);
     int getLevel() const;
-    struct game_status&& gameRunningLevel1(const struct client_info& info); 
-    struct game_status&& gameRunningLevel2(const struct client_info& info); 
-    struct game_status&& gameRunningLevel3(const struct client_info& info); 
+    struct game_status&& gameRunningLevel(const struct client_info& info,int level); 
 public:
     ~ChessboardPattern();
 public:

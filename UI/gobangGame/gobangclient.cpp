@@ -49,25 +49,17 @@ void gobangClient::handleRecv(const QString& cmd)
     }
 
     if(action == QString("init")){
-//        QString commentLine = info.at(0);
         QString eachLine;
         for(int i = 0; i < this->statusinfo.getSize(); i++){
             eachLine = info.at(i + 1);
-//            qDebug()<<"line "<<i<<" = "<<eachLine.toStdString().c_str();
             this->boardInfo.push_back(eachLine);
         }
         QMessageBox::information(NULL, "Init the Game!", "Game Start!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         return;
-//        qDebug()<<"action = "<<action.toStdString().c_str();
-//        qDebug()<<commentLine.toStdString().c_str();
     }
     else if(action == QString("get")){
-        //qDebug()<<"action = "<<action.toStdString().c_str();
     }
     else if(action == QString("set")){
-//        qDebug()<<"action = "<<action.toStdString().c_str();
-//        QString posLine = info.at(0);
-//        QString setStatus = info.at(1);
         QString gameStatus = info.at(2);
 
         QString winnerStatus = gameStatus.split(',').at(1).split('=').at(1);
@@ -82,18 +74,11 @@ void gobangClient::handleRecv(const QString& cmd)
             return;
         }
 
-//        qDebug()<<posLine.toStdString().c_str();
-
         QString eachLine;
         for(int i = 0; i < this->statusinfo.getSize(); i++){
             eachLine = info.at(i + 3);
-//            qDebug()<<"line "<<i<<" = "<<eachLine.toStdString().c_str();
             this->boardInfo.push_back(eachLine);
         }
-//        qDebug()<<"action = "<<action.toStdString().c_str();
-//        qDebug()<<"posLine = "<<posLine.toStdString().c_str();
-//        qDebug()<<"commentLine1 = "<<commentLine1.toStdString().c_str();
-//        qDebug()<<"commentLine2 = "<<commentLine2.toStdString().c_str();
     }
     else{
         qDebug()<<"action error!";
@@ -113,7 +98,7 @@ void gobangClient::clientInit(const char * _ip, int _level, int _size)
     cmd += size;
     cmd += " --level ";
     cmd += level;
-    bug_log.LOG(cmd);
+    //bug_log.LOG(cmd);
     this->handleRecv(cmd);
 }
 
@@ -122,7 +107,7 @@ void gobangClient::clientGet(const char* _ip)
     QString cmd("ChessClient get");
     cmd += " --host ";
     cmd += _ip;
-    bug_log.LOG(cmd);
+    //bug_log.LOG(cmd);
     this->handleRecv(cmd);
 }
 
@@ -137,6 +122,5 @@ void gobangClient::clientSet(const char* _ip,gameinfo info)
     cmd += xpos;
     cmd += " --ypos ";
     cmd += ypos;
-    bug_log.LOG(cmd);
     this->handleRecv(cmd);
 }

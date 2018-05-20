@@ -133,12 +133,14 @@ void AI_core::analyze_level2(const Chessboard& chessboard, s8 chesstype)
 
    analysis_result result;
 
-   DEBUG_LOG("chessboard empty size = %d\n",chessboard.get_size_of_type('+'));
+   //DEBUG_LOG("chessboard empty size = %d\n",chessboard.get_size_of_type('+'));
    
    destroy_present_chess_info();
    store_chess_info();
    
    result    = this->greedy_analysis(chessboard,chesstype);
+
+   this->store_analysis_result(result);
 
 }
 
@@ -239,9 +241,9 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
     //computer_result = this->get_max_score_position(chessboard,this->get_computer_chess_type());
 
 	//for test
-	chessboard.display();
+	//chessboard.display();
 
-	DEBUG_LOG("human_result x = %d, y = %d,score = %d\n",human_result.position.x_pos,human_result.position.y_pos,human_result.score);
+	//DEBUG_LOG("human_result x = %d, y = %d,score = %d\n",human_result.position.x_pos,human_result.position.y_pos,human_result.score);
 	//DEBUG_LOG("computer_result x = %d, y = %d,score = %d\n",computer_result.position.x_pos,computer_result.position.y_pos,computer_result.score);
 
 	//return this->get_max_score_position(chessboard, chesstype);
@@ -258,7 +260,7 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 	  int score = 0;
 	  int scoreMax = 0;
 	
-	  DEBUG_LOG("empty size = %d\n",size);
+	 // DEBUG_LOG("empty size = %d\n",size);
 	
 	 //start analysis
 	  
@@ -808,7 +810,7 @@ s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstyp
    this->judgewin_ai->copy_chessboard(chessboard);
    //DEBUG_LOG("in %s, chessman type = %c",__FUNCTION__,chesstype);
    info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
-   info->dumpiLivesInfo();
+   //info->dumpiLivesInfo();
    score = info->getiLivesScore();
    delete info;
 return score;

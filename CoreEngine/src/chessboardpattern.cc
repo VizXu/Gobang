@@ -77,20 +77,21 @@ struct game_status ChessboardPattern::gameRunning(const struct client_info& info
 {
    struct game_status status;
    switch(this->getLevel()){
-      case 1: status = this->gameRunningLevel1(info); break;
-      case 2: status = this->gameRunningLevel1(info); break;
-      case 3: status = this->gameRunningLevel1(info); break;
-      default: status = this->gameRunningLevel1(info); break;
+      case 1: status = this->gameRunningLevel(info,1); break;
+      case 2: status = this->gameRunningLevel(info,2); break;
+      case 3: status = this->gameRunningLevel(info,3); break;
+      default: status = this->gameRunningLevel(info,1); break;
    } 
 return status;
 }
 
-struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_info& info)
+struct game_status&& ChessboardPattern::gameRunningLevel(const struct client_info& info,int level)
 {
     int xpos = info.info.xpos;
     int ypos = info.info.ypos;
     struct game_status gameStatus;
     board_position tmp_position;
+	this->computer->select_level(level);
 
     if(this->test_balance(chessboard)){
 	 gameStatus.status = BALANCE;
@@ -126,20 +127,6 @@ struct game_status&& ChessboardPattern::gameRunningLevel1(const struct client_in
 
     this->setCurrentGameStatus(gameStatus);
 
-return std::move(gameStatus);
-}
-
-struct game_status&& ChessboardPattern::gameRunningLevel2(const struct client_info& info)
-{
-    struct game_status gameStatus;
-    this->setCurrentGameStatus(gameStatus);
-return std::move(gameStatus);
-}
-
-struct game_status&& ChessboardPattern::gameRunningLevel3(const struct client_info& info)
-{
-    struct game_status gameStatus;
-    this->setCurrentGameStatus(gameStatus);
 return std::move(gameStatus);
 }
 

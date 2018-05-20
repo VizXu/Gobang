@@ -56,6 +56,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
 void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
 {
    this->ai->copy_board(chessboard);
+   //DEBUG_LOG("level = %d\n",level);
    
    switch(level)
    {
