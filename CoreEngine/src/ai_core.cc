@@ -283,7 +283,7 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 		  }
 		  score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
 		  //DEBUG_LOG("chessboard empty size = %d\n",board_for_greedy_analysis.get_size_of_type('+'));
-		  DEBUG_LOG("set chess! x = %d, y = %d, type = %c,score = %d\n",guess_pos.x_pos,guess_pos.y_pos, chesstype,score);
+		  //DEBUG_LOG("set chess! x = %d, y = %d, type = %c,score = %d\n",guess_pos.x_pos,guess_pos.y_pos, chesstype,score);
 	
 		  //DEBUG_LOG("this->current_chessboard_score = %d\n",score);
 	
@@ -806,7 +806,9 @@ s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstyp
    s32 score = 0;
    Chessmen_info* info = new Chessmen_info;
    this->judgewin_ai->copy_chessboard(chessboard);
+   //DEBUG_LOG("in %s, chessman type = %c",__FUNCTION__,chesstype);
    info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
+   info->dumpiLivesInfo();
    score = info->getiLivesScore();
    delete info;
 return score;

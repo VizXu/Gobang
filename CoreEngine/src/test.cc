@@ -60,6 +60,7 @@ void specific_chessboard(Chessboard& board)
 	//board.set_chess(y,i,'@');
 	//board.set_chess(y,i - 1, '@');
 	//board.set_chess(y,i,'&');
+	board.set_chess(1,0,'&');
 	board.set_chess(y,i + 1,'@');
 	board.set_chess(y + 1,i + 2,'&');
 	board.set_chess(y + 2,i + 3,'&');
@@ -280,6 +281,7 @@ return;
 void test_mode7()
 {
 	Chessboard chessboard;
+	int score = 0;
 
 	JudgeWin* judge = new JudgeWin;
 
@@ -295,6 +297,9 @@ void test_mode7()
 	info->dumpiLivesInfo();
 
 //	judge->dumpIndex(ROTATE270);
+
+	score = info->getiLivesScore();
+	DEBUG_LOG("score = %d\n",score);
 	
 	display_chessboard(chessboard);
 
