@@ -256,6 +256,30 @@ int Chessmen_info::getiLivesScore() const
 return score;
 }
 
+bool Chessmen_info::has_ilive3_or_above() const
+{
+	PosInfo posInfo;
+	for(int i = 0; i < TOTALPOSSIZE; i++){
+		posInfo = this->getiHasWonInfo(i);
+		if(1 == posInfo.getFlag()){
+			return true;
+		}
+		posInfo = this->getiLive4Info(i);
+		if(1 == posInfo.getFlag()){
+			return true;
+		}
+		posInfo = this->getiLive4HeapInfo(i);
+		if(1 == posInfo.getFlag()){
+			return true;
+		}
+		posInfo = this->getiLive3Info(i);
+		if(1 == posInfo.getFlag()){
+			return true;
+		}
+	}
+return false;
+}
+
 JudgeWin::JudgeWin()
 {
   this->be_won = false;

@@ -253,6 +253,7 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,char chesstype)
 {
 	  Chessboard board_for_greedy_analysis = chessboard;
+	  Chessmen_info* info = NULL;
 	  
 	  u32 size = this->empty_type.size();
 	  this->l_ptr = empty_type.begin();
@@ -274,7 +275,9 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 	  }(rslt);
 	
 	  board_position guess_pos;
-	  score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
+	  info = this->current_chessboard_chessmeninfo(board_for_greedy_analysis,chesstype);
+	  score = info->getiLivesScore();
+	  delete info;
 	
 	   for(int i = 0; i < size && l_ptr != empty_type.end(); i++, l_ptr++){
 		  guess_pos = *l_ptr;	
@@ -283,11 +286,9 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 			 DEBUG_LOG("1 --> set chess error! x = %d, y = %d, type = %c\n",guess_pos.x_pos,guess_pos.y_pos, chesstype);
 			 throw std::exception(std::logic_error("set chess error"));
 		  }
-		  score = this->current_chessboard_score(board_for_greedy_analysis,chesstype);
-		  //DEBUG_LOG("chessboard empty size = %d\n",board_for_greedy_analysis.get_size_of_type('+'));
-		  //DEBUG_LOG("set chess! x = %d, y = %d, type = %c,score = %d\n",guess_pos.x_pos,guess_pos.y_pos, chesstype,score);
-	
-		  //DEBUG_LOG("this->current_chessboard_score = %d\n",score);
+		  info = this->current_chessboard_chessmeninfo(board_for_greedy_analysis,chesstype);
+		  score = info->getiLivesScore();
+		  delete info;
 	
 		  if(score >= scoreMax){
 				scoreMax = score;
@@ -803,17 +804,19 @@ bool AI_core::is_empty_site(const board_position& pos)
    }
 }
 
-s32 AI_core::current_chessboard_score(const Chessboard& chessboard,char chesstype)
+Chessmen_info* AI_core::current_chessboard_chessmeninfo(const Chessboard& chessboard,char chesstype)
 {
-   s32 score = 0;
    Chessmen_info* info = new Chessmen_info;
    this->judgewin_ai->copy_chessboard(chessboard);
-   //DEBUG_LOG("in %s, chessman type = %c",__FUNCTION__,chesstype);
    info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
    //info->dumpiLivesInfo();
-   score = info->getiLivesScore();
-   delete info;
-return score;
+   //score = info->getiLivesScore();
+return info;
+}
+
+int AI_core::attack_or_defence(Chessmen_info* info,char chesstype)
+{
+return 0;
 }
 
 void  AI_core::display_advertised_pos() const

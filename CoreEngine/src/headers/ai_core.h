@@ -146,7 +146,8 @@ private:
    void store_empty_position_score(const board_position,const human_computer_score);
    void analysize_empty_position_score();
 private:
-   s32 current_chessboard_score(const Chessboard& chessboard,char chesstype);
+   Chessmen_info* current_chessboard_chessmeninfo(const Chessboard& chessboard,char chesstype);
+   int attack_or_defence(Chessmen_info* info,char chesstype);
 };
 #endif//ai_core.h
 

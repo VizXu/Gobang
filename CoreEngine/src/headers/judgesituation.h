@@ -199,6 +199,7 @@ public:
 public:
 	void dumpiLivesInfo() const;
 	int getiLivesScore() const;
+	bool has_ilive3_or_above() const;
 };
 
 class JudgeWin
