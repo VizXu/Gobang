@@ -806,7 +806,7 @@ bool AI_core::is_empty_site(const board_position& pos)
 
 Chessmen_info* AI_core::current_chessboard_chessmeninfo(const Chessboard& chessboard,char chesstype)
 {
-   Chessmen_info* info = new Chessmen_info;
+   Chessmen_info* info = NULL;
    this->judgewin_ai->copy_chessboard(chessboard);
    info = this->judgewin_ai->scan_analysis_chessmen(chesstype);
    //info->dumpiLivesInfo();
