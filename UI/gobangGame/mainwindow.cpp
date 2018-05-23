@@ -101,6 +101,36 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
     }
 }
 
+void MainWindow::showEvent(QShowEvent *)
+{
+    qDebug()<<"showEvent";
+}
+
+void MainWindow::hideEvent(QHideEvent *)
+{
+    qDebug()<<"hideEvent";
+}
+
+void MainWindow::actionEvent(QActionEvent *)
+{
+    qDebug()<<"actionEvent";
+}
+
+void MainWindow::enterEvent(QEvent *)
+{
+    qDebug()<<"enterEvent";
+}
+
+void MainWindow::leaveEvent(QEvent *)
+{
+    qDebug()<<"leaveEvent";
+}
+
+void MainWindow::resizeEvent(QResizeEvent *)
+{
+    qDebug()<<"resizeEvent";
+}
+
 int MainWindow::getChessboardSize() const
 {
     return this->chessboardSize;

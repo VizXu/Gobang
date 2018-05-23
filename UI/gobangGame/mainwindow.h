@@ -56,6 +56,12 @@ private:
 private:
     void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent * e);
+    void showEvent(QShowEvent*);
+    void hideEvent(QHideEvent*);
+    void actionEvent(QActionEvent *);
+    void enterEvent(QEvent *);
+    void leaveEvent(QEvent *);
+    void resizeEvent(QResizeEvent *);
 public:
     int getChessboardSize() const;
     void setChessboardSize(int _size);
