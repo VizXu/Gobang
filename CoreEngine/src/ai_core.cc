@@ -140,6 +140,8 @@ void AI_core::analyze_level2(const Chessboard& chessboard, s8 chesstype)
    
    result    = this->greedy_analysis(chessboard,chesstype);
 
+   DEBUG_LOG("result score = %d\n",result.score);
+
    this->store_analysis_result(result);
 
 }
@@ -235,8 +237,30 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 {
 	analysis_result human_result;
 	analysis_result computer_result;
+	analysis_result ret_result;
+	int has_computer_pos = 0;
+	has_computer_pos = chessboard.get_size_of_type(this->get_computer_chess_type());
 
 	human_result    = this->get_max_score_position(chessboard,this->get_human_chess_type());
+	computer_result = this->get_max_score_position(chessboard, this->get_computer_chess_type());
+
+	DEBUG_LOG("computer pos, x = %d, y = %d\n",computer_result.position.x_pos,computer_result.position.y_pos);
+
+	if(human_result.hasilive3orabove){
+		DEBUG_LOG("should defence!\n");
+		ret_result = human_result;
+		this->attack_or_defence(chessboard,chesstype,DEFENCE,ret_result);
+	}
+	else{
+		DEBUG_LOG("should attack!\n");
+		if(has_computer_pos == 0) {
+			ret_result = human_result;
+		}
+		else{
+			ret_result = computer_result;
+		}
+		this->attack_or_defence(chessboard,chesstype,ATTACK,ret_result);
+	}
 	
     //computer_result = this->get_max_score_position(chessboard,this->get_computer_chess_type());
 
@@ -247,7 +271,8 @@ analysis_result AI_core::greedy_analysis(const Chessboard& chessboard,char chess
 	//DEBUG_LOG("computer_result x = %d, y = %d,score = %d\n",computer_result.position.x_pos,computer_result.position.y_pos,computer_result.score);
 
 	//return this->get_max_score_position(chessboard, chesstype);
-	return human_result;
+	return ret_result;
+	//return human_result;
 }
 
 analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,char chesstype)
@@ -260,6 +285,7 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 	
 	  int score = 0;
 	  int scoreMax = 0;
+	  bool iLive3_or_above = false;
 	
 	 // DEBUG_LOG("empty size = %d\n",size);
 	
@@ -288,6 +314,8 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 		  }
 		  info = this->current_chessboard_chessmeninfo(board_for_greedy_analysis,chesstype);
 		  score = info->getiLivesScore();
+		  iLive3_or_above = info->has_ilive3_or_above();
+		  
 		  delete info;
 	
 		  if(score >= scoreMax){
@@ -305,6 +333,7 @@ analysis_result AI_core::get_max_score_position(const Chessboard& chessboard,cha
 	  rslt.direction = 0;
 	  rslt.max_length = 0;
 	  rslt.score = scoreMax;
+	  rslt.hasilive3orabove = iLive3_or_above;
 	
 	return rslt;
 }
@@ -814,8 +843,9 @@ Chessmen_info* AI_core::current_chessboard_chessmeninfo(const Chessboard& chessb
 return info;
 }
 
-int AI_core::attack_or_defence(Chessmen_info* info,char chesstype)
+int AI_core::attack_or_defence(const Chessboard& chessboard,char chesstype,Attack_or_Defence aord,analysis_result& result)
 {
+	
 return 0;
 }
 

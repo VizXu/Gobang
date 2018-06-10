@@ -12,8 +12,14 @@
 #include "boardposition.h"
 #include "judgesituation.h"
 
+typedef enum{
+	ATTACK,
+	DEFENCE
+} Attack_or_Defence;
+
 typedef struct{
       board_position position;
+	  bool hasilive3orabove;
       u32 direction;
       u32 max_length;
 	  int score;
@@ -147,7 +153,7 @@ private:
    void analysize_empty_position_score();
 private:
    Chessmen_info* current_chessboard_chessmeninfo(const Chessboard& chessboard,char chesstype);
-   int attack_or_defence(Chessmen_info* info,char chesstype);
+   int attack_or_defence(const Chessboard& chessboard,char chesstype,Attack_or_Defence aord,analysis_result& result);
 };
 #endif//ai_core.h
 

@@ -3,7 +3,7 @@ extern void display_chessboard(const Chessboard&);
 
 Computer::Computer(string s):Player("computer"),computer_name(s),computer_chess_type('@')
 {
-   level = 1;
+   level = 2; //test mode 1 --> 2
    this->ai = new AI_core();
 }
 
@@ -56,7 +56,7 @@ bool Computer::make_a_step(Chessboard& chessboard)
 void Computer::ai_analysis(const Chessboard& chessboard,u32 level)
 {
    this->ai->copy_board(chessboard);
-   //DEBUG_LOG("level = %d\n",level);
+   DEBUG_LOG("level = %d\n",level);
    
    switch(level)
    {
