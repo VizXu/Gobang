@@ -2,7 +2,7 @@
 obj = test.o ai_core.o chessboard.o player.o computer.o human.o \
 	testwinner.o storechessmanual.o chessboardinfo.o \
 	judgesituation.o display.o serverinput.o gamerunning.o \
-	chessboardpattern.o
+	chessboardpattern.o alphabetapruning.o
 #	add.o
 
 INPUT = yes
@@ -81,6 +81,9 @@ storechessmanual.o : storechessmanual.cc
 
 chessboardinfo.o : chessboardinfo.cc
 	$(CXX) -c chessboardinfo.cc -o $(OBJ_DIR)chessboardinfo.o $(parameters) -I$(inc)
+#	@echo "chessboardinfo.cc compile"
+alphabetapruning.o : alphabetapruning.cc
+	$(CXX) -c alphabetapruning.cc -o $(OBJ_DIR)alphabetapruning.o $(parameters) -I$(inc)
 #	@echo "chessboardinfo.cc compile"
 #ifeq ($(INPUT),yes)
 add.o:	add.cc

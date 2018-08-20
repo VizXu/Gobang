@@ -14,6 +14,7 @@ void AI_core::copy_board(const Chessboard& board)
         this->core_board[i][j]= board.get_chess(i,j);
  	 }
   }
+   this->alpha_beta_pruning->loadBoard(board);
 }
 
 void AI_core::store_chess_info()

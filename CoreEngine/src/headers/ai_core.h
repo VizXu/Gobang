@@ -11,6 +11,7 @@
 
 #include "boardposition.h"
 #include "judgesituation.h"
+#include "alphabetapruning.h"
 
 typedef enum{
 	ATTACK,
@@ -65,6 +66,7 @@ public:
 		position_suggest.y_pos = BOARD_SIZE/2;
 
 		this->judgewin_ai = new JudgeWin;
+		this->alpha_beta_pruning = new AlphaBetaPruning();
 
 		this->alys_rlt.direction = 0;
 		this->alys_rlt.max_length = 0;
@@ -154,6 +156,10 @@ private:
 private:
    Chessmen_info* current_chessboard_chessmeninfo(const Chessboard& chessboard,char chesstype);
    int attack_or_defence(const Chessboard& chessboard,char chesstype,Attack_or_Defence aord,analysis_result& result);
+
+/*the follow features based on alpha-beta pruning*/
+private:
+   AlphaBetaPruning* alpha_beta_pruning;   
 };
 #endif//ai_core.h
 
