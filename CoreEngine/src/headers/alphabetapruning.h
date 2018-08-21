@@ -9,6 +9,17 @@
 
 #ifndef ALPHABETAPRUNING
 #define ALPHABETAPRUNING
+
+#define LINE_SIZE 30
+
+class Analysisline
+{
+private:
+	s8 a_line[LINE_SIZE];
+public:
+	void loadaLine(s8* line);
+};
+
 class AlphaBetaPruning
 {
 private:

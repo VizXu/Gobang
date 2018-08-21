@@ -1,5 +1,10 @@
 #include "alphabetapruning.h"
 
+void Analysisline::loadaLine(s8 * line)
+{
+return;
+}
+
 void AlphaBetaPruning::loadBoard(const Chessboard& board)
 {
    for(int i = 0;i < BOARD_SIZE; i++){
