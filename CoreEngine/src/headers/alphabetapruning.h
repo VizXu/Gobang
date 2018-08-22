@@ -11,15 +11,25 @@
 #define ALPHABETAPRUNING
 
 #define LINE_SIZE 15
-#define VLINE_NUM 15
-#define HLINE_NUM 15
-#define RLINE_NUM 29
-#define LLINE_NUM 29
+#define LINE_NUM  15
+#define XLINE_NUM 29
+#define VLINE_NUM LINE_NUM
+#define HLINE_NUM LINE_NUM
+#define RLINE_NUM XLINE_NUM
+#define LLINE_NUM XLINE_NUM
 
-#define HDIR 0
-#define VDIR 1
-#define RDIR 2
-#define LDIR 3
+//#define HDIR 0
+//#define VDIR 1
+//#define RDIR 2
+//#define LDIR 3
+
+typedef enum _DIR
+{
+HDIR,
+VDIR,
+RDIR,
+LDIR
+} DIR;
 
 /*
 FIVE:
@@ -66,17 +76,20 @@ public:
 
 class Evaluate
 {
-public:
-	s8 wholeBoard[BOARD_SIZE][BOARD_SIZE];
-	s8 vline[VLINE_NUM][BOARD_SIZE];
+private:
+	s8 whole_board[BOARD_SIZE][BOARD_SIZE];
 	s8 hline[HLINE_NUM][BOARD_SIZE];
+	s8 vline[VLINE_NUM][BOARD_SIZE];
 	s8 rline[RLINE_NUM][BOARD_SIZE];
 	s8 lline[LLINE_NUM][BOARD_SIZE];
 private:
 	Analysisline* lineAnalysis;	
+private:
+	void copy_a_line(s8 line_dst[],s8 board[][BOARD_SIZE],int num, DIR dir);
+	void board_to_line();
 public:
+	void copy_from_board(const s8 board[][BOARD_SIZE]);
 	int scores_of_players(char player);
-	void board_to_a_line(s8* line,int num, int direction);
 };
 
 class AlphaBetaPruning
