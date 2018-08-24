@@ -33,6 +33,7 @@ void Evaluate::copy_a_line(s8 line_dst[],s8 board[BOARD_SIZE][BOARD_SIZE], int n
 	      }
 	   }
 	break;
+	case LDIR:
 	   if(num < 15){
 	      k = 0;
 	      for(int i = 0; i <= num; i++){
@@ -139,7 +140,7 @@ void AlphaBetaPruning::display_line_info()
 {
     LINE line;
     this->evaluate->board_to_line();
-    this->evaluate->get_a_line(line,18,RDIR);
+    this->evaluate->get_a_line(line,15,LDIR);
     this->evaluate->dis_a_line(line);
 }
 
