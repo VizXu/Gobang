@@ -1,5 +1,34 @@
 #include "alphabetapruning.h"
 
+Evaluate::Evaluate()
+{
+   for(int i = 0; i < BOARD_SIZE; i++){
+       for(int j = 0; j < BOARD_SIZE; j++){
+	  this->whole_board[i][j] = '+';
+       }
+   }
+   for(int i = 0; i < LINE_NUM; i++){
+       for(int j = 0; j < BOARD_SIZE; j++){
+	  this->hline[i][j] = '+';
+	  this->vline[i][j] = '+';
+       }
+   }
+
+   for(int i = 0; i < XLINE_NUM; i++){
+       for(int j = 0; j < BOARD_SIZE; j++){
+	  this->rline[i][j] = '+';
+	  this->lline[i][j] = '+';
+       }
+   }
+  
+   this->lineAnalysis = new Analysisline;
+}
+
+Evaluate::~Evaluate()
+{
+   delete this->lineAnalysis;
+}
+
 void Evaluate::copy_a_line(s8 line_dst[],s8 board[BOARD_SIZE][BOARD_SIZE], int num, DIR dir)
 {
    int k = 0;
@@ -117,9 +146,23 @@ void Evaluate::get_a_line(LINE& line,int num, DIR dir)
 return;
 }
 
-void Analysisline::loadaLine(s8 * line)
+void Analysisline::loadaLine(LINE& line)
 {
+    for(int i = 0; i < BOARD_SIZE; i++){
+	this->a_line[i] = line[i];
+    }
 return;
+}
+
+void Analysisline::playerIs(char _player)
+{
+   this->player = _player;
+   if(_player == '@'){
+	this->enemy_player = '&';
+   }
+   else{
+	this->enemy_player = '@';
+   }
 }
 
 AlphaBetaPruning::AlphaBetaPruning()

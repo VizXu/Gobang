@@ -75,8 +75,8 @@ private:
 	char player;
 	char enemy_player;
 public:
-	void playerIs(char player);
-	void loadaLine(s8* line);
+	void playerIs(char _player);
+	void loadaLine(LINE& line);
 };
 
 class Evaluate
@@ -89,6 +89,9 @@ private:
 	s8 lline[LLINE_NUM][BOARD_SIZE];
 private:
 	Analysisline* lineAnalysis;	
+public:
+	Evaluate();
+	~Evaluate();
 private:
 	void copy_a_line(s8 line_dst[],s8 board[][BOARD_SIZE],int num, DIR dir);
 	void line_to_line(LINE& line1,s8 line2[BOARD_SIZE]);
