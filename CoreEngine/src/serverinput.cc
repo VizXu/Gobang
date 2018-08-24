@@ -9,7 +9,7 @@
 
 #include "chessboardpattern.h"
 
-#define DEBUGMODE 0
+#define DEBUGMODE 1
 
 #define MAX_SOCK 20
 

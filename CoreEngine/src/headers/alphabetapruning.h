@@ -63,6 +63,8 @@ ONE:
 
 */
 
+#define DEBUG_ALPHA 1
+
 class Analysisline
 {
 private:
@@ -90,6 +92,10 @@ private:
 public:
 	void copy_from_board(const s8 board[][BOARD_SIZE]);
 	int scores_of_players(char player);
+#ifdef DEBUG_ALPHA
+public:
+	void dis_lines(s8 lines[][BOARD_SIZE],int num, DIR dir);
+#endif
 };
 
 class AlphaBetaPruning

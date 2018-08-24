@@ -10,6 +10,7 @@
 #include "testwinner.h"
 #include "storechessmanual.h"
 #include "judgesituation.h"
+#include "alphabetapruning.h"
 
 #define MODE_2
 #if defined(MODE_2)
@@ -308,6 +309,11 @@ void test_mode7()
 return;
 }
 
+void test_mode8()
+{
+
+}
+
 void test_mode_for_Qt()
 {
   Chessboard chessboard;
@@ -324,7 +330,7 @@ int test(int argc, char* args[])
 {
 
    char result;
-   void (*fun)() = test_mode4;
+   void (*fun)() = test_mode8;
    int mode = 1;
 
    for(;;){
