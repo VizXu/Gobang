@@ -31,6 +31,9 @@ RDIR,
 LDIR
 } DIR;
 
+typedef s8 LINE[BOARD_SIZE];
+typedef s8 LINE2D[BOARD_SIZE][BOARD_SIZE];
+
 /*
 FIVE:
 	@@@@@   // 9999
@@ -88,13 +91,17 @@ private:
 	Analysisline* lineAnalysis;	
 private:
 	void copy_a_line(s8 line_dst[],s8 board[][BOARD_SIZE],int num, DIR dir);
-	void board_to_line();
+	void line_to_line(LINE& line1,s8 line2[BOARD_SIZE]);
 public:
 	void copy_from_board(const s8 board[][BOARD_SIZE]);
 	int scores_of_players(char player);
+public:
+	void board_to_line();
+	void get_a_line(LINE& line,int num,DIR dir);
 #ifdef DEBUG_ALPHA
 public:
 	void dis_lines(s8 lines[][BOARD_SIZE],int num, DIR dir);
+	void dis_a_line(LINE& line);
 #endif
 };
 
@@ -103,6 +110,11 @@ class AlphaBetaPruning
 private:
 	s8 board_for_pruning[BOARD_SIZE][BOARD_SIZE];
 	Evaluate* evaluate;
+public:
+	AlphaBetaPruning();
+	~AlphaBetaPruning();
+public:
+	void display_line_info();
 public:
 	void loadBoard(const Chessboard& board);
 	

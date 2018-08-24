@@ -70,7 +70,22 @@ void Evaluate::board_to_line()
 #ifdef DEBUG_ALPHA
 void Evaluate::dis_lines(s8 lines[][BOARD_SIZE],int num,DIR dir)
 {
-
+  switch(dir){
+     case HDIR:printf("the hline[%d]:",num);break;
+     case VDIR:printf("the vline[%d]:",num);break;
+     case RDIR:printf("the rline[%d]:",num);break;
+     case LDIR:printf("the lline[%d]:",num);break;
+  }
+  for(int i = 0; i < BOARD_SIZE; i++){
+     printf(" %c",lines[num][i]);
+  }
+}
+void Evaluate::dis_a_line(LINE& line)
+{
+   printf("line: ");
+   for(int i = 0; i < BOARD_SIZE; i++){
+	printf("%c ",line[i]);
+   }
 }
 #endif
 
@@ -83,9 +98,49 @@ void Evaluate::copy_from_board(const s8 board[][BOARD_SIZE])
    }
 }
 
+void Evaluate::line_to_line(LINE& line1,s8 line2[BOARD_SIZE])
+{
+   for(int i = 0; i < BOARD_SIZE; i++){
+      line1[i] = line2[i];
+   }
+}
+
+void Evaluate::get_a_line(LINE& line,int num, DIR dir)
+{
+   switch(dir){
+      case HDIR: line_to_line(line,this->hline[num]);break; 
+      case VDIR: line_to_line(line,this->vline[num]);break; 
+      case RDIR: line_to_line(line,this->rline[num]);break; 
+      case LDIR: line_to_line(line,this->lline[num]);break; 
+   }
+return;
+}
+
 void Analysisline::loadaLine(s8 * line)
 {
 return;
+}
+
+AlphaBetaPruning::AlphaBetaPruning()
+{
+   for(int i = 0; i < BOARD_SIZE; i++){
+      for(int j = 0; j < BOARD_SIZE; j++){
+	 this->board_for_pruning[i][j] = '+';	
+      }
+   }
+   evaluate = new Evaluate;
+}
+AlphaBetaPruning::~AlphaBetaPruning()
+{
+   delete evaluate;
+}
+
+void AlphaBetaPruning::display_line_info()
+{
+    LINE line;
+    this->evaluate->board_to_line();
+    this->evaluate->get_a_line(line,18,RDIR);
+    this->evaluate->dis_a_line(line);
 }
 
 void AlphaBetaPruning::loadBoard(const Chessboard& board)
@@ -95,4 +150,5 @@ void AlphaBetaPruning::loadBoard(const Chessboard& board)
            this->board_for_pruning[i][j]= board.get_chess(i,j);
  	}
    }
+   evaluate->copy_from_board(this->board_for_pruning);
 }

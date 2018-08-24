@@ -311,7 +311,14 @@ return;
 
 void test_mode8()
 {
-
+   Chessboard chessboard;
+   rand_chessboard(chessboard);
+   display_chessboard(chessboard);
+   AlphaBetaPruning* Pruning = new AlphaBetaPruning;
+   Pruning->loadBoard(chessboard);
+   printf("\n---------------------------------------------------\n");
+   Pruning->display_line_info();
+   printf("\n---------------------------------------------------\n");
 }
 
 void test_mode_for_Qt()
