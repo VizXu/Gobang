@@ -21,7 +21,7 @@ Evaluate::Evaluate()
        }
    }
   
-   this->lineAnalysis = new Analysisline;
+   this->lineAnalysis = new Analysisline();
 }
 
 Evaluate::~Evaluate()
@@ -146,11 +146,33 @@ void Evaluate::get_a_line(LINE& line,int num, DIR dir)
 return;
 }
 
+Analysisline::Analysisline()
+{
+   for(int i = 0; i < LINE_SIZE; i++){
+      this->a_line[i] = '+';
+   }
+}
+
+Analysisline::~Analysisline()
+{
+
+}
+
 void Analysisline::loadaLine(LINE& line)
 {
     for(int i = 0; i < BOARD_SIZE; i++){
 	this->a_line[i] = line[i];
+	this->analyzed[i] = false;
     }
+    this->FIVE = 0;
+    this->FOUR = 0;
+    this->GFOUR = 0;
+    this->GFOUR = 0;
+    this->THREE = 0;
+    this->GTHREE = 0;
+    this->TWO   = 0;
+    this->GTWO  = 0;
+    this->ONE   = 0;
 return;
 }
 
@@ -165,6 +187,18 @@ void Analysisline::playerIs(char _player)
    }
 }
 
+int Analysisline::scores_of_line(char player)
+{
+   int score = 0;
+   std::list<char> line_chess;
+   for(int i = 0; i < LINE_SIZE; i++){
+	for(int j = i; j < LINE_SIZE; j++){
+
+        }
+   }
+return score;
+}
+
 AlphaBetaPruning::AlphaBetaPruning()
 {
    for(int i = 0; i < BOARD_SIZE; i++){
@@ -172,7 +206,7 @@ AlphaBetaPruning::AlphaBetaPruning()
 	 this->board_for_pruning[i][j] = '+';	
       }
    }
-   evaluate = new Evaluate;
+   evaluate = new Evaluate();
 }
 AlphaBetaPruning::~AlphaBetaPruning()
 {

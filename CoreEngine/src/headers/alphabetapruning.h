@@ -72,11 +72,26 @@ class Analysisline
 {
 private:
 	s8 a_line[LINE_SIZE];
+	bool analyzed[LINE_SIZE];
 	char player;
 	char enemy_player;
+private:
+	int FIVE;
+	int FOUR;
+	int GFOUR;
+	int THREE;
+	int GTHREE;
+	int TWO;
+	int GTWO;
+	int ONE;
 public:
+	explicit Analysisline();
+	~Analysisline();
+private:
 	void playerIs(char _player);
+public:
 	void loadaLine(LINE& line);
+	int scores_of_line(char player);
 };
 
 class Evaluate
@@ -87,10 +102,11 @@ private:
 	s8 vline[VLINE_NUM][BOARD_SIZE];
 	s8 rline[RLINE_NUM][BOARD_SIZE];
 	s8 lline[LLINE_NUM][BOARD_SIZE];
+	char player;
 private:
 	Analysisline* lineAnalysis;	
 public:
-	Evaluate();
+	explicit Evaluate();
 	~Evaluate();
 private:
 	void copy_a_line(s8 line_dst[],s8 board[][BOARD_SIZE],int num, DIR dir);
@@ -98,6 +114,7 @@ private:
 public:
 	void copy_from_board(const s8 board[][BOARD_SIZE]);
 	int scores_of_players(char player);
+	void set_player(char _player);
 public:
 	void board_to_line();
 	void get_a_line(LINE& line,int num,DIR dir);
@@ -114,7 +131,7 @@ private:
 	s8 board_for_pruning[BOARD_SIZE][BOARD_SIZE];
 	Evaluate* evaluate;
 public:
-	AlphaBetaPruning();
+	explicit AlphaBetaPruning();
 	~AlphaBetaPruning();
 public:
 	void display_line_info();
