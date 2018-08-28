@@ -319,6 +319,9 @@ void test_mode8()
    printf("\n---------------------------------------------------\n");
    Pruning->display_line_info();
    printf("\n---------------------------------------------------\n");
+   int score = Pruning->boardScore('&');
+
+   printf("score = %d\n",score);
 }
 
 void test_mode_for_Qt()

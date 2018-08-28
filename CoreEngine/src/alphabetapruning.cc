@@ -146,6 +146,19 @@ void Evaluate::get_a_line(LINE& line,int num, DIR dir)
 return;
 }
 
+int Evaluate::score_of_aline(char player,int num,DIR dir)
+{
+    LINE line;
+    this->get_a_line(line,num,dir);
+    this->lineAnalysis->loadaLine(line);
+return  this->lineAnalysis->scores_of_line(player);
+}
+
+int Evaluate::scores_of_players(char player)
+{
+   return this->score_of_aline(player,12,DIR::HDIR);
+}
+
 Analysisline::Analysisline()
 {
    for(int i = 0; i < LINE_SIZE; i++){
@@ -205,6 +218,16 @@ int Analysisline::scores_of_line(char player)
    int rpos = 0;
    int joinedChess = 0;
 
+   printf("\nplayer = %c\n",player);
+   printf("this->a_line = ");
+   for(int n = 0; n < LINE_SIZE; n++){
+	printf("%c ",this->a_line[n]);
+   }
+   printf("\nthis->analyzed = ");
+   for(int n = 0; n < LINE_SIZE; n++){
+	printf("%d ",this->analyzed[n]);
+   }
+
    for(int i = 0; !this->analyzed[i] and i < LINE_SIZE; i++){
 	if(this->a_line[i] == player){
 	   lpos = i;
@@ -219,31 +242,72 @@ int Analysisline::scores_of_line(char player)
 	else{
 	   continue;
 	}
-	for(int j = i; j < LINE_SIZE; j++){
+	for(int j = i + 1; j < LINE_SIZE; j++){
 	   if(this->a_line[j] == player){
 	      rpos = j;
 	      joinedChess += 1;	
 	   }
+	   else break;
         }
 
 	if(joinedChess == 5){
 	   this->FIVE += 1;
 	   for(int l = lpos; l <= rpos; l++){
 	      this->analyzed[l] = true;
+	      printf("\nenter five, l = %d\n",l);
 	   }
 	}
-	if(joinedChess == 4){
-	   
+	else if(joinedChess == 4){
+	   if(lpos - 1 >= 0 and this->a_line[lpos - 1] == '+'){
+		if(rpos + 1 < LINE_SIZE and this->a_line[rpos + 1] == '+'){
+	   	   this->FOUR += 1;
+		   for(int p = lpos - 1; p <= rpos + 1; p++){
+		      this->analyzed[p] = true;
+		   }
+		}
+		//else if(rpos + 1 < LINE_SIZE; and this->a_line[rpos + 1] == this->enemy(player)){
+		else{
+		   this->GFOUR += 1;
+		   for(int p = lpos - 1; p < LINE_SIZE and p <= rpos + 1; p++){
+		      this->analyzed[p] = true;
+		   }
+		}
+	   }
+	   else{
+		if(rpos + 1 < LINE_SIZE and this->a_line[rpos + 1] == '+'){
+	   	   this->GFOUR += 1;
+		   for(int p = lpos - 1; p <= rpos + 1; p++){
+		      this->analyzed[p] = true;
+		   }
+		}
+		else{
+		   for(int p = lpos - 1; p < LINE_SIZE and p <= rpos + 1; p++){
+		      this->analyzed[p] = true;
+		   }
+		}
+	   }
 	}
-	if(joinedChess == 3){
-	   
+	else if(joinedChess == 3){
+		this->THREE += 1;	   
 	}
-	if(joinedChess == 2){
-	   
+	else if(joinedChess == 2){
+	       this->TWO += 1;
 	}
-	if(joinedChess == 1){
-	   
+	else if(joinedChess == 1){
+		this->ONE += 1;       
 	}
+	
+   }
+	score += this->FIVE*9999;
+	score += this->FOUR*9998;
+	score += this->GFOUR*4999;
+	score += this->THREE*2499;
+	score += this->TWO*624;
+	score += this->ONE*100;
+	printf("\n---> score = %d\n",score);
+   printf("\nafter ---> this->analyzed = ");
+   for(int n = 0; n < LINE_SIZE; n++){
+	printf("%d ",this->analyzed[n]);
    }
 return score;
 }
@@ -278,4 +342,10 @@ void AlphaBetaPruning::loadBoard(const Chessboard& board)
  	}
    }
    evaluate->copy_from_board(this->board_for_pruning);
+}
+
+int AlphaBetaPruning::boardScore(char player)
+{
+   this->evaluate->board_to_line();
+   return this->evaluate->scores_of_players(player);
 }

@@ -112,6 +112,7 @@ public:
 private:
 	void copy_a_line(s8 line_dst[],s8 board[][BOARD_SIZE],int num, DIR dir);
 	void line_to_line(LINE& line1,s8 line2[BOARD_SIZE]);
+	int score_of_aline(char player,int num,DIR dir);
 public:
 	void copy_from_board(const s8 board[][BOARD_SIZE]);
 	int scores_of_players(char player);
@@ -138,6 +139,7 @@ public:
 	void display_line_info();
 public:
 	void loadBoard(const Chessboard& board);
+	int boardScore(char player);
 	
 };
 #endif
