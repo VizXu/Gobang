@@ -151,6 +151,15 @@ Analysisline::Analysisline()
    for(int i = 0; i < LINE_SIZE; i++){
       this->a_line[i] = '+';
    }
+    this->FIVE = 0;
+    this->FOUR = 0;
+    this->GFOUR = 0;
+    this->GFOUR = 0;
+    this->THREE = 0;
+    this->GTHREE = 0;
+    this->TWO   = 0;
+    this->GTWO  = 0;
+    this->ONE   = 0;
 }
 
 Analysisline::~Analysisline()
@@ -164,15 +173,6 @@ void Analysisline::loadaLine(LINE& line)
 	this->a_line[i] = line[i];
 	this->analyzed[i] = false;
     }
-    this->FIVE = 0;
-    this->FOUR = 0;
-    this->GFOUR = 0;
-    this->GFOUR = 0;
-    this->THREE = 0;
-    this->GTHREE = 0;
-    this->TWO   = 0;
-    this->GTWO  = 0;
-    this->ONE   = 0;
 return;
 }
 
@@ -187,14 +187,63 @@ void Analysisline::playerIs(char _player)
    }
 }
 
+char Analysisline::enemy(char _player)
+{
+   if(_player == '@'){
+	return '&';
+   }
+   else{ 
+        return '@';
+   }
+}
+
 int Analysisline::scores_of_line(char player)
 {
    int score = 0;
    std::list<char> line_chess;
-   for(int i = 0; i < LINE_SIZE; i++){
-	for(int j = i; j < LINE_SIZE; j++){
+   int lpos = 0;
+   int rpos = 0;
+   int joinedChess = 0;
 
+   for(int i = 0; !this->analyzed[i] and i < LINE_SIZE; i++){
+	if(this->a_line[i] == player){
+	   lpos = i;
+	   joinedChess = 1;
+	}
+	else if(this->a_line[i] == this->enemy(player)){
+	   for(int k = 0; k <= i; k++){
+	      this->analyzed[k] = true;
+	   }
+	   continue;
+	}
+	else{
+	   continue;
+	}
+	for(int j = i; j < LINE_SIZE; j++){
+	   if(this->a_line[j] == player){
+	      rpos = j;
+	      joinedChess += 1;	
+	   }
         }
+
+	if(joinedChess == 5){
+	   this->FIVE += 1;
+	   for(int l = lpos; l <= rpos; l++){
+	      this->analyzed[l] = true;
+	   }
+	}
+	if(joinedChess == 4){
+	   
+	}
+	if(joinedChess == 3){
+	   
+	}
+	if(joinedChess == 2){
+	   
+	}
+	if(joinedChess == 1){
+	   
+	}
    }
 return score;
 }

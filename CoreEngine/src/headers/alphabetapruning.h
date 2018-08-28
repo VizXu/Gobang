@@ -89,6 +89,7 @@ public:
 	~Analysisline();
 private:
 	void playerIs(char _player);
+	char enemy(char _player);
 public:
 	void loadaLine(LINE& line);
 	int scores_of_line(char player);
