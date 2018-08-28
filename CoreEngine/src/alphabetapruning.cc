@@ -228,7 +228,7 @@ int Analysisline::scores_of_line(char player)
 	printf("%d ",this->analyzed[n]);
    }
 
-   for(int i = 0; !this->analyzed[i] and i < LINE_SIZE; i++){
+   for(int i = 0; !this->analyzed[i] and i < LINE_SIZE and this->a_line[i] != '%'; i++){
 	if(this->a_line[i] == player){
 	   lpos = i;
 	   joinedChess = 1;
@@ -288,7 +288,47 @@ int Analysisline::scores_of_line(char player)
 	   }
 	}
 	else if(joinedChess == 3){
-		this->THREE += 1;	   
+	   int l_bandary = lpos;
+	   int r_bandary = rpos;
+	   
+	   if(l_bandary - 2 >=0){
+		if(this->a_line[l_bandary - 2] == player){
+		  if(this->a_line[l_bandary - 1] == '+'){
+		     if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+		         if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			    this->GTHREE += 1;
+		         }
+		         else{
+			    this->THREE += 1;
+		         }
+		      }
+		      else{
+		         this->THREE += 1;
+		      }
+		   }
+		   else if(this->a_line[l_bandary - 1] == this->enemy(player)){
+		     if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+		         if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			    this->THREE += 1;
+		         }
+		         else if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == '+'){
+			    this->GTHREE += 1;
+		         }
+		      }
+		   }
+	        }
+		else if(this->a_line[l_bandary - 2] == '+'){
+		   if(this->a_line[l_bandary - 1] == '+'){
+			
+		   }
+		   else if(this->a_line[l_bandary - 1] == this->enemy(player)){
+
+		   }
+		}
+		else{
+		   
+		}
+	   }
 	}
 	else if(joinedChess == 2){
 	       this->TWO += 1;
