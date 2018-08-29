@@ -329,6 +329,12 @@ int Analysisline::scores_of_line(char player)
 		   
 		}
 	   }
+	   else if(l_bandary - 2 < 0 and l_bandary - 1 >=0){
+		
+	   }
+	   else{
+
+	   }
 	}
 	else if(joinedChess == 2){
 	       this->TWO += 1;
@@ -342,8 +348,9 @@ int Analysisline::scores_of_line(char player)
 	score += this->FOUR*9998;
 	score += this->GFOUR*4999;
 	score += this->THREE*2499;
-	score += this->TWO*624;
-	score += this->ONE*100;
+	score += this->GTHREE*1248;
+	score += this->TWO*0;
+	score += this->ONE*0;
 	printf("\n---> score = %d\n",score);
    printf("\nafter ---> this->analyzed = ");
    for(int n = 0; n < LINE_SIZE; n++){
