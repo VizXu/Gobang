@@ -296,20 +296,20 @@ int Analysisline::scores_of_line(char player)
 		  if(this->a_line[l_bandary - 1] == '+'){
 		     if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
 		         if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
-			    this->GTHREE += 1;
+			    this->GFOUR += 2;
 		         }
 		         else{
-			    this->THREE += 1;
+			    this->GFOUR += 1;
 		         }
 		      }
 		      else{
-		         this->THREE += 1;
+		         this->GFOUR += 1;
 		      }
 		   }
 		   else if(this->a_line[l_bandary - 1] == this->enemy(player)){
 		     if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
 		         if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
-			    this->THREE += 1;
+			    this->GFOUR += 1;
 		         }
 		         else if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == '+'){
 			    this->GTHREE += 1;
@@ -319,18 +319,75 @@ int Analysisline::scores_of_line(char player)
 	        }
 		else if(this->a_line[l_bandary - 2] == '+'){
 		   if(this->a_line[l_bandary - 1] == '+'){
-			
+			if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+			   if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == '+'){
+			      this->THREE += 1;
+			   }
+			   else if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			      this->GFOUR += 1;
+			   }
+			   else{
+			      this->THREE += 1;
+			   }
+			}
+			else{
+			    this->GTHREE += 1;
+			}
 		   }
 		   else if(this->a_line[l_bandary - 1] == this->enemy(player)){
-
+			if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+			   if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == '+'){
+			      this->GTHREE += 1;
+			   }
+			   else if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			      this->GFOUR += 1;
+			   }
+			   else{
+			   }
+			}
+			else{
+			}
 		   }
 		}
 		else{
-		   
+		   if(this->a_line[l_bandary - 1] == '+'){
+		      if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+			 if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			    this->GFOUR += 1;
+			 }
+			 else if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == '+'){
+			    this->THREE += 1;
+			 }
+			 else{
+			    this->THREE += 1;
+			 }
+		      }
+		   }
+		   else{
+		      if(r_bandary + 1 < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+			 if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			    this->GFOUR += 1;
+			 }
+			 else if(r_bandary + 2 < LINE_SIZE and this->a_line[r_bandary + 2] == '+'){
+			    this->GTHREE += 1;
+			 }
+			 else{
+			 }
+		      }
+		   } 
 		}
 	   }
 	   else if(l_bandary - 2 < 0 and l_bandary - 1 >=0){
-		
+		if(this->a_line[l_bandary - 1] == '+'){
+		   if(r_bandary < LINE_SIZE and this->a_line[r_bandary + 1] == '+'){
+		      if(r_bandary < LINE_SIZE and this->a_line[r_bandary + 2] == player){
+			 this->GFOUR += 1;
+		      }
+		      else{
+			 this->THREE += 1;
+		      }
+		   }
+		}	
 	   }
 	   else{
 
