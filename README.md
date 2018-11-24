@@ -62,5 +62,5 @@ The server codes is in GobangGame/CoreEngine/src/ and client code is in GobangGa
 ![coreengine image](https://github.com/VizXu/GobangGame/blob/master/CoreEngine/src/img/8.png)
 
 ##### 2018-5
--I'm taking code refactoring
+-This code is writing like a bullshit and I'm going to take code refactoring
 
