@@ -156,7 +156,12 @@ void MainWindow::flashChessboard(QStringList boardInfo)
     for(int i = 0; i < boardInfo.size(); i++){
         k = 0;
         for(int j = 0; j < boardInfo.at(i).size(); j += 2){
-            const char chessman = boardInfo.at(i).at(j).toAscii();
+	
+	#if (QT_VERSION <= QT_VERSION_CHECK(5,0,0))
+		const char chessman = boardInfo.at(i).at(j).toAscii();
+	#else
+		const char chessman = boardInfo.at(i).at(j).toLatin1();
+	#endif
             printf("%c ",chessman);
             if(chessman != '+'){
                 this->paintChessman(k,i,chessman);
